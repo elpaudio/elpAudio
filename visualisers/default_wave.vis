@@ -1,0 +1,21 @@
+InitVisVars(x,y,width,height)
+GetWaveBuffer(maxw,0,myinst)
+SetVisColorAlpha(global.visfgcol,1)
+repeat(maxw)
+{
+    draw_line(xx,yy+SNAPWAVEENTRY(i,maxw)*h,xx+w/maxw,yy+SNAPWAVEENTRY(i+1,maxw)*h)
+    i+=1;
+    xx+=w/maxw;
+}
+xx=x;
+i=0;
+GetWaveBuffer(maxw,1,argument0)
+SetVisColorAlpha(global.visfgcol,0.6);
+repeat(maxw)
+{
+    draw_line(xx,yy+SNAPWAVEENTRY(i,maxw)*h,xx+w/maxw,yy+SNAPWAVEENTRY(i+1,maxw)*h)
+    i+=1;
+    xx+=w/maxw;
+}
+
+SetVisColorAlpha(c_white,1)

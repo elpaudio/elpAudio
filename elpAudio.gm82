@@ -1,0 +1,23 @@
+gm82_version=5
+gameid=932061098
+
+info_author=elpoep
+info_version=15
+info_information=
+
+exe_company=elpoep Interactive design of the old future
+exe_product=elpAudio 1.5 BETA
+exe_copyright=elpoep 2024
+exe_description=elpAudio 1.5 BETA for testing purposes
+exe_version=1.5.0.10
+
+has_backgrounds=0
+has_datafiles=0
+has_fonts=1
+has_objects=1
+has_paths=0
+has_scripts=1
+has_sounds=0
+has_sprites=1
+has_timelines=0
+has_triggers=1

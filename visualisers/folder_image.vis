@@ -1,0 +1,27 @@
+/* Folder image as album art plugin by elpoep */
+if !variable_local_exists('__imginit') {__imginit=0;
+mybg=sprite_add(working_directory+'\visualisers\img\__bg.png',1,0,0,0,0);
+myimg=sprite_add(working_directory+'\visualisers\img\noalbum.png',1,0,0,0,0);myfa=fa_hidden+fa_readonly
+check=0;
+_mysong=global.current;myscale=1;
+myfile='';}
+if _mysong!=global.current {_mysong=global.current;check=0;}
+if global.play {
+if !check {
+myfext=filename_change_ext(ds_list_find_value(global.list,_mysong),'.jpg')
+myfile=fname_path(ds_list_find_value(global.list,_mysong))+file_find_first(fname_path(ds_list_find_value(global.list,_mysong))+myfext,myfa);
+if !file_exists(myfile) {myfext='Folder.jpg'}
+myfile=fname_path(ds_list_find_value(global.list,_mysong))+file_find_first(fname_path(ds_list_find_value(global.list,_mysong))+myfext,myfa);
+if !file_exists(myfile) {myfext='AlbumArt.*'}
+myfile=fname_path(ds_list_find_value(global.list,_mysong))+file_find_first(fname_path(ds_list_find_value(global.list,_mysong))+myfext,myfa);
+if !file_exists(myfile) {myfext='*.jpg'}
+myfile=fname_path(ds_list_find_value(global.list,_mysong))+file_find_first(fname_path(ds_list_find_value(global.list,_mysong))+myfext,myfa);
+if file_exists(myfile) {
+if sprite_exists(myimg) sprite_delete(myimg);
+myimg=sprite_add(myfile,1,0,0,0,0);
+myscale=min(width/sprite_get_width(myimg),height/sprite_get_height(myimg))*0.5;
+} else {myimg=sprite_add(working_directory+'\visualisers\img\noalbum.png',1,0,0,0,0);}
+check=1;}}
+
+if mybg>-1 draw_sprite_stretched_ext(mybg,0,x,y,width,height,c_white,1);
+if myimg>-1 {myscale=min(width/sprite_get_width(myimg),height/sprite_get_height(myimg))*0.5; sprite_set_offset(myimg,sprite_get_width(myimg)/2,sprite_get_height(myimg)/2);draw_sprite_ext(myimg,0,x+width/2,y+height/2,myscale,myscale,0,c_white,1);}
