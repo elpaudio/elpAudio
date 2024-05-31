@@ -4,11 +4,12 @@ elpAudio - simple audio player using FMOD, made on Game Maker 8.2, that supports
 **Now elpAudio have its own discord server - you can <a href="https://discord.gg/n64mcGT6Sr">click here</a> to join it!**
 
 For the moment elpAudio supports only Windows systems. 
-elpAudio on Linux WINE works well if running on WINE desktop
+elpAudio on Linux WINE works well if running on WINE desktop.
 
 ## Do you have a bug? Or you just want to help the project, ask a question or give an idea? 
 Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gmail.com** 
 
+****For older releases, please consider to <a href='https://github.com/elpoeprod/elpAudio/releases'>this link.</a>****
 
 # HOW TO USE:
 -go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy the "new **WinAmp**"!
@@ -16,9 +17,8 @@ Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gm
 ## To open source code of elpAudio you need:
   - SDL, SDL_image, SDL_ttf and SDL_mixer DLLs
 
-
 ### First way
-You need to open "Game Maker 8.2 Setup.exe" file in that repository.
+You need to open "Game Maker 8.2 Setup.exe" file in that repository. If it doesn't exist, go to the second way.
 Then download all of the files in the repository and click on "elpAudio.gm82". Done! Now you can do anything.
 
 ### Second way
