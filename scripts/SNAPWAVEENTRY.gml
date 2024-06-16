@@ -1,6 +1,6 @@
 var _v,vf;_v=argument0;vf=argument1;
 if global.paused or global.stopped {
-return lengthdir_x(1,current_time*0.05+v)*0.98
+return lengthdir_x(1,current_time*0.05+_v)*0.98
 }
 else {
 //if visualiser.wait>0 exit

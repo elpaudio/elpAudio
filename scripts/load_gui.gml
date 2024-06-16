@@ -9,12 +9,14 @@ var iii;iii=1
 global.vis[0]=file_find_first(working_directory+'\visualisers\*.vis',fa_hidden)
 if global.vis[0]!='' {
 //show_message(global.vis[0])
+global.visname[0]=filename_name(global.vis[0])
 global.vis[0]=file_text_read_all(working_directory+'\visualisers\'+global.vis[0],' ')
 global.customvisuals+=1
 repeat(128) {
 global.vis[iii]=file_find_next()
 if global.vis[iii]!='' {
 //show_message(global.vis[0])
+global.visname[iii]=filename_name(global.vis[iii])
 global.vis[iii]=file_text_read_all(working_directory+'\visualisers\'+global.vis[iii],' ')
 global.customvisuals+=1
 iii+=1

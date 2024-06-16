@@ -1,3 +1,4 @@
+
 if argument0=0 ds_list_sort(global.list,0)
 if argument0=1 ds_list_sort(global.list,1)
 if argument0=2 ds_list_shuffle(global.list)

@@ -88,7 +88,7 @@ draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,c_white,1)
 }
 }
 if turnon {
-draw_set_color($FFFFFF-draw_getpixel(x,y))
+draw_set_color(c_black)//$FFFFFF-draw_getpixel(x,y))
 draw_text(x+1,y+1,string_ext('{0}/{1}',fps,room_speed))}
 #define KeyPress_120
 /*"/*'/**//* YYD ACTION

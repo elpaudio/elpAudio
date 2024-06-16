@@ -207,6 +207,11 @@
 	|LINUX_FIX
 	|tralse
 	|ereal
+	+PLMIGRATE
+		|playlist_migrate
+		|UDecode
+		|HTMLTagDecode
+	|debug
 +VISUALISE
 	|snapinstance
 	|visualise2
@@ -227,6 +232,17 @@
 	|DrawLinePrec
 	|SetVisColorAlpha
 	|GetBufferMedian
+	|GetCurrentList
+	|GetFontWidth
+	|GetFontHeight
+	|FontSet
+	|GetListEntry
+	|GetListSize
+	|DrawRect
+	|DrawRectOutline
+	|CheckListPos
+	|CheckSelect
+	|DrawTextSpecial
 +GUI
 	|get_theme
 	|load_gui
@@ -243,6 +259,8 @@
 	|mouse_grab
 	|fname_path
 	|ini_rs
+	|copy_to_playlist
+	|check_file_location
 +elpaudio
 	|current_time_format
 	|current_time_format2
@@ -260,6 +278,7 @@
 	|is_negative
 	|filename_ext_new
 	|get_song_length
+	|ea_play
 +lini
 	|lini_open
 	|lini_read_key

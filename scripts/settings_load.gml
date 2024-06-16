@@ -65,6 +65,7 @@ __captionchangespd=ini_read_real('Caption','captionChangeSpeed',3)*60
 __enable_fswitch=ini_read_real('','enableSwitchFScreen',1)
 __stick_to_edges=ini_read_real('','windowSticksToEdges',1)
 __stopsongafter=ini_read_real('','stopSongAfterPlaying',0)
+room_speed=max(ini_read_real('','framerate',60),1)
 ini_close()
 } else {
 ini_open(global.__progdir+'settings.ini')
@@ -80,6 +81,8 @@ ini_write_real('Caption','changeCaption',1)
 ini_write_real('Caption','captionChangeSpeed',3)
 ini_write_string('Caption','customCaptionChange1','(%t1 / %ta1) elpAudio %v [%pn/%ps]')
 ini_write_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
+ini_write_real('','framerate',60)
+room_speed=60
 ini_close()
 }
 if file_exists(global.__progdir+'temp.elf') loadlist(global.__progdir+'temp.elf',0)

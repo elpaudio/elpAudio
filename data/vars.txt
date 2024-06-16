@@ -1,3 +1,7 @@
+=====================
+	VARIABLES
+=====================
+
 __visual_freq - visualiser bars, used in default visualisers
 __speed - text speed, used for floating text thing
 room_width, or global.pwidth - elpAudio player width (NOT VISUALISER!)
@@ -15,16 +19,42 @@ hp=1;
 coins=0;
 hp=1;}}
 
-The code from 11th to 16th line is a simple INIT functions for your script.
+DO NOT set your variables as these names:
+health;
+score;
+other;
+self;
+sprite;
+lives;
+x;
+y;
+They are GameMaker preserved functions, so it can break the player! Better use '_' symbol before variable names. And for your own x/y you should use '_xx','_yy' things.
+
+Every variable initialiser should end with ';' to prevent future errors.
+
+============================
+	CODING
+============================
+
+The code from 11th to 17th line is a simple INIT functions for your script.
 With that, you can do your own game and load images, sounds, etc.
 
 You can do even your own Omega Flowey bossfight from Undertale if you know GML so good. 
 Or, if not, more easy-to-do functions come in future!
 
 Load sprites: 
-myspr=sprite_add(`file name`,`image frames (only horizontal)`,`smooth image`,`remove color on all image from left-top pixel`,`origin x of sprite`,origin y of sprite);
+myspr=sprite_add(`file name`,`image frames (only horizontal)`,`smooth image`,`remove color taken from left-top pixel on all image`,`origin x of sprite`,`origin y of sprite`);
 
 Load Sounds (GM-Built-in audio):
 mysnd=sound_add(`sound file name`);
 
-To manipulate sounds there are so many sound_* functions.
+===================================
+	SOUND PLAYER
+===================================
+
+
+To manipulate sounds there are so many sound_* functions. Simple code for playing song:
+
+if !variable_global_exists('myinit') {
+global.myinit=0; mysnd=sound_add("hooray.wav");
+else if global.myinit=0 {global.myinit=1; sound_play(mysnd);}

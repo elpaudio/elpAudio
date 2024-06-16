@@ -1,11 +1,18 @@
 var song,mylastsong;
 mylastsong=0
+isweb=string_count('http://',argument0)>0 or string_count('https://',argument0)>0
 if variable_global_exists('musicsound') {
 mylastsong=global.musicsound
 //FMODSoundFree(mylastsong)
-global.musicsound=FMODSoundAdd(argument0,0,1)
-} else global.musicsound=FMODSoundAdd(argument0,0,1)
+if isweb {global.musicsound=FMODSoundAddAsyncStream(argument0,0) debug('song is streaming from the web')}
+else {global.musicsound=FMODSoundAdd(argument0,0,1) debug('song is streaming from the disk')}
+} else {
+if isweb {global.musicsound=FMODSoundAddAsyncStream(argument0,0) debug('song is streaming from the web')}
+else {global.musicsound=FMODSoundAdd(argument0,0,1) debug('song is streaming from the disk')}
+}
+
 song=global.musicsound
+if isweb exit
 global.playing=FMODSoundLoop(song,0)
 FMODInstanceSetLoopCount(global.playing,-1*loopbutton.on)
 FMODMasterSetVolume((global.volume)/100)

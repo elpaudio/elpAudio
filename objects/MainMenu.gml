@@ -132,11 +132,11 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-///Draw TOP MENU
+///Draw TOP MENU && GET POS
 
 //view_stabilize()
 if global.play {
-if FMODInstanceGetPosition(global.playing)>=0.999 and FMODInstanceGetLoopCount(global.musicsound)>-1 {
+if FMODInstanceGetPosition(global.playing)>=0.999 and FMODInstanceGetLoopCount(global.playing)>-1 {
 if __stopsongafter mus_stop() else {
 if global.current<ds_list_size(global.list)-1 global.current+=1 else global.current=0
 if global.play mus_stop()

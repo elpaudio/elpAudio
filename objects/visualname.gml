@@ -79,12 +79,13 @@ else { // Draw without the time
 mystr=global.trackname
 }
 
-if floatiertext {if textx+string_width(mystr)>width xx-=(__speed/15)*delta_time}
+if floatiertext {if textx+string_width(mystr)>width xx-=((__speed)/15)*(room_speed/max(fps,1))}
 if xx<-string_width(mystr)-textx xx=width+10
 //draw_text(x+xx,y+6,mystr)
 }
 
 draw_surface_ext(surf,x+textx,y+texty,1,1,0,c_white,1)
+//draw_text(x+textx/*-xx*/,y+texty,mystr)
 
 if drawfloattime2 {
 draw_set_font(time2font)

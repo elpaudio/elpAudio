@@ -32,9 +32,8 @@ applies_to=self
 */
 slw=sprite_get_width(global.__ico_slide)
 
-if global.play {//if !file_is_tracker(global.thesong) {
+if global.play {
 global.pos=FMODInstanceGetPosition(global.playing)
-//} else global.pos=sprite_width/100
 }
 if point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) {
 if mouse_check_button(mb_left)
@@ -54,7 +53,6 @@ if !window_get_active() exit
 
 if
 point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height)
-//and !file_is_tracker(global.thesong)
 and global.play
 {
 mypos=clamp(mouse_x-x,0,sprite_width)//-slw/2

@@ -259,3 +259,21 @@ ea_get_track_info
 get_genre
 GetBufferMedian
 
+copy_to_playlist
+check_file_location
+GetCurrentList
+GetFontWidth
+FontSet
+GetFontHeight
+GetListEntry
+GetListSize
+DrawRect
+DrawRectOutline
+CheckListPos
+ea_play
+CheckSelect
+DrawTextSpecial
+playlist_migrate
+UDecode
+HTMLTagDecode
+debug

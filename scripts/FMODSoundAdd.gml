@@ -1,4 +1,4 @@
-//export double FMODSoundAdd(LPCSTR soundfile, double threed, double streamed)
+///(soundfile,threed,streamed)
 
 //Adds a sound resource in the system but does not play it
 //returns a soundid which you should store in a variable

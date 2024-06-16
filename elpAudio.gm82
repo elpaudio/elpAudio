@@ -6,10 +6,10 @@ info_version=15
 info_information=
 
 exe_company=elpoep Interactive design of the old future
-exe_product=elpAudio 1.5 BETA
+exe_product=elpAudio 1.5
 exe_copyright=elpoep 2024
-exe_description=elpAudio 1.5 BETA for testing purposes
-exe_version=1.5.0.10
+exe_description=elpAudio 1.5
+exe_version=1.5.0.16
 
 has_backgrounds=0
 has_datafiles=0

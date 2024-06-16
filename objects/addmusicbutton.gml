@@ -13,6 +13,7 @@ click=0
 
 showagain=1
 image_blend=__butaddmuscol
+prevdir=working_directory
 
 globalvar __pl_window;__pl_window=-1
 #define Alarm_0
@@ -36,7 +37,9 @@ applies_to=self
 if file_drag_count()<=0 exit
 i=0
 repeat(file_drag_count()) {
-ds_list_add(global.list,file_drag_name(i))
+if is_supported(file_drag_name(i)) ds_list_add(global.list,file_drag_name(i))
+else if filename_ext(file_drag_name(i))=='.elf' {global.current=0 loadlist(file_drag_name(i))}
+else continue;
 i+=1
 }
 if global.play mus_stop()
@@ -75,10 +78,10 @@ draw_self()
 if click=1 and alarm[0]<30 alarm[0]=1
 
 if draw=1 {
-select=show_menu('Add file|Add folder|Add URL|Show files',-1)
+select=show_menu('Add file|Add folder|Add URL|Download from URL|Show files',-1)
 if select=0 {
-file=get_open_filename('All supported files|*.aiff;*.asf;*.asx;*.dls;*.flca;*.fsb;*.it;*.m3u;*.midi;*.mpd;*.mp3;*.mp3;*.ogg;*.opus;*.pls;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.raw;*.iff','')
-if file='' nothing=1 else ds_list_add(global.list,file)
+file=get_open_filename('All supported files|*.aiff;*.asf;*.asx;*.dls;*.flac;*.fsb;*.it;*.m3u;*.midi;*.mpd;*.mp3;*.mp2;*.ogg;*.opus;*.pls;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.raw;*.iff;','')
+if file='' nothing=1 else {ds_list_add(global.list,file) prevdir=filename_dir(file)}
 }
 if select=1 {
 folder=get_directory_alt('Add folder to your playlist!','')
@@ -88,6 +91,12 @@ get_music_from(folder+'\')
 }
 }
 if select=2 {
+myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/elpAudio/music/welcome.mp3')
+var isweb;isweb=string_count('https://',string_lower(myurl)) or string_count('http://',string_lower(myurl))
+if is_supported(myurl) or isweb ds_list_add(global.list,myurl)
+}
+
+if select=3 {
 myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/elpAudio/music/welcome.mp3')
 if myurl='' nothing=1 else {
 _connect=httprequest_create()

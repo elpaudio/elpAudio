@@ -28,4 +28,5 @@ if global.play {
 on=!on
 image_index=on
 FMODInstanceSetLoopCount(global.playing,-1*on)
+//FMODSoundSetLoopCount()
 } else image_index=0

@@ -6,8 +6,10 @@ file=file_text_open_write(fname)
 i=0
 repeat(ds_list_size(global.list))
 {
-file_text_write_string(file,string(ds_list_find_value(global.list,i)))
-file_text_writeln(file)
+var isweb;isweb=string_count('https://',string_lower(ds_list_find_value(global.list,i))) or string_count('http://',string_lower(ds_list_find_value(global.list,i)))
+
+if is_supported(string(ds_list_find_value(global.list,i))) or isweb {file_text_write_string(file,string(ds_list_find_value(global.list,i)))
+file_text_writeln(file)}
 i+=1
 }
 file_text_close(file)
