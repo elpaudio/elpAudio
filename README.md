@@ -15,7 +15,7 @@ Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gm
 -go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy the "new **WinAmp**"!
 
 ## To compile source code of elpAudio you need:
-  - SDL, SDL_image, SDL_ttf and SDL_mixer DLLs
+  - Game Maker 8.2
 
 ### First way
 You need to open "Game Maker 8.2 Setup.exe" file in that repository. If it doesn't exist, go to the second way.
