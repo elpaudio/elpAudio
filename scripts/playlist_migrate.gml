@@ -1,4 +1,4 @@
-///(fname)
+///(fname,DEST_FNAME)
 //thanks to visual music by icuurd12b21
 
 //*.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;
@@ -11,8 +11,8 @@ var drive; drive = filename_drive(fullname);
 
 var destfile; destfile = working_directory +"\playlists\migrate\"+filename+".elf"
 
-if(is_string(argument1))
-    destfile = argument1;
+//if(is_string(argument1))
+  //  destfile = argument1;
 
 if(!directory_exists(working_directory +"\playlists"))
     directory_create(working_directory +"\playlists");

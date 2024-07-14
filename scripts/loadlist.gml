@@ -24,9 +24,12 @@ while !file_text_eof(file)
 file_text_readln(file)
 }
 file_text_close(file)
-} else {playlist_migrate(fname) show_message('Your file ('+fname+') was converted to .ELF playlist. Find it at playlists\migrated folder and open them again here.')}
-copy_to_playlist(global.list,adl)
-ds_list_destroy(adl)
+} else {
+    playlist_migrate(fname)//,LINUX_FIX('playlists\'+filename_change_ext(filename_name(fname),'')))
+    show_message('Your file ('+fname+') was converted to .ELF playlist. Find it at playlists\migrated folder and open them again here.')
+    }
+    copy_to_playlist(global.list,adl)
+    ds_list_destroy(adl)
 
 
 if argument_count>1 {

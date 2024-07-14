@@ -39,9 +39,9 @@ if point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) {
 if mouse_check_button(mb_left)
 myx=clamp(mouse_x-slw/2,x,x+sprite_width-slw)
 else
-myx=clamp(x+global.pos*sprite_width,x,x+sprite_width-slw)
+myx=round(clamp(x+global.pos*sprite_width,x,x+sprite_width-slw))
 } else
-myx=clamp(x+global.pos*sprite_width,x,x+sprite_width-slw)
+myx=round(clamp(x+global.pos*sprite_width,x,x+sprite_width-slw))
 
 draw_self()
 draw_sprite_part_ext(sprite_index,1,0,0,myx-x+slw/2,sprite_height,x,y,1,1,c_white,1)
