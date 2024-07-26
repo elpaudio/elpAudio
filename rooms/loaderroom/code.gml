@@ -1,5 +1,5 @@
 //hrt_set_resolution(1000000)
-settings_load()
+SettingsLoad()
 read_wh()
 view_wview[0]=global.plrwidth
 view_hview[0]=global.plrheight

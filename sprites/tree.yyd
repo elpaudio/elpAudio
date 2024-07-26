@@ -1,21 +1,23 @@
-|buttonplay
-|buttonplayrandom
-|buttonnext
-|buttonprev
-|sprFloatBG
-|buttonsettings
-|buttonpause
-|buttonstop
-|minigui
-|buttonalwontop
-|buttonaddmusicfile
-|buttonvolume
-|volumeslide
-|buttonsort
-|buttonvisualize
-|buttonslider
-|buttonsavelist
-|buttonloadlist
-|buttonloop
-|volslide2
-|placeholder
+|sprPlaceholder
++MUSIC-CONTROL
+	|sprButtonPlay
+	|sprButtonNext
+	|sprButtonPrev
+	|sprButtonPause
+	|sprButtonStop
+	|sprButtonAddFile
+	|sprButtonLoop
+	|sprButtonShuffle
++UI
+	|sprGUIControls
+	|sprFloatText
+	|sprButtonAlwaysOnTop
+	|sprButtonSettings
+	|sprVolumeSlider
+	|sprVolumeSlider2
+	|sprButtonVisualiser
+	|sprPosSlider
+	|sprPosSlider2
++LIST
+	|sprButtonSaveList
+	|sprButtonLoadList

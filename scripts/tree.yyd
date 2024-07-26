@@ -1,15 +1,101 @@
-|get_version
-+EXT
+|Get_elpAudioVersion
++MUSIC-CONTROL
+	|MusicPlay
+	|MusicPause
+	|MusicResume
+	|MusicStop
+	|MusicNext
+	|MusicPrev
+	|Shuffle
++MISC
+	+PLMIGRATE
+		|playlist_migrate
+		|UDecode
+		|HTMLTagDecode
+	+lini
+		|lini_open
+		|lini_read_key
+	+TRACKER-FILES
+		|GetXMName
+		|GetMODName
+		|GetS3MName
+		|GetITName
 	|draw_textblur
 	|view_stabilize
 	|id3_get_all
 	|merge_color_normal
-	|xm_load
-	|mod_load
-	|s3m_load
-	|it_load
 	|hex_to_real
 	|draw_point_width
+	|draw_spriteblur
+	|ea_get_track_info
+	|get_genre
+	|string_ext
+	|tralse
+	|ereal
+	|debug
+	|hex_to_col
+	|ngame_end
+	|read_wh
+	|make_captions
+	|mouse_grab
+	|fname_path
+	|ini_rs
+	|copy_to_playlist
+	|file_is_on_drive
+	|LINUX_FIX
+	|filename_ext_new
+	|random_range_notme
++VISUALISE
+	|SNAPWAVEENTRY
+	|SNAPSPECENTRY
+	|GetWaveBuffer
+	|InitVisVars
+	|VisSetX
+	|VisSetY
+	|ea_do_command
+	|GetSpecBuffer
+	|SetBlendMode
+	|ClearVisCanvas
+	|DrawLinePrec
+	|SetVisColorAlpha
+	|GetBufferMedian
+	|GetCurrentList
+	|GetFontWidth
+	|GetFontHeight
+	|FontSet
+	|GetListEntry
+	|GetListSize
+	|DrawRect
+	|DrawRectOutline
+	|CheckListPos
+	|CheckSelect
+	|DrawTextSpecial
+	|eaPlay
++elpaudio
+	|FileIsSupported
+	|GetMusicFromFolder
+	|FilterString
+	|SoundIsStereo
+	|NumberIsNegative
+	|GetSoundLength
+	+TIME_FORMATS
+		|current_time_format
+		|current_time_format2
+	+TRACKER_FILES
+		|file_is_tracker
+		|tracker_get_name
++SAVE-LOAD
+	+LIST
+		|ListSave
+		|ListLoad
+	+SETTINGS
+		|SettingsLoad
+		|SettingsSave
+	+THEME
+		|LoadTheme
+		|LoadThemeGUI
+		|LoadThemeCols
++EXT
 	+GMFMODSimpleScripts
 		|HowToUse
 		|Known_Problems_and_Questions
@@ -199,86 +285,3 @@
 		|gmSDL_windowGetBorderSize
 		|gmSDL_drawRectangle
 		|gmSDL_windowSetShape
-	|draw_spriteblur
-	|ea_get_track_info
-	|get_genre
-	|string_ext
-	|is_supported
-	|LINUX_FIX
-	|tralse
-	|ereal
-	+PLMIGRATE
-		|playlist_migrate
-		|UDecode
-		|HTMLTagDecode
-	|debug
-+VISUALISE
-	|snapinstance
-	|visualise2
-	|visualise3
-	|visualise4
-	|visualise5
-	|visualise6
-	|visualise7
-	|SNAPWAVEENTRY
-	|SNAPSPECENTRY
-	|GetWaveBuffer
-	|InitVisVars
-	|VisSetX
-	|ea_do_command
-	|GetSpecBuffer
-	|SetBlendMode
-	|ClearVisCanvas
-	|DrawLinePrec
-	|SetVisColorAlpha
-	|GetBufferMedian
-	|GetCurrentList
-	|GetFontWidth
-	|GetFontHeight
-	|FontSet
-	|GetListEntry
-	|GetListSize
-	|DrawRect
-	|DrawRectOutline
-	|CheckListPos
-	|CheckSelect
-	|DrawTextSpecial
-+GUI
-	|get_theme
-	|load_gui
-	|draw_list
-	|settings_save
-	|settings_load
-	|load_cols
-	|hex_to_col
-	|savelist
-	|loadlist
-	|ngame_end
-	|read_wh
-	|make_captions
-	|mouse_grab
-	|fname_path
-	|ini_rs
-	|copy_to_playlist
-	|check_file_location
-+elpaudio
-	|current_time_format
-	|current_time_format2
-	|get_music_from
-	|mus_play
-	|mus_pause
-	|mus_unpause
-	|mus_stop
-	|filter
-	|sort
-	|random_range_notme
-	|file_is_tracker
-	|tracker_get_name
-	|is_stereo_sound
-	|is_negative
-	|filename_ext_new
-	|get_song_length
-	|ea_play
-+lini
-	|lini_open
-	|lini_read_key

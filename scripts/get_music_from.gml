@@ -1,3 +1,4 @@
+///(dir with '\',[sort])
 var mydir,i,findfile,txt;
 global.dirr=string_replace_all(argument0,"/","\")
 //if !string_ends_with(global.dirr,'\') global.dirr=argument0+'\'

@@ -1,7 +1,7 @@
 ///(script,arg0,arg1,arg2,...)
 var a0;a0=argument0
 //if argument_count<2 return 0;
-if argument_count==2    script_execute(a0)
+if argument_count==1    script_execute(a0)
 if argument_count==2    script_execute(a0,argument[1])
 if argument_count==3    script_execute(a0,argument[1],argument[2])
 if argument_count==4    script_execute(a0,argument[1],argument[2],argument[3])

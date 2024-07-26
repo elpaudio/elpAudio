@@ -19,7 +19,7 @@ while !file_text_eof(file)
           ds_list_add(adl,myfile)
        else
           if room=mainroom show_message('Unsupported file format: "'+filename_ext(myfile)+'".#('+myfile+')')
-          } else {if check_file_location(myfile) {if is_supported(myfile) ds_list_add(adl,myfile)} else {if room=mainroom show_message("File doesn't exists: "+string(myfile))}}
+          } else {if file_is_on_drive(myfile) {if is_supported(myfile) ds_list_add(adl,myfile)} else {if room=mainroom show_message("File doesn't exists: "+string(myfile))}}
 
 file_text_readln(file)
 }

@@ -10,7 +10,6 @@ global.__ico_pause=buttonpause
 global.__ico_stop=buttonstop
 global.__ico_next=buttonnext
 global.__ico_prev=buttonprev
-global.__ico_playr=buttonplayrandom
 global.__ico_float=sprFloatBG
 global.__ico_stngs=buttonsettings
 global.__ico_migui=minigui
@@ -63,7 +62,7 @@ global.captioncol=$FFFFFF
 global.floatbgcol=$101010
 
 //do not change this globals
-globalvar __visbgcol,__visfgcol,__butplaycol,__butstopcol,__butplayrandcol,__butnextcol,__butprevcol
+globalvar __visbgcol,__visfgcol,__butplaycol,__butstopcol,__butnextcol,__butprevcol
 ,__butsettcol
 ,__butpausecol,__butalontcol,__butaddmuscol,__butvolcol
 ,__butslidecol,__butslidercol,__butvisualcol
@@ -103,8 +102,6 @@ if ini_key_exists('Default','ambt') sprite_replace(global.__ico_admus,filename_p
 if ini_key_exists('Default','atbt') sprite_replace(global.__ico_alont,filename_path(argument0)+ini_read_string('Default','atbt','butalont.png')             ,2,0,0,0,0)
 //load list button
 if ini_key_exists('Default','llbt') sprite_replace(global.__ico_loadl,filename_path(argument0)+ini_read_string('Default','llbt','butloadlist.png')          ,2,0,0,0,0)
-//play random button
-if ini_key_exists('Default','ppbt') sprite_replace(global.__ico_playr,filename_path(argument0)+ini_read_string('Default','ppbt','butplayrand.png')          ,2,0,0,0,0)
 //save list button
 if ini_key_exists('Default','slbt') sprite_replace(global.__ico_savel,filename_path(argument0)+ini_read_string('Default','slbt','butsavelist.png')          ,2,0,0,0,0)
 //visual button

@@ -1,26 +1,27 @@
-|newmain
-|MainMenu
-|play_button
-|playrandombutton
-|stopbutton
-|pause
-|alwontopbutton
-|next_button
-|prev_button
-|visualname
-|settingsobj
-|gui_button
-|addmusicbutton
-|visualiserbutton
-|savelistbutton
-|loadlistbutton
-|sortplaylist
-|volumebutton
-|sliderbutton
-|visualiser
-|thebutton
-|backobj
-|loopbutton
-|monoster
-|playmgr
-|cmdobj
++DO-NOT-TOUCH
+	|newmain
+	|MainMenu
+	|thebutton
+	|PlaylistManager
+	|cmdobj
+|ButtonAlwaysOnTop
+|FloatText
+|ButtonSettings
+|ButtonGUIControls
+|ButtonVisualiser
+|ButtonSaveList
+|ButtonLoadList
+|VolumeSlider
+|PosSlider
+|Visualiser
+|BackgroundHolder
+|Monoster
++MUSIC-CONTROL
+	|ButtonPlay
+	|ButtonStop
+	|ButtonPause
+	|ButtonNext
+	|ButtonPrev
+	|ButtonAddFile
+	|ButtonLoop
+	|ButtonShuffle

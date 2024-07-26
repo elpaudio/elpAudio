@@ -51,7 +51,7 @@ action_id=603
 applies_to=self
 */
 ///PARAMETER STRING
-if parameter_count()>0 and global.played_from_arg==0 {mus_play(parameter_string(1)) ds_list_add(global.list,parameter_string(1)) global.played_from_arg=1}
+if parameter_count()>0 and global.played_from_arg==0 {MusicPlay(parameter_string(1)) ds_list_add(global.list,parameter_string(1)) global.played_from_arg=1}
 #define Alarm_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -75,7 +75,7 @@ if global.play=0 room_caption=make_captions(__customcaption_idle) else {
 if !__changecaption {
 room_caption=make_captions(__customcaption_play)
 } else {
-if cwait>0 cwait-=1*(60/max(fps,1)) else cwait=__captionchangespd*2
+if cwait>0 cwait-=1*(60/max(fps,30)) else cwait=__captionchangespd*2
 if cwait>=__captionchangespd {
 room_caption=make_captions(__customcaption_ch1)
 } else {
@@ -123,7 +123,7 @@ action_id=603
 applies_to=self
 */
 if keyboard_check_pressed(vk_f4) {
-if global.play mus_stop()
+if global.play MusicStop()
 ngame_end()
 }
 #define Draw_0
@@ -136,14 +136,9 @@ applies_to=self
 
 //view_stabilize()
 if global.play {
-if FMODInstanceGetPosition(global.playing)>=0.999 and FMODInstanceGetLoopCount(global.playing)>-1 {
-if __stopsongafter mus_stop() else {
-if global.current<ds_list_size(global.list)-1 global.current+=1 else global.current=0
-if global.play mus_stop()
-MainMenu.stri=0
-visualname.stri=0
-visualname.xx=0
-mus_play(ds_list_find_value(global.list,global.current))
+if FMODInstanceGetPosition(global.playing)>=1 and FMODInstanceGetLoopCount(global.playing)>-1 {
+if __stopsongafter MusicStop() else {
+MusicNext()
 }
 }
 }
@@ -165,23 +160,15 @@ action_id=603
 applies_to=self
 */
 if keyboard_check_pressed(vk_f7) and global.play {
-if global.paused mus_unpause() else mus_pause()
+if global.paused MusicResume() else {if global.stopped MusicResume() else MusicPause()}
 }
 
-if keyboard_check_pressed(vk_f5) and global.play mus_stop()
+if keyboard_check_pressed(vk_f5) and global.play MusicStop()
 if keyboard_check_pressed(vk_f8) {
-if global.current<ds_list_size(global.list)-1 global.current+=1 else global.current=0
-if global.play mus_stop()
-MainMenu.stri=0
-visualname.stri=0
-mus_play(ds_list_find_value(global.list,global.current))
+MusicNext()
 }
 if keyboard_check_pressed(vk_f6) {
-if global.current>0 global.current-=1 else global.current=ds_list_size(global.list)-1
-if global.play mus_stop()
-MainMenu.stri=0
-visualname.stri=0
-mus_play(ds_list_find_value(global.list,global.current))
+MusicPrev()
 }
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) {

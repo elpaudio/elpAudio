@@ -1,6 +1,6 @@
 ///(arg)
 var ag;ag=argument0;
-ag=string_replace_all(ag,'%v',get_version())
+ag=string_replace_all(ag,'%v',Get_elpAudioVersion())
 if global.play=0 {
 ag=string_replace_all(ag,'%t1','')
 ag=string_replace_all(ag,'%ta1','')

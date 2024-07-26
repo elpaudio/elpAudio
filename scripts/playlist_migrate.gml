@@ -4,7 +4,7 @@
 //*.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;
 
 var fullname; fullname = argument0;
-var filename; filename = filename_name(fullname);
+var filename; filename = filename_change_ext(filename_name(fullname),''); //removes .* from filename
 var ext; ext = string_lower(filename_ext(fullname));
 var path; path = filename_path(fullname);
 var drive; drive = filename_drive(fullname);

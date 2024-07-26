@@ -1,4 +1,4 @@
-name=STV5730A
+name=Ac437 IBM DOS ISO8
 size=14
 bold=0
 italic=0

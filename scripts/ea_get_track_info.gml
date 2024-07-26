@@ -12,7 +12,7 @@ while(res)
 {
 if(res = 1)
 {
-tag =FMODGetTagName()
+tag=FMODGetTagName()
 //show_message(tag)
 if  tag == "TITLE" /*or tag='TRK' or tag='TT2' or tag='TIT2' */global.songtitle = string(FMODGetTagData());
 else if tag == "ARTIST"/* or tag='TP1' or tag='TPE1'*/ global.songartist = string(FMODGetTagData());

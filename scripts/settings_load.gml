@@ -14,6 +14,7 @@ global.themepath='themes\default\theme.ini'
 global.current=0
 global.thesong=''
 global.volume=100
+global.randomized=0
 
 global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\'
 if debug_mode global.__progdir=working_directory+'\'
@@ -65,6 +66,7 @@ __captionchangespd=ini_read_real('Caption','captionChangeSpeed',3)*60
 __enable_fswitch=ini_read_real('','enableSwitchFScreen',1)
 __stick_to_edges=ini_read_real('','windowSticksToEdges',1)
 __stopsongafter=ini_read_real('','stopSongAfterPlaying',0)
+global.randomized=ini_read_real('','ShuffleSongs',0)
 room_speed=max(ini_read_real('','framerate',60),1)
 ini_close()
 } else {
@@ -82,10 +84,11 @@ ini_write_real('Caption','captionChangeSpeed',3)
 ini_write_string('Caption','customCaptionChange1','(%t1 / %ta1) elpAudio %v [%pn/%ps]')
 ini_write_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
 ini_write_real('','framerate',60)
+ini_write_real('','ShuffleSongs',0)
 room_speed=60
 ini_close()
 }
-if file_exists(global.__progdir+'temp.elf') loadlist(global.__progdir+'temp.elf',0)
+if file_exists(global.__progdir+'playlists\temp.elf') ListLoad(global.__progdir+'playlists\temp.elf',0)
 else get_music_from(global.__progdir+'music_examples\')
 
 __customcaption_idle='elpAudio '+get_version()

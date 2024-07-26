@@ -12,11 +12,13 @@ message_input_font('Open Sans',10,c_white,0)
 message_button_font('MS UI Gothic',10,c_white,0)
 if !registry_exists_ext('elpAudio','FIRST_TIME_DISABLE') {
 registry_write_real_ext('elpAudio','FIRST_TIME_DISABLE',1)
-show_message('Welcome to elpAudio!#elpAudio is a simple audio-player using#FMOD Sound System.#Check out "elpoepgames.site", "elpoeprod.github.io/elp-audio" or git page "elpoeprod/elpAudio" for more info.')
+show_message('Welcome to elpAudio! 
+elpAudio is a simple audio-player using FMOD Sound System. 
+Check out "elpoeprod.github.io/elpAudio-player/" or git page "elpoeprod/elpAudio" for more info.')
 }
 message_caption(0,'')
 //if debug_mode progdir=global.__progdir
-if os_type=os_linux global.__progdir=string_replace_all(program_directory,'\','/')+'/elpAudio/'
+//if os_type=os_linux global.__progdir=string_replace_all(program_directory,'\','/')+'/elpAudio/'
 set_working_directory(global.__progdir)
 global.is_stereo=0
 global.list_size=0
@@ -30,9 +32,8 @@ global.songgenre=''
 global.songyear=''
 
 
-
-settings_load()
-get_theme(global.themepath)
+//SettingsLoad()
+LoadTheme(global.themepath)
 draw_set_circle_precision(64)
 window_set_icon(icon_add(global.__progdir+'data\ico.ico'))
 window_set_taskbar_icon(icon_add(global.__progdir+'data\ico.ico'))
@@ -49,7 +50,7 @@ applies_to=self
 //view_stabilize()
 global.list_size=ds_list_size(global.list)
 
-delta_time=(60/max(fps,1))
+delta_time=room_speed//(60/max(fps,1))
 #define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1

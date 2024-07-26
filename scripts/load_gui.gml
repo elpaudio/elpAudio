@@ -1,6 +1,3 @@
-//ini_open(argument0)
-//with thebutton {if object_index=play_button nothing=1 else instance_destroy()}
-//with visualname instance_destroy()
 with settingsobj instance_destroy()
 fontlast=$FFFF
 
@@ -71,59 +68,51 @@ mybutton=loopbutton
 mybutton.x=ini_read_real('Interface','butloopx',64)
 mybutton.y=ini_read_real('Interface','butloopy',64)
 
-mybutton=play_button//=instance_create(0,0,play_button)
+mybutton=play_button
 mybutton.x=ini_read_real('Interface','butplayx',64)
 mybutton.y=ini_read_real('Interface','butplayy',16)
 
-mybutton=playrandombutton//instance_create(0,0,playrandombutton)
-mybutton.x=ini_read_real('Interface','butrandx',64)
-mybutton.y=ini_read_real('Interface','butrandy',16)
-
-mybutton=addmusicbutton//instance_create(0,0,addmusicbutton)
+mybutton=addmusicbutton
 mybutton.x=ini_read_real('Interface','butmusaddx',64)
 mybutton.y=ini_read_real('Interface','butmusaddy',16)
 
-mybutton=visualiserbutton//instance_create(0,0,visualiserbutton)
+mybutton=visualiserbutton
 mybutton.x=ini_read_real('Interface','butchngvisx',64)
 mybutton.y=ini_read_real('Interface','butchngvisy',16)
 
-mybutton=sortplaylist//instance_create(0,0,sortplaylist)
+mybutton=sortplaylist
 mybutton.x=ini_read_real('Interface','butsortx',64)
 mybutton.y=ini_read_real('Interface','butsorty',16)
 
-mybutton=alwontopbutton//instance_create(0,0,alwontopbutton)
+mybutton=alwontopbutton
 mybutton.x=ini_read_real('Interface','butontopx',64)
 mybutton.y=ini_read_real('Interface','butontopy',16)
 
-/*mybutton=setfolderbutton//instance_create(0,0,setfolderbutton)
-mybutton.x=ini_read_real('Interface','butsetfx',64)
-mybutton.y=ini_read_real('Interface','butsetfy',16)
-*/
-mybutton=savelistbutton//instance_create(0,0,savelistbutton)
+mybutton=savelistbutton
 mybutton.x=ini_read_real('Interface','butsaplx',64)
 mybutton.y=ini_read_real('Interface','butsaply',16)
 
-mybutton=loadlistbutton//instance_create(0,0,loadlistbutton)
+mybutton=loadlistbutton
 mybutton.x=ini_read_real('Interface','butloplx',64)
 mybutton.y=ini_read_real('Interface','butloply',16)
 
-mybutton=stopbutton//instance_create(0,0,stopbutton)
+mybutton=stopbutton
 mybutton.x=ini_read_real('Interface','butstopx',64)
 mybutton.y=ini_read_real('Interface','butstopy',16)
 
-mybutton=pause//instance_create(0,0,pause)
+mybutton=pause
 mybutton.x=ini_read_real('Interface','butpausex',64)
 mybutton.y=ini_read_real('Interface','butpausey',16)
 
-mybutton=next_button//instance_create(0,0,next_button)
+mybutton=next_button
 mybutton.x=ini_read_real('Interface','butnextx',64)
 mybutton.y=ini_read_real('Interface','butnexty',16)
 
-mybutton=prev_button//instance_create(0,0,prev_button)
+mybutton=prev_button
 mybutton.x=ini_read_real('Interface','butprevx',64)
 mybutton.y=ini_read_real('Interface','butprevy',16)
 
-mybutton=visualname//instance_create(0,0,visualname)
+mybutton=visualname
 mybutton.x=ini_read_real('Interface','floaterx',64)
 mybutton.y=ini_read_real('Interface','floatery',16)
 mybutton.width=ini_read_real('Interface','floaterw',128)
@@ -139,8 +128,8 @@ mybutton.time2font=font_add_file(fname_path(argument0)+ini_rs('Interface','float
                     ini_read_real('Interface','floattime2IsItalic',0),0,fontlast)
 mybutton.drawqueue=ini_read_real('Interface','floatdrawqueue',0)
 mybutton.queuefont=font_add_file(fname_path(argument0)+ini_rs('Interface','floatqueueffile','tahoma.ttf'),ini_read_string('Interface','floatqueuefont','Tahoma'),
-ini_read_real('Interface','floatqueueSize',0),ini_read_real('Interface','floatqueueIsBold',0),
-ini_read_real('Interface','floatqueueIsItalic',0),0,fontlast)
+                    ini_read_real('Interface','floatqueueSize',0),ini_read_real('Interface','floatqueueIsBold',0),
+                    ini_read_real('Interface','floatqueueIsItalic',0),0,fontlast)
 mybutton.queuex=ini_read_real('Interface','floatqueuex',0)
 mybutton.queuey=ini_read_real('Interface','floatqueuey',0)
 mybutton.queuecol1=hex_to_col(real_hex(ini_read_string('Interface','floatqueuecol1','$000000')))
@@ -159,16 +148,16 @@ mybutton.floattime2col2=hex_to_col(real_hex(ini_read_string('Interface','floatti
 mybutton.drawcursong=ini_read_real('Interface','floatdrawcursong',0)
 
 
-mybutton=volumebutton//instance_create(0,0,volumebutton)
+mybutton=volumebutton
 mybutton.x=ini_read_real('Interface','butvolx',64)
 mybutton.y=ini_read_real('Interface','butvoly',16)
 mybutton.vertical=ini_read_real('Default','verticalVolumeSlide',0)
 
-mybutton=sliderbutton//instance_create(0,0,sliderbutton)
+mybutton=sliderbutton
 mybutton.x=ini_read_real('Interface','sliderx',64)
 mybutton.y=ini_read_real('Interface','slidery',16)
 
-//if instance_exists(MainMenu) {
+
 MainMenu.x=ini_read_real('Interface','frontmenux',64)
 MainMenu.y=ini_read_real('Interface','frontmenuy',16)
 MainMenu.w=ini_read_real('Interface','frontmenuw',480)
