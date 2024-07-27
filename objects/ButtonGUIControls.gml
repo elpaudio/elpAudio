@@ -28,7 +28,7 @@ full=!full
 }
 if button=2 {
 if global.play MusicStop()
-ngame_end()
+EndSession()
 }
 #define Mouse_10
 /*"/*'/**//* YYD ACTION

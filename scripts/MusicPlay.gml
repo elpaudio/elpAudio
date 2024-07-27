@@ -23,6 +23,6 @@ did=0
 global.stopped=0
 global.paused=0
 global.songlength=GetSoundLength(song)
-ea_get_track_info(global.playing)
-if file_is_tracker(argument0) global.trackname=tracker_get_name(argument0)
-else global.trackname=id3_get_all(argument0)
+GetTrackInfo(global.playing)
+if FileIsModule(argument0) global.trackname=GetTrackerName(argument0)
+else global.trackname=CompileFloatText(argument0)

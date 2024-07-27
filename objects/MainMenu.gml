@@ -37,7 +37,7 @@ global.played_from_arg=0
 
 randomize()
 
-window_set_chromakey(1,hex_to_col($014426))
+window_set_chromakey(1,HexToColor($014426))
 //window_set_alphablend(1)
 message_position(window_get_x(),window_get_y()+window_get_height())
 message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
@@ -70,16 +70,16 @@ applies_to=self
 ///CAPTION
 
 if !__enablefloat {
-if global.play=0 room_caption=make_captions(__customcaption_idle) else {
+if global.play=0 room_caption=CompileCaptions(__customcaption_idle) else {
 
 if !__changecaption {
-room_caption=make_captions(__customcaption_play)
+room_caption=CompileCaptions(__customcaption_play)
 } else {
 if cwait>0 cwait-=1*(60/max(fps,30)) else cwait=__captionchangespd*2
 if cwait>=__captionchangespd {
-room_caption=make_captions(__customcaption_ch1)
+room_caption=CompileCaptions(__customcaption_ch1)
 } else {
-room_caption=make_captions(__customcaption_ch2)
+room_caption=CompileCaptions(__customcaption_ch2)
 }
 }
 
@@ -103,7 +103,7 @@ action_id=603
 applies_to=self
 */
 ///MOUSE GRABBING WINDOW
-mouse_grab()
+WindowGrab()
 #define Keyboard_17
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -124,7 +124,7 @@ applies_to=self
 */
 if keyboard_check_pressed(vk_f4) {
 if global.play MusicStop()
-ngame_end()
+EndSession()
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

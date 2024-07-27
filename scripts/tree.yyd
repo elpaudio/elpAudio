@@ -1,4 +1,15 @@
 |Get_elpAudioVersion
++PLMIGRATE
+	|playlist_migrate
+	|UDecode
+	|HTMLTagDecode
++TRACKER-FILES
+	|FileIsModule
+	|GetTrackerName
+	|GetXMName
+	|GetMODName
+	|GetS3MName
+	|GetITName
 +MUSIC-CONTROL
 	|MusicPlay
 	|MusicPause
@@ -8,43 +19,28 @@
 	|MusicPrev
 	|Shuffle
 +MISC
-	+PLMIGRATE
-		|playlist_migrate
-		|UDecode
-		|HTMLTagDecode
 	+lini
 		|lini_open
 		|lini_read_key
-	+TRACKER-FILES
-		|GetXMName
-		|GetMODName
-		|GetS3MName
-		|GetITName
-	|draw_textblur
 	|view_stabilize
-	|id3_get_all
-	|merge_color_normal
-	|hex_to_real
 	|draw_point_width
-	|draw_spriteblur
-	|ea_get_track_info
-	|get_genre
+	|filename_ext_new
 	|string_ext
-	|tralse
-	|ereal
 	|debug
-	|hex_to_col
-	|ngame_end
+	|EndSession
 	|read_wh
-	|make_captions
-	|mouse_grab
+	|CompileCaptions
 	|fname_path
 	|ini_rs
 	|copy_to_playlist
-	|file_is_on_drive
 	|LINUX_FIX
-	|filename_ext_new
-	|random_range_notme
+	+BLUR
+		|draw_textblur
+		|draw_spriteblur
+	+COLORS
+		|merge_color_normal
+		|ereal
+		|HexToColor
 +VISUALISE
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
@@ -81,9 +77,7 @@
 	+TIME_FORMATS
 		|current_time_format
 		|current_time_format2
-	+TRACKER_FILES
-		|file_is_tracker
-		|tracker_get_name
+	|FileIsOnDrives
 +SAVE-LOAD
 	+LIST
 		|ListSave
@@ -285,3 +279,9 @@
 		|gmSDL_windowGetBorderSize
 		|gmSDL_drawRectangle
 		|gmSDL_windowSetShape
++TRACK
+	|GetTrackInfo
+	|CompileFloatText
+	|GetSongGenre
++WINDOW
+	|WindowGrab

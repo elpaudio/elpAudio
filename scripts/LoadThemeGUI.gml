@@ -138,8 +138,8 @@ mybutton.queuefont=font_add_file(fname_path(argument0)+ini_rs('Interface','float
                     ini_read_real('Interface','floatqueueIsItalic',0),0,fontlast)
 mybutton.queuex=ini_read_real('Interface','floatqueuex',0)
 mybutton.queuey=ini_read_real('Interface','floatqueuey',0)
-mybutton.queuecol1=hex_to_col(real_hex(ini_read_string('Interface','floatqueuecol1','$000000')))
-mybutton.queuecol2=hex_to_col(real_hex(ini_read_string('Interface','floatqueuecol2','$FFFFFF')))
+mybutton.queuecol1=HexToColor(real_hex(ini_read_string('Interface','floatqueuecol1','$000000')))
+mybutton.queuecol2=HexToColor(real_hex(ini_read_string('Interface','floatqueuecol2','$FFFFFF')))
 mybutton.floatiertext=ini_read_real('Interface','floatTextFloat',1)
 
 
@@ -148,8 +148,8 @@ mybutton.ontop=ini_read_real('Default','floatontop',1)
 mybutton.usefgimg=ini_read_real('Interface','floatusefgimg',1)
 mybutton.usebgimg=ini_read_real('Interface','floatusebgimg',1)
 
-mybutton.floattime2col1=hex_to_col(real_hex(ini_read_string('Interface','floattime2col1','$000000')))
-mybutton.floattime2col2=hex_to_col(real_hex(ini_read_string('Interface','floattime2col2','$FFFFFF')))
+mybutton.floattime2col1=HexToColor(real_hex(ini_read_string('Interface','floattime2col1','$000000')))
+mybutton.floattime2col2=HexToColor(real_hex(ini_read_string('Interface','floattime2col2','$FFFFFF')))
 
 mybutton.drawcursong=ini_read_real('Interface','floatdrawcursong',0)
 

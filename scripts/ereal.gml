@@ -1,1 +1,1 @@
-return hex_to_col(real_hex(argument0))
+return HexToColor(real_hex(argument0))
