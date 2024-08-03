@@ -26,14 +26,10 @@ if global.oldfloat==1 and global.play {
         } else { // Draw without time
             drawstr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+'   ***   ',6)
         }
-/*mystr=string_copy(drawstr,1+stri,30)
-stri+=1
-if stri>string_length(drawstr)/2 stri=0
-*/
 draw_set_font(global.__fon_vis)
-mystr=drawstr//string_copy(drawstr,1,64)
+mystr=drawstr
 xx-=string_width('A')
-if xx<-string_width(drawstr)/2 xx=0//oldfloatw+string_width('A')
+if xx<-string_width(drawstr)/2 xx=0
 }
 alarm[0]=(((15/__speed)*(max(fps,1)/60))*20)
 #define Step_0
@@ -44,7 +40,6 @@ applies_to=self
 */
 if !surface_exists(surf) {
 surf=surface_create(oldfloatw,40)
-//surface_resize(oldsurf,oldfloatw,40,1,0)
 }
 draw_set_font(global.__fon_vis)
 surface_set_target(surf)
@@ -80,11 +75,10 @@ mystr=global.trackname
 }
 
 if floatiertext {if textx+string_width(mystr)+16>width xx-=((__speed)/15)*(room_speed/max(fps,30))}
-if xx<-string_width(mystr)-textx xx=width+10
+if xx<-string_width(mystr)-textx xx=width+10+text_centered*width/2
 }
 
 draw_surface_ext(surf,x+textx,y+texty,1,1,0,c_white,1)
-//draw_text(x+textx/*-xx*/,y+texty,mystr)
 
 if drawfloattime2 {
 draw_set_font(time2font)
