@@ -33,7 +33,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-var mystr,i;mystr='';i=0 repeat(global.customvisuals-1) {
+var mystr,i;mystr='';i=0 repeat(global.customvisuals) {
 mystr+='Visualiser '+string(i+1)+' - '+string(global.visname[i])+'|'
 i+=1
 }
