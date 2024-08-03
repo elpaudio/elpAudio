@@ -270,3 +270,6 @@ debug
 VisSetY
 MusicNext
 MusicPrev
+InitPlugin
+LoadPlugins
+do_nothing
