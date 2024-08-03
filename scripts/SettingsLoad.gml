@@ -24,13 +24,14 @@ set_working_directory(global.__progdir)
 globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__stick_to_edges
 __enablevisdist,__changecaption,__captionchangespd,
 __customcaption_idle,__customcaption_play,__customcaption_ch1,__customcaption_ch2,
-__enable_fswitch
-;
+__enable_fswitch,__elp_enable_old_themes;
+
+__elp_enable_old_themes=0
 __enablevisdist=0
 __enablefloat=0
 __stopsongafter=0
 __visualiser=0
-__speed=15 // Default is 15
+__speed=15
 __visual_freq=64
 __stick_to_edges=1
 __changecaption=1
@@ -67,6 +68,7 @@ __captionchangespd=ini_read_real('Caption','captionChangeSpeed',3)*60
 __enable_fswitch=ini_read_real('','enableSwitchFScreen',1)
 __stick_to_edges=ini_read_real('','windowSticksToEdges',1)
 __stopsongafter=ini_read_real('','stopSongAfterPlaying',0)
+__elp_enable_old_themes=ini_read_real('','EnableOldThemes',0)
 global.randomized=ini_read_real('','ShuffleSongs',0)
 room_speed=max(ini_read_real('','framerate',60),1)
 ini_close()
@@ -86,6 +88,7 @@ ini_write_string('Caption','customCaptionChange1','(%t1 / %ta1) elpAudio %v [%pn
 ini_write_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
 ini_write_real('','framerate',60)
 ini_write_real('','ShuffleSongs',0)
+ini_write_real('','EnableOldThemes',0)
 room_speed=60
 ini_close()
 }
@@ -93,5 +96,3 @@ if file_exists(global.__progdir+'playlists\temp.elf') ListLoad(global.__progdir+
 else GetMusicFromFolder(global.__progdir+'music_examples\')
 
 __customcaption_idle='elpAudio '+Get_elpAudioVersion()
-
-//get_theme(global.themepath)
