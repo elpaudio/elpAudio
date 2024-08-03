@@ -77,9 +77,16 @@ globalvar __visbgcol,__visfgcol,__butplaycol,__butstopcol,__butnextcol,__butprev
 if file_exists(argument0) {
 //lini_open(argument0)
 ini_open(argument0)
+if Get_elpAudioVersion()!=ini_read_string('Default','RequiredVersion',Get_elpAudioVersion())
+and ini_read_real('Default','RequiredVersion',1.6)<1.6 //last version with environment changes
+and __elp_enable_old_themes
+{
+show_message('Sorry, but this theme is not suitable for this elpAudio version. elpAudio will now close.#(You can disable this warning in elpAudio settings.)')
+EndSession()
+}
 
 if ini_key_exists('Default','themeName') {global.themename=ini_read_string('Default','themeName','Default')}
-else {ini_close() show_message('That .ini file is not a theme file.') exit}
+else {ini_close() show_message('That .ini file is not a theme file.') EndSession()}
 //play button
 if ini_key_exists('Default','plbt') sprite_replace(global.__ico_play,filename_path(argument0)+ini_read_string('Default','plbt','butplay.png')               ,2,0,0,0,0)
 //pause button
