@@ -1,3 +1,4 @@
+///(fname)
 var file,fname,i;
 fname=argument0
 if file_exists(fname) file_delete(fname)
