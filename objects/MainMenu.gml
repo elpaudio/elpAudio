@@ -4,8 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-///INITIALISER
-//if !variable_global_exists('list') global.list=ds_list_create()
+///Vars
 
 did=0
 fade=1
@@ -19,22 +18,6 @@ cwait=360
 xftime=1
 yftime=1
 
-if variable_global_exists('__init') {
-if global.__init=1 {
-LoadFMOD()
-FMODinit(100,1)
-//dllSDL_init()
-//gmSDL_init(0,1,0)
-}
-} else {
-LoadFMOD()
-FMODinit(100,1)
-///dllSDL_init()
-///gmSDL_init(0,1,2)
-global.__init=0
-global.played_from_arg=0
-}
-
 randomize()
 
 window_set_chromakey(1,HexToColor($014426))
@@ -44,6 +27,27 @@ message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
 global.changeview=1
 
 pressed=0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+///Initializer
+if variable_global_exists('__init') {
+if global.__init=1 {
+LoadFMOD()
+FMODinit(100,1)
+LoadPlugins() //find plugins from plugins folder
+
+}
+} else {
+LoadFMOD()
+FMODinit(100,1)
+LoadPlugins() //find plugins from plugins folder
+
+global.__init=0
+global.played_from_arg=0
+}
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -94,8 +98,12 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-///!MOUSE GRABBING WINDOW
-//mouse_grab()
+///SAVE LIST AND CLOSE
+if file_exists('save_list') {
+file_delete('save_list')
+ListSave(global.__progdir+'playlists\temp.elf')
+SettingsSave()
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
