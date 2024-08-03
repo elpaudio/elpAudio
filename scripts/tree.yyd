@@ -285,3 +285,7 @@
 	|GetSongGenre
 +WINDOW
 	|WindowGrab
++PLUGIN
+	|LoadPlugins
+	|InitPlugin
+|do_nothing
