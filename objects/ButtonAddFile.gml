@@ -78,14 +78,13 @@ draw_self()
 if click=1 and alarm[0]<30 alarm[0]=1
 
 if draw=1 {
-select=show_menu('Add file|Add folder|Add URL|Download from URL|Show files',-1)
+select=show_menu('Add file|Add folder|Add URL|Download from URL|Show files|Clear playlist',-1)
 if select=0 {
 file=get_open_filename('All supported files|*.aiff;*.asf;*.asx;*.dls;*.flac;*.fsb;*.it;*.m3u;*.midi;*.mpd;*.mp3;*.mp2;*.ogg;*.opus;*.pls;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.raw;*.iff;','')
 if file='' nothing=1 else {ds_list_add(global.list,file) prevdir=filename_dir(file)}
 }
 if select=1 {
 folder=get_directory_alt('Add folder to your playlist!','')
-//show_message(folder)
 if folder='' nothing=1 else {
 GetMusicFromFolder(folder+'\')
 }
@@ -123,11 +122,11 @@ buffer_destroy(mfile)
 httprequest_destroy(_connect)
 }
 }
-if select=3 {
+if select=4 {
 execute_program('explorer.exe','/root,"'+global.dirr+'"',0)
 }
-/*if select=4 {
+if select=5 {
 ds_list_clear(global.list)
-}*/
+}
 draw=0
 }
