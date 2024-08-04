@@ -12,7 +12,6 @@ stri=0
 xx=0
 sprite_index=global.__floatbg
 surf=surface_create(oldfloatw,40)
-//surface_resize('oldsurf',oldfloatw,40,1,0)
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -22,26 +21,27 @@ applies_to=self
 ///OLD FLOAT TEXT
 if global.oldfloat==1 and global.play {
         if floatdrawtime1 { // Draw with time
-            drawstr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+' ('+current_time_format2(global.songlength)+')   ***   ',6)
+            mystr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+' ('+global.formatted_time+')   ***   ',6)
         } else { // Draw without time
-            drawstr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+'   ***   ',6)
+            mystr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+'   ***   ',6)
         }
 draw_set_font(global.__fon_vis)
-mystr=drawstr
 xx-=string_width('A')
-if xx<-string_width(drawstr)/2 xx=0
+if xx<-string_width(mystr)/2 xx=0
 }
-alarm[0]=(((15/__speed)*(max(fps,1)/60))*20)
+alarm[0]=(((15/__speed)*(max(fps,30)/60))*20)
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-if !surface_exists(surf) {
+if !surface_exists(surf) then
 surf=surface_create(oldfloatw,40)
-}
+
 draw_set_font(global.__fon_vis)
+
+//draws text to surface and then that surfaces is drawing in "Draw"
 surface_set_target(surf)
 draw_clear_alpha(0,0)
 draw_set_color(global.floatcolor)
@@ -61,23 +61,35 @@ if usebgimg and sprite_exists(global.__floatbg) and global.__floatbg>0 {
 draw_set_color(c_white)
 draw_sprite_stretched_ext(global.__floatbg,0,x,y,width,height,__floatbgcol,1)
 }
+
 draw_set_color(global.floatcolor)
 draw_set_halign(fa_left)
-if global.oldfloat==0 and global.play {
-if instance_exists(Visualiser) and ontop==0 Visualiser.depth=depth-1
-str=global.thesong
 
-if floatdrawtime1 { // Draw with time
-mystr=global.trackname+' ('+current_time_format2(global.songlength)+')'
+if global.oldfloat==0 and global.play {
+
+if instance_exists(Visualiser) and ontop==0 then
+Visualiser.depth=depth-1
+
+if floatdrawtime1 then
+{ // Draw with time
+mystr=global.trackname+' ('+global.formatted_time+')'
 }
-else { // Draw without the time
+else
+{ // Draw without the time
 mystr=global.trackname
 }
 
-if floatiertext {if textx+string_width(mystr)+16>width xx-=((__speed)/15)*(room_speed/max(fps,30))}
-if xx<-string_width(mystr)-textx xx=width+10+text_centered*width/2
+if floatiertext {
+if textx+string_width(mystr)+16>width then
+xx-=((__speed)/15)*(room_speed/max(fps,30))
 }
 
+if xx<-string_width(mystr)-textx then
+xx=width+10+text_centered*width/2
+
+}
+
+// Draws text
 draw_surface_ext(surf,x+textx,y+texty,1,1,0,c_white,1)
 
 if drawfloattime2 {
@@ -85,10 +97,12 @@ draw_set_font(time2font)
 draw_set_color(floattime2col1)
 draw_text(x+time2x,y+time2y,"88:88")
 draw_set_color(floattime2col2)
-if global.play {
-draw_text(x+time2x,y+time2y,current_time_format2(global.pos*global.songlength))
 
-} else {draw_text(x+time2x,y+time2y,"00:00")}
+if global.play then
+draw_text(x+time2x,y+time2y,global.formatted_cur_pos)
+else
+draw_text(x+time2x,y+time2y,"00:00")
+
 }
 
 if drawqueue {
@@ -99,5 +113,7 @@ draw_set_color(queuecol2)
 draw_text(x+queuex,y+queuey,string(string_pad(global.current+1,2))+'/'+string(string_pad(global.list_size,2)))
 }
 
-if usefgimg and sprite_exists(global.__floatfg) and global.__floatfg>0 draw_sprite_stretched_ext(global.__floatfg,1,x,y,width,height,__floatfgcol,1)
-draw_set_color(c_white)
+if usefgimg
+and sprite_exists(global.__floatfg)
+and global.__floatfg>0 then
+draw_sprite_stretched_ext(global.__floatfg,1,x,y,width,height,__floatfgcol,1)
