@@ -20,8 +20,8 @@ yftime=1
 
 randomize()
 
-window_set_chromakey(1,HexToColor($014426))
-//window_set_alphablend(1)
+window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
+
 message_position(window_get_x(),window_get_y()+window_get_height())
 message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
 global.changeview=1
@@ -35,16 +35,15 @@ applies_to=self
 ///Initializer
 if variable_global_exists('__init') {
 if global.__init=1 {
+LoadPlugins() //find plugins from plugins folder
 LoadFMOD()
 FMODinit(100,1)
-LoadPlugins() //find plugins from plugins folder
-
 }
 } else {
+
+LoadPlugins() //find plugins from plugins folder
 LoadFMOD()
 FMODinit(100,1)
-LoadPlugins() //find plugins from plugins folder
-
 global.__init=0
 global.played_from_arg=0
 }
@@ -91,7 +90,18 @@ room_caption=CompileCaptions(__customcaption_ch2)
 }
 if window_get_taskbar_caption()!=room_caption
 window_set_taskbar_caption(room_caption)
-if global.current>global.list_size and global.list_size>0 global.current=global.list_size
+if global.current>global.list_size and global.list_size>0 global.current=0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+///global vars
+if global.play {
+global.pos=FMODInstanceGetPosition(global.playing)
+global.formatted_time=current_time_format2(global.songlength)
+global.formatted_cur_pos=current_time_format2((global.pos*global.songlength))
+}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1

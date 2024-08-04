@@ -1,4 +1,5 @@
 |Get_elpAudioVersion
+|README
 +PLMIGRATE
 	|playlist_migrate
 	|UDecode
@@ -27,7 +28,6 @@
 	|filename_ext_new
 	|string_ext
 	|debug
-	|EndSession
 	|read_wh
 	|CompileCaptions
 	|fname_path
@@ -41,6 +41,7 @@
 		|merge_color_normal
 		|ereal
 		|HexToColor
+	|do_nothing
 +VISUALISE
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
@@ -78,6 +79,7 @@
 		|current_time_format
 		|current_time_format2
 	|FileIsOnDrives
+	|EndSession
 +SAVE-LOAD
 	+LIST
 		|ListSave
@@ -288,4 +290,3 @@
 +PLUGIN
 	|LoadPlugins
 	|InitPlugin
-|do_nothing
