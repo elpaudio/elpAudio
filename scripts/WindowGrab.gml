@@ -21,7 +21,6 @@ if yftime=1 then yonb=0
 
 
 
-//if __stick_to_edges {
 ///WINDOW STICKS TO EDGES
 if (display_mouse_get_x()-mx<=16 or display_mouse_get_y()-my<=16
 or display_mouse_get_x()-mx+window_get_width()>=display_get_width()-16 or display_mouse_get_y()-my+window_get_height()>=display_get_height()-16 )
@@ -35,10 +34,6 @@ else wy=display_mouse_get_y()-my
 
 window_set_position(wx,wy)
 
-//}
-/*window_set_position((display_mouse_get_x()-mx)*(1-xonb)*xftime,
-(display_mouse_get_y()-my)*(1-yonb)*(yftime)
-)*/
 pressed=1
 } else {pressed=0 hh=0}
 }

@@ -1,7 +1,7 @@
 ///(dir with '\',[sort])
 var mydir,i,findfile,txt;
 global.dirr=string_replace_all(argument0,"/","\")
-//if !string_ends_with(global.dirr,'\') global.dirr=argument0+'\'
+if !string_ends_with(global.dirr,'\') global.dirr=argument0+'\'
 findfile=0
 if directory_exists(global.dirr) {
 i=1
@@ -24,12 +24,3 @@ global.thesong=ds_list_find_value(global.list,0)
 if argument_count>1 {if argument[1] Shuffle()}
 
 }
-
-/*
-txt=''
-myi=0
-repeat(ds_list_size(global.list)) {
-txt+=string(ds_list_find_value(global.list,myi))+"#"
-myi+=1
-}
-show_message(txt)*/

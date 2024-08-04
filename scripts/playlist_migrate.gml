@@ -1,7 +1,7 @@
 ///(fname,DEST_FNAME)
 //thanks to visual music by icuurd12b21
 
-//*.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;
+// *.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;
 
 var fullname; fullname = argument0;
 var filename; filename = filename_change_ext(filename_name(fullname),''); //removes .* from filename
@@ -10,9 +10,6 @@ var path; path = filename_path(fullname);
 var drive; drive = filename_drive(fullname);
 
 var destfile; destfile = working_directory +"\playlists\migrate\"+filename+".elf"
-
-//if(is_string(argument1))
-  //  destfile = argument1;
 
 if(!directory_exists(working_directory +"\playlists"))
     directory_create(working_directory +"\playlists");
@@ -76,15 +73,8 @@ while(!file_text_eof(hf2))
                 title = filename_name(string_replace_all(track,"/","\"));
                 title = filename_change_ext(title,"")
             }
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
             title = "<unknown>";
         }
     }
@@ -135,15 +125,8 @@ while(!file_text_eof(hf2))
                         title = filename_name(string_replace_all(track,"/","\"));
                         title = filename_change_ext(title,"")
                     }
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                     title = "<unknown>";
                 }
             }
@@ -151,16 +134,6 @@ while(!file_text_eof(hf2))
     }
     else if(ext = ".wpl" or ext = ".w3c" )
     {
-
-        //pos = string_pos("<TITLE>",string_upper(str));
-        //if(pos)
-        //{
-        //    pos2 = string_pos("</TITLE>",string_upper(str)) + string_pos("<TITLE/>",string_upper(str));
-        //    if(pos2) title = string_copy(str,pos+7,pos2-pos-7)
-        //
-        //}
-        //else
-        //{
             pos = string_pos("<MEDIA",string_upper(str));
             if(pos)
             {
@@ -197,19 +170,11 @@ while(!file_text_eof(hf2))
                         title = filename_name(string_replace_all(track,"/","\"));
                         title = filename_change_ext(title,"")
                     }
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                     title = "<unknown>";
                 }
             }
-        //}
     }
     else if(ext = ".b4s")
     {
@@ -262,15 +227,8 @@ while(!file_text_eof(hf2))
                         title = filename_name(string_replace_all(track,"/","\"));
                         title = filename_change_ext(title,"")
                     }
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                     title = "<unknown>";
                     track = "";
             }
@@ -326,15 +284,8 @@ while(!file_text_eof(hf2))
                     title = filename_name(string_replace_all(track,"/","\"));
                 }
                 title = filename_change_ext(title,"")
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                 title = "<unknown>";
                 track = "";
             }
@@ -361,15 +312,8 @@ while(!file_text_eof(hf2))
                 track = string_copy(str,pos+3,1000);
                 title = filename_name(string_replace_all(track,"/","\"));
                 title = filename_change_ext(title,"")
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                 title = "<unknown>";
                 track = "";
             }
@@ -412,15 +356,7 @@ while(!file_text_eof(hf2))
                         title = filename_name(string_replace_all(track,"/","\"));
                     }
                     title = filename_change_ext(title,"")
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                     title = "<unknown>";
                     track = "";
                 }
@@ -463,15 +399,8 @@ while(!file_text_eof(hf2))
                         title = filename_name(string_replace_all(track,"/","\"));
                     }
                     title = filename_change_ext(title,"")
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                     title = "<unknown>";
                     track = "";
                 }
@@ -507,15 +436,8 @@ while(!file_text_eof(hf2))
                         title = filename_name(string_replace_all(track,"/","\"));
                         title = filename_change_ext(title,"")
                     }
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
                     title = "<unknown>";
                     track = "";
                 }
@@ -545,7 +467,7 @@ if(ext = ".pls")
     if(!hf)
     {
         show_message("Error opening destination play list file:#" + destfile +"##Failed to migrate file:#"+fullname);
-        return "";;
+        return "";
     }
     ini_open("dummy.ini")
     var i;
@@ -561,15 +483,8 @@ if(ext = ".pls")
                         title = filename_name(string_replace_all(track,"/","\"));
                         title = filename_change_ext(title,"")
                     }
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
 
         }
         i+=1;
@@ -598,16 +513,8 @@ else if(ext = ".kpl" and isINI)
         {
                     title = filename_name(string_replace_all(track,"/","\"));
                     title = filename_change_ext(title,"")
-            //file_text_write_string(hf,title);
-            //file_text_writeln(hf);
             file_text_write_string(hf,track);
             file_text_writeln(hf);
-            //file_text_write_string(hf,"1");
-            //file_text_writeln(hf);
-            //file_text_write_string(hf,"0");
-            //file_text_writeln(hf);
-            //file_text_writeln(hf);
-
         }
         i+=1;
     } until(track = "")

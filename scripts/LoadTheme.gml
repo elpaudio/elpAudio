@@ -121,7 +121,7 @@ if ini_key_exists('Default','mgui') sprite_replace(global.__ico_migui,filename_p
 if ini_key_exists('Default','poss') sprite_replace(global.__ico_slid2,filename_path(argument0)+ini_read_string('Default','poss','positionslide.png')        ,2,0,0,0,0)
 //posiition slider
 if ini_key_exists('Default','slide') sprite_replace(global.__ico_slide,filename_path(argument0)+ini_read_string('Default','slide','slider.png')             ,1,0,0,0,0)
-sprite_set_offset(global.__ico_slide,0 /*sprite_get_width(global.__ico_slide)/2*/ ,sprite_get_height(global.__ico_slide)/2)
+sprite_set_offset(global.__ico_slide,0,sprite_get_height(global.__ico_slide)/2)
 //volume slide
 if ini_key_exists('Default','vols') sprite_replace(global.__ico_volbt,filename_path(argument0)+ini_read_string('Default','vols','volumeslide.png')          ,2,0,0,0,0)
 //volume slider
