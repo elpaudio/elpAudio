@@ -52,10 +52,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/*if full {
-room_set_height(room,640)
-}
-*/
 draw_self()
 if button=0 image_blend=__minibutton1col
 if button=1 image_blend=__minibutton2col

@@ -47,19 +47,9 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-//view_stabilize()
 global.list_size=ds_list_size(global.list)
 
 delta_time=room_speed//(60/max(fps,1))
-#define Other_3
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-if variable_global_exists('__sdl_init') gmSDL_close()
-FMODfree()
-UnloadFMOD()
 #define KeyPress_115
 /*"/*'/**//* YYD ACTION
 lib_id=1
