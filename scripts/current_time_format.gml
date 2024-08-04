@@ -1,5 +1,5 @@
 var time,mintime,hourtime,sectime;
-time=argument0//*1000 //because of the new extension
+time=argument0
 hourtime=0
 sectime=0
 mintime=0
