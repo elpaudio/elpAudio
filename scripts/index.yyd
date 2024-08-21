@@ -274,3 +274,11 @@ InitPlugin
 LoadPlugins
 do_nothing
 README
+ButtonCreate
+ButtonAddCode
+ButtonPull
+SpriteAdd
+SpriteSetVars
+SpriteSetIndex
+HandlePlaylistLoad
+plgListIsLoaded

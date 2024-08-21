@@ -19,6 +19,7 @@
 	|MusicNext
 	|MusicPrev
 	|Shuffle
+	|HandlePlaylistLoad
 +MISC
 	+lini
 		|lini_open
@@ -69,8 +70,6 @@
 	|DrawTextSpecial
 	|eaPlay
 +elpaudio
-	|FileIsSupported
-	|GetMusicFromFolder
 	|FilterString
 	|SoundIsStereo
 	|NumberIsNegative
@@ -78,12 +77,14 @@
 	+TIME_FORMATS
 		|current_time_format
 		|current_time_format2
-	|FileIsOnDrives
 	|EndSession
 +SAVE-LOAD
 	+LIST
 		|ListSave
 		|ListLoad
+		|FileIsSupported
+		|GetMusicFromFolder
+		|FileIsOnDrives
 	+SETTINGS
 		|SettingsLoad
 		|SettingsSave
@@ -290,3 +291,14 @@
 +PLUGIN
 	|LoadPlugins
 	|InitPlugin
+	+SCRIPTS
+		+BUTTON
+			|ButtonCreate
+			|ButtonAddCode
+			|ButtonPull
+		+SPRITES
+			|SpriteAdd
+			|SpriteSetVars
+			|SpriteSetIndex
+		+HANDLERS
+			|plgListIsLoaded

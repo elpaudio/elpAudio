@@ -4,6 +4,15 @@
 	|thebutton
 	|PlaylistManager
 	|objPlugin
++MUSIC-CONTROL
+	|ButtonPlay
+	|ButtonStop
+	|ButtonPause
+	|ButtonNext
+	|ButtonPrev
+	|ButtonAddFile
+	|ButtonLoop
+	|ButtonShuffle
 |ButtonAlwaysOnTop
 |FloatText
 |ButtonSettings
@@ -16,12 +25,3 @@
 |Visualiser
 |BackgroundHolder
 |Monoster
-+MUSIC-CONTROL
-	|ButtonPlay
-	|ButtonStop
-	|ButtonPause
-	|ButtonNext
-	|ButtonPrev
-	|ButtonAddFile
-	|ButtonLoop
-	|ButtonShuffle

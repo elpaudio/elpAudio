@@ -15,6 +15,8 @@ global.current=0
 global.thesong=''
 global.volume=100
 global.randomized=0
+global._loaded_list=0
+global.list_type=0 // 0 - regular, 1 - "radio"
 
 global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\'
 if debug_mode global.__progdir=working_directory+'\'
@@ -24,24 +26,29 @@ set_working_directory(global.__progdir)
 globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__stick_to_edges
 __enablevisdist,__changecaption,__captionchangespd,
 __customcaption_idle,__customcaption_play,__customcaption_ch1,__customcaption_ch2,
-__enable_fswitch,__elp_enable_old_themes;
+__enable_fswitch,__elp_enable_old_themes,
+__preload_type,__open_migrated_list
+;
 
-__elp_enable_old_themes=0
-__enablevisdist=0
-__enablefloat=0
-__stopsongafter=0
-__visualiser=0
-__speed=15
-__visual_freq=64
-__stick_to_edges=1
-__changecaption=1
-__captionchangespd=3
-__enable_fswitch=1
+__elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
+__enablevisdist=0;          // enable visualisation distortion (maybe unused)
+__enablefloat=0;            // enable floating text
+__stopsongafter=0;          // stop song after playing
+__visualiser=0;             // current visualiser
+__speed=15;                 // floating text speed
+__visual_freq=64;           // visual frequency (bars)
+__stick_to_edges=1;         // stick window to display edges (only one display)
+__changecaption=1;          // changing caption
+__captionchangespd=3;       // changing caption speed in seconds
+__enable_fswitch=1;         // enable fullscreen switching
+__preload_type=1;           //disk stream
+__open_migrated_list=1;     // open migrated playlist after converting
 
-__customcaption_idle=''
-__customcaption_play=''
-__customcaption_ch1=''
-__customcaption_ch2=''
+__customcaption_idle='elpAudio '+Get_elpAudioVersion();
+__customcaption_play='';
+__customcaption_ch1='';
+__customcaption_ch2='';
+
 
 global.songartist=''
 global.songtitle=''
@@ -69,6 +76,8 @@ __enable_fswitch=ini_read_real('','enableSwitchFScreen',1)
 __stick_to_edges=ini_read_real('','windowSticksToEdges',1)
 __stopsongafter=ini_read_real('','stopSongAfterPlaying',0)
 __elp_enable_old_themes=ini_read_real('','EnableOldThemes',0)
+__open_migrated_list=ini_read_real('','OpenMigratedListAfterConverting',1)
+__preload_type=ini_read_real('','MusicPreloadType',1)
 global.randomized=ini_read_real('','ShuffleSongs',0)
 room_speed=max(ini_read_real('','framerate',60),1)
 ini_close()
@@ -89,6 +98,7 @@ ini_write_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
 ini_write_real('','framerate',60)
 ini_write_real('','ShuffleSongs',0)
 ini_write_real('','EnableOldThemes',0)
+ini_write_real('','OpenMigratedListAfterConverting',1)
 room_speed=60
 ini_close()
 }

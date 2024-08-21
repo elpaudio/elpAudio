@@ -9,7 +9,7 @@ var ext; ext = string_lower(filename_ext(fullname));
 var path; path = filename_path(fullname);
 var drive; drive = filename_drive(fullname);
 
-var destfile; destfile = working_directory +"\playlists\migrate\"+filename+".elf"
+var destfile; destfile = working_directory +"\playlists\migrate\"+filename+".epl"
 
 if(!directory_exists(working_directory +"\playlists"))
     directory_create(working_directory +"\playlists");
@@ -22,6 +22,9 @@ if(!hf)
     show_message("Error opening destination playlist file:#" + destfile +"##Failed to migrate file:#"+fullname);
     return "";;
 }
+
+file_text_write_string(hf,'0') // TYPICAL PLAYLIST.
+
 var hf2; hf2 = file_text_open_read(fullname);
 if(!hf2)
 {
@@ -33,8 +36,9 @@ var title,track;
 var pos,pos2;
 title = "<unknown>";
 track = ""
-var isINI;
-isINI = false;
+
+var isINI{isINI = false}
+
 while(!file_text_eof(hf2))
 {
     str=HTMLTagDecode(UDecode(file_text_read_string(hf2)));

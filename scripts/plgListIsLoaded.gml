@@ -1,0 +1,1 @@
+return global._loadedlist

@@ -33,20 +33,11 @@ action_id=603
 applies_to=self
 */
 ///Initializer
-if variable_global_exists('__init') {
-if global.__init=1 {
 LoadPlugins() //find plugins from plugins folder
 LoadFMOD()
 FMODinit(100,1)
-}
-} else {
-
-LoadPlugins() //find plugins from plugins folder
-LoadFMOD()
-FMODinit(100,1)
-global.__init=0
 global.played_from_arg=0
-}
+FMODSpectrumSetSnapshotType(5)
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -64,6 +55,13 @@ applies_to=self
 ///MESSAGE BOX POS
 message_position(window_get_x(),window_get_y()+window_get_height())
 alarm[1]=15
+#define Alarm_10
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if global._loaded_list global._loaded_list=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -152,24 +150,34 @@ applies_to=self
 */
 ///Draw TOP MENU && GET POS
 
-//view_stabilize()
+
 if global.play {
-if FMODInstanceGetPosition(global.playing)>=1 and FMODInstanceGetLoopCount(global.playing)>-1 {
-if __stopsongafter MusicStop() else {
-MusicNext()
-}
-}
+    if global.pos>=0.9
+    if global.pos>=1 and FMODInstanceGetLoopCount(global.playing)>-1 {
+        if __stopsongafter MusicStop() else {
+            MusicNext()
+        }
+    }
 }
 
 
 if useimgforfront=0 {
-draw_set_color(global.frontcol)
-draw_rectangle(x,y,x+w,y+h,0)
-} else if sprite_exists(global.__img_front) and global.__img_front>-1 {draw_set_color(c_white) draw_sprite_stretched_ext(global.__img_front,0,x,y,w,h,c_white,1)}
+    draw_set_color(global.frontcol)
+    draw_rectangle(x,y,x+w,y+h,0)
+}
+else
+if sprite_exists(global.__img_front) and global.__img_front>-1 {
+    draw_set_color(c_white)
+    draw_sprite_stretched_ext(global.__img_front,0,x,y,w,h,c_white,1)
+    }
+
 draw_set_alpha(1)
 draw_set_color(global.captioncol)
 draw_set_font(global.__fon_cap)
-if drawcaption draw_text(x+4,y,room_caption)
+
+if drawcaption then
+draw_text(x+4,y,room_caption)
+
 draw_set_color(c_white)
 #define KeyPress_1
 /*"/*'/**//* YYD ACTION
