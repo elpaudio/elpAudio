@@ -22,6 +22,7 @@ if string_lower(filename_ext(fname))=='.epl' then { //.epl start
       */
 
     file=file_text_open_read(fname)
+    ds_list_clear(global.list)
     if file_text_read_string(file)!='0'
     or file_text_read_string(file)!='1' then
         global.list_type=0
@@ -60,6 +61,7 @@ file_text_close(file)
 }  // .elf end
 else if string_lower(filename_ext(fname))=='.elf' then {
     file=file_text_open_read(fname)
+    ds_list_clear(global.list)
 
     while !file_text_eof(file)
     {
@@ -97,7 +99,7 @@ file_text_close(file)
         ListLoad(global.__progdir+'playlists\migrate\'+filename_change_ext(filename_name(fname),'.epl'),1)
 } // migrating end
 
-ds_list_clear(global.list)
+
 copy_to_playlist(global.list,adl)
 ds_list_destroy(adl)
 
