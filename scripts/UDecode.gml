@@ -1,3 +1,4 @@
+///what the fuck is that
 var c,cat,str,len,i,endstr,c2,c3;
 c2 = chr($c2);
 c3 = chr($c3);
