@@ -4,11 +4,16 @@ fname=argument0
 if file_exists(fname) then
 file_delete(fname)
 
-if !string_ends_with(string_lower(fname),'.elf') then
-fname+='.elf'
+if !string_ends_with(string_lower(fname),'.epl') then
+fname+='.epl'
 
 file=file_text_open_write(fname)
 i=0
+
+//list type. 0-normal, 1-radio
+file_text_write_string(file,global.list_type)
+file_text_writeln(file)
+
 repeat(ds_list_size(global.list))
 {
 var isweb

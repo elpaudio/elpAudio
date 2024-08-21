@@ -22,7 +22,7 @@ applies_to=self
 */
 if !window_get_active() exit
 image_index=0
-myfile=get_save_filename('elpAudio playlist files|*.elf','list-1.elf')
+myfile=get_save_filename('elpAudio Play List|*.epl','list-1.epl')
 if myfile='' nothing=1 else {
 ListSave(myfile)
 }
