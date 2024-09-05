@@ -78,6 +78,13 @@ if !window_get_active() exit
 image_index=0
 if click=0 alarm[0]=60
 click+=1
+#define Mouse_11
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+image_index=0
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -95,7 +102,7 @@ select=show_menu('Add file|Add folder|Add URL|Download from URL|Show files|Clear
 
 if select=0 then {
 
-file=get_open_filename('All supported files|*.aiff;*.asf;*.asx;*.dls;*.flac;*.fsb;*.it;*.midi;*.mpd;*.mp3;*.mp2;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.raw;*.iff;','')
+file=get_open_filename('All supported files|*.aiff;*.asf;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp3;*.mp2;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.raw;*.iff;','')
 
 if file='' then
 nothing=1
