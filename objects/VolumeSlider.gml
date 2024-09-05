@@ -32,7 +32,7 @@ applies_to=self
 slw=sprite_get_width(global.__ico_slide2)
 slh=sprite_get_height(global.__ico_slide2)
 if
-point_in_rectangle(mouse_x,mouse_y,//display_mouse_get_x(),display_mouse_get_y(),
+point_in_rectangle(mouse_x,mouse_y,
 x-can*100,y-can*100,x+sprite_width+can*100,y+sprite_height+can*100)
 {
 if mouse_check_button(mb_left) {
