@@ -20,6 +20,7 @@
 	|MusicPrev
 	|Shuffle
 	|HandlePlaylistLoad
+	|MusicPreload
 +MISC
 	+lini
 		|lini_open
@@ -34,7 +35,6 @@
 	|fname_path
 	|ini_rs
 	|copy_to_playlist
-	|LINUX_FIX
 	+BLUR
 		|draw_textblur
 		|draw_spriteblur
@@ -43,7 +43,7 @@
 		|ereal
 		|HexToColor
 	|do_nothing
-+VISUALISE
++VISUALISERS
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
 	|GetWaveBuffer
@@ -62,6 +62,7 @@
 	|GetFontHeight
 	|FontSet
 	|GetListEntry
+	|GetListEntryRaw
 	|GetListSize
 	|DrawRect
 	|DrawRectOutline
