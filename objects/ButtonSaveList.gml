@@ -26,3 +26,10 @@ myfile=get_save_filename('elpAudio Play List|*.epl','list-1.epl')
 if myfile='' nothing=1 else {
 ListSave(myfile)
 }
+#define Mouse_11
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+image_index=0

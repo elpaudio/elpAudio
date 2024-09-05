@@ -30,3 +30,10 @@ image_index=on
 FMODInstanceSetLoopCount(global.playing,-1*on)
 //FMODSoundSetLoopCount()
 } else image_index=0
+#define Mouse_11
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+image_index=0

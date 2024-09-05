@@ -27,14 +27,6 @@ image_index=0
 enter=0
 if ds_list_size(global.list)<1 exit
 if global.play MusicPause()
-#define Mouse_10
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-if !window_get_active() exit
-enter=1
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -42,4 +34,4 @@ action_id=603
 applies_to=self
 */
 if !window_get_active() exit
-enter=0
+image_index=0

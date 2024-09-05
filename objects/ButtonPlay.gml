@@ -4,7 +4,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-//settings_load()
 enter=0
 image_speed=0
 
@@ -60,14 +59,6 @@ enter=0
 if ds_list_size(global.list)<1 exit
 if global.paused or global.stopped {MusicResume() exit}
 if(global.play=0 or global.stopped=1) MusicPlay(string(ds_list_find_value(global.list,global.current)))
-#define Mouse_10
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-if !window_get_active() exit
-enter=1
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -75,4 +66,4 @@ action_id=603
 applies_to=self
 */
 if !window_get_active() exit
-enter=0
+image_index=0

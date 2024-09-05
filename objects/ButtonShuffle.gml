@@ -24,3 +24,10 @@ applies_to=self
 if !window_get_active() exit
 Shuffle()
 image_index=global.randomized
+#define Mouse_11
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+image_index=0
