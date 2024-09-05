@@ -68,6 +68,21 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///global vars
+
+global.list_size=ds_list_size(global.list)
+
+if global.play {
+global.pos=FMODInstanceGetPosition(global.playing)
+global.formatted_time=current_time_format2(global.songlength)
+global.formatted_cur_pos=current_time_format2((global.pos*global.songlength))
+
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 ///CAPTION
 
 if !__enablefloat {
@@ -89,17 +104,6 @@ room_caption=CompileCaptions(__customcaption_ch2)
 if window_get_taskbar_caption()!=room_caption
 window_set_taskbar_caption(room_caption)
 if global.current>global.list_size and global.list_size>0 global.current=0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-///global vars
-if global.play {
-global.pos=FMODInstanceGetPosition(global.playing)
-global.formatted_time=current_time_format2(global.songlength)
-global.formatted_cur_pos=current_time_format2((global.pos*global.songlength))
-}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -152,7 +156,9 @@ applies_to=self
 
 
 if global.play {
-    if global.pos>=0.9
+    if global.pos>=0.5 and !global.preloaded and __PreloadNextSong then
+        MusicPreload()
+
     if global.pos>=1 and FMODInstanceGetLoopCount(global.playing)>-1 {
         if __stopsongafter MusicStop() else {
             MusicNext()
