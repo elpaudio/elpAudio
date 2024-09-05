@@ -1,1 +1,1 @@
-return global._loadedlist
+return global._loaded_list
