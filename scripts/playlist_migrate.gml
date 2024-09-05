@@ -24,6 +24,7 @@ if(!hf)
 }
 
 file_text_write_string(hf,'0') // TYPICAL PLAYLIST.
+file_text_writeln(hf)
 
 var hf2; hf2 = file_text_open_read(fullname);
 if(!hf2)
