@@ -1,0 +1,9 @@
+Test plugin by elpoep - creates "Hello world" message box
+/*(*CREATE*)*/
+PluginName='Testing Plugin';
+text='Hello, world!';
+/*(*CREATE_END*)*/
+On press of a key creates msgbox
+/*(*STEP*)*/
+if keyboard_check_pressed(ord('T')) show_message(text)
+/*(*STEP_END*)*/

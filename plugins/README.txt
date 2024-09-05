@@ -69,7 +69,7 @@ BUT, if you're making mega cool plugin and wanna make it more faster to load, yo
 	/*(*CREATE_END*)*/
 
 The script above is a modified script that creates a button, that shows "Hello world" on press.
-The script was checked for work. It was compiled for ~0.8 seconds, neither if you whitespace more (~1 seconds)
+The script was checked for work. It was compiled for ~0.8 seconds, neither if you whitespace more (~0.9 seconds)
 
 How it works? Simple. elpAudio read EVERY line of plugin, and checks if there are any /*(*EVENT*)*/ opener or exiter.
 The more you have comments or whitespaces, the more elpAudio should read, so, try to make you plugin less whitespaced. =-)
@@ -94,20 +94,20 @@ The simple script that creates a button, which shows "Hello world" on press
 
 
 
-	/*(*CREATE*)*/
-	
-	b=ButtonCreate(); /*creates button handler*/
-	
-	ButtonAddCode(b,"step","if mouse_check_button_released(mb_any) and point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) show_message('Hello world')");
-	/* code above adds a step event to the button handler, that checks if button was pressed */
-	
-	ButtonAddCode(b,"create","sprite_index=sprite_add(filename_path(global.themepath)+'button.png',2,0,0,0,0) image_speed=0 image_index=0");
-	/* code above adds a create event, sets a button's sprite to "button.png" from the theme folder (for example) */
-	
-	ButtonAddCode(b,"draw","draw_self()");
-	/* code abovs makes a button draw itself every frame */
-	
-	ButtonPull(b);
-	/* creates button's instance */
-	
-	/*(*CREATE_END*)*/
+/*(*CREATE*)*/
+
+b=ButtonCreate(); /*creates button handler*/
+
+ButtonAddCode(b,"step","if mouse_check_button_released(mb_any) and point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) show_message('Hello world')");
+/* code above adds a step event to the button handler, that checks if button was pressed */
+
+ButtonAddCode(b,"create","sprite_index=sprite_add(filename_path(global.themepath)+'button.png',2,0,0,0,0) image_speed=0 image_index=0");
+/* code above adds a create event, sets a button's sprite to "button.png" from the theme folder (for example) */
+
+ButtonAddCode(b,"draw","draw_self()");
+/* code abovs makes a button draw itself every frame */
+
+ButtonPull(b);
+/* creates button's instance */
+
+/*(*CREATE_END*)*/
