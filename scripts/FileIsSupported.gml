@@ -10,6 +10,7 @@ if string_lower(filename_ext(f))=='.it' return true
 if string_lower(filename_ext(f))=='.m3u' return true
 if string_lower(filename_ext(f))=='.midi' return true
 if string_lower(filename_ext(f))=='.mid' return true
+if string_lower(filename_ext(f))=='.rmi' return true
 if string_lower(filename_ext(f))=='.mod' return true
 if string_lower(filename_ext(f))=='.mp2' return true
 if string_lower(filename_ext(f))=='.mp3' return true
