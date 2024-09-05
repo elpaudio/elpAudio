@@ -9,6 +9,11 @@ if variable_global_exists('musicsound') then
 if isweb then {
     global.musicsound=FMODSoundAddAsyncStream(argument0,0)
     debug('song is streaming from the web')
+} else if global.preloaded>0 then {
+    global.musicsound=global.preloaded
+    debug('song is preloaded')
+    global.preloaded=0
+    debug('preloaded song was reset')
 } else {
     global.musicsound=FMODSoundAdd(argument0,0,__preload_type)
     debug('song is streaming from the disk')
