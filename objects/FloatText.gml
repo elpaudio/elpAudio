@@ -58,8 +58,8 @@ applies_to=self
 draw_set_font(global.__fon_vis)
 
 if usebgimg and sprite_exists(global.__floatbg) and global.__floatbg>0 {
-draw_set_color(c_white)
-draw_sprite_stretched_ext(global.__floatbg,0,x,y,width,height,__floatbgcol,1)
+    draw_set_color(c_white)
+    draw_sprite_stretched_ext(global.__floatbg,0,x,y,width,height,__floatbgcol,1)
 }
 
 draw_set_color(global.floatcolor)
@@ -68,52 +68,52 @@ draw_set_halign(fa_left)
 if global.oldfloat==0 and global.play {
 
 if instance_exists(Visualiser) and ontop==0 then
-Visualiser.depth=depth-1
+    Visualiser.depth=depth-1
 
 if floatdrawtime1 then
 { // Draw with time
-mystr=global.trackname+' ('+global.formatted_time+')'
+    mystr=global.trackname+' ('+global.formatted_time+')'
 }
 else
 { // Draw without the time
-mystr=global.trackname
+    mystr=global.trackname
 }
 
 if floatiertext {
-if textx+string_width(mystr)+16>width then
-xx-=((__speed)/15)*(room_speed/max(fps,30))
+    if textx+string_width(mystr)+16>width then
+    xx-=((__speed)/15)*(room_speed/max(fps,30))
 }
 
 if xx<-string_width(mystr)-textx then
-xx=width+10+text_centered*width/2
+    xx=width+10+text_centered*width/2
 
 }
 
 // Draws text
-draw_surface_ext(surf,x+textx,y+texty,1,1,0,c_white,1)
+    draw_surface_ext(surf,x+textx,y+texty,1,1,0,c_white,1)
 
 if drawfloattime2 {
-draw_set_font(time2font)
-draw_set_color(floattime2col1)
-draw_text(x+time2x,y+time2y,"88:88")
-draw_set_color(floattime2col2)
+    draw_set_font(time2font)
+    draw_set_color(floattime2col1)
+    draw_text(x+time2x,y+time2y,"88:88")
+    draw_set_color(floattime2col2)
 
-if global.play then
-draw_text(x+time2x,y+time2y,global.formatted_cur_pos)
-else
-draw_text(x+time2x,y+time2y,"00:00")
+    if global.play then
+        draw_text(x+time2x,y+time2y,global.formatted_cur_pos)
+    else
+        draw_text(x+time2x,y+time2y,"00:00")
 
 }
 
 if drawqueue {
-draw_set_font(queuefont)
-draw_set_color(queuecol1)
-draw_text(x+queuex,y+queuey,string_ext('{0}/{1}',string_repeat('8',string_length(string(global.current+1))),string_repeat('8',string_length(string(global.list_size)))))
-draw_set_color(queuecol2)
-draw_text(x+queuex,y+queuey,string(string_pad(global.current+1,2))+'/'+string(string_pad(global.list_size,2)))
+    draw_set_font(queuefont)
+    draw_set_color(queuecol1)
+    draw_text(x+queuex,y+queuey,string_ext('{0}/{1}',string_repeat('8',string_length(string(global.current+1))),string_repeat('8',string_length(string(global.list_size)))))
+    draw_set_color(queuecol2)
+    draw_text(x+queuex,y+queuey,string(string_pad(global.current+1,2))+'/'+string(string_pad(global.list_size,2)))
 }
 
 if usefgimg
 and sprite_exists(global.__floatfg)
 and global.__floatfg>0 then
-draw_sprite_stretched_ext(global.__floatfg,1,x,y,width,height,__floatfgcol,1)
+    draw_sprite_stretched_ext(global.__floatfg,1,x,y,width,height,__floatfgcol,1)
