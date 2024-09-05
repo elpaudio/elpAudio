@@ -5,7 +5,7 @@ if !string_ends_with(global.dirr,'\') global.dirr=argument0+'\'
 findfile=0
 if directory_exists(global.dirr) {
 i=1
-exts='*.*'//mp3;*.wav;*.ogg;*.flac;*.aiff;*.iff;*.opus;*.mod;*.xm;*.it;*.s3m;*.mp2;*.ogg;*.m3u;'
+exts='*.*'
 
 // ALL FILES
 mus[0]=file_find_first(global.dirr+exts,findfile);
