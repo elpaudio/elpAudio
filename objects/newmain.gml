@@ -47,8 +47,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-global.list_size=ds_list_size(global.list)
-
 delta_time=room_speed//(60/max(fps,1))
 #define KeyPress_115
 /*"/*'/**//* YYD ACTION
