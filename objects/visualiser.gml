@@ -34,35 +34,32 @@ draw_set_color(global.visbgcol)
 draw_set_alpha(1)
 
 if usebgvisimg==0 {
-n=1
+    n=1
 } else {
-if sprite_exists(visbgimg) and visbgimg>-1 {
-draw_sprite_stretched_ext(visbgimg,0,x+visbgx,y+visbgy,visbgw,visbgh,c_white,1)
-}
+    if sprite_exists(visbgimg) and visbgimg>-1 {
+        draw_sprite_stretched_ext(visbgimg,0,x+visbgx,y+visbgy,visbgw,visbgh,c_white,1)
+    }
 }
 
 draw_set_color(c_white)
 
-var hhh;hhh=5
-if global.play {
-i=0 repeat(global.customvisuals) {
-if __visualiser==i execute_string(global.vis[i])
-i+=1
-}
-}
+if global.play then
+    if !window_get_active() and __DisVisWhenNotAct==1 n=1
+    else execute_string(global.vis[__visualiser])
 
 if usefgvisimg {
-if sprite_exists(visfgimg) and visfgimg>-1 {
-draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,c_white,1)
-}
+    if sprite_exists(visfgimg) and visfgimg>-1 {
+        draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,c_white,1)
+    }
 }
 if turnon {
-draw_set_color(c_black)
-draw_text(x+1,y+1,string_ext('{0}/{1}',fps,room_speed))}
+    draw_set_color(c_black)
+    draw_text(x+1,y+1,string_ext('{0}/{1}',fps,room_speed))
+}
 #define KeyPress_120
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-turnon=!turnon
+if keyboard_check_direct(vk_control) turnon=!turnon

@@ -37,7 +37,7 @@ GetITName
 SoundIsStereo
 string_ext
 FileIsSupported
-LINUX_FIX
+
 SNAPWAVEENTRY
 
 HowToUse
@@ -282,3 +282,5 @@ SpriteSetVars
 SpriteSetIndex
 HandlePlaylistLoad
 plgListIsLoaded
+MusicPreload
+GetListEntryRaw

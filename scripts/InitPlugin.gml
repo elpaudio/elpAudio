@@ -16,7 +16,6 @@ msg=''
 
 debug('PLUGINS: starting to load '+f)
 
-
 if file_exists(f) {
 ff=file_text_open_read(f)
 debug('PLUGINS: loaded plugin '+f)
