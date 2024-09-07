@@ -20,11 +20,12 @@ yftime=1
 
 randomize()
 
-window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
+chroma=1
+if chroma then
+    window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
 
 message_position(window_get_x(),window_get_y()+window_get_height())
 message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
-global.changeview=1
 
 pressed=0
 /*"/*'/**//* YYD ACTION
@@ -45,7 +46,10 @@ action_id=603
 applies_to=self
 */
 ///PARAMETER STRING
-if parameter_count()>0 and global.played_from_arg==0 {MusicPlay(parameter_string(1)) ds_list_add(global.list,parameter_string(1)) global.played_from_arg=1}
+if parameter_count()>0 and global.played_from_arg==0 {
+    MusicPlay(parameter_string(1)) ds_list_add(global.list,parameter_string(1))
+    global.played_from_arg=1
+    }
 #define Alarm_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -53,6 +57,7 @@ action_id=603
 applies_to=self
 */
 ///MESSAGE BOX POS
+exit
 message_position(window_get_x(),window_get_y()+window_get_height())
 alarm[1]=15
 #define Alarm_10
@@ -73,10 +78,18 @@ applies_to=self
 global.list_size=ds_list_size(global.list)
 
 if global.play {
-global.pos=FMODInstanceGetPosition(global.playing)
-global.formatted_time=current_time_format2(global.songlength)
-global.formatted_cur_pos=current_time_format2((global.pos*global.songlength))
+    global.pos=FMODInstanceGetPosition(global.playing)
+    global.formatted_time=current_time_format2(global.songlength)
+    global.formatted_cur_pos=current_time_format2((global.pos*global.songlength))
 
+    if global.pos>=0.5 and !global.preloaded and __PreloadNextSong then
+        MusicPreload()
+
+    if global.pos>=1 and FMODInstanceGetLoopCount(global.playing)>-1 {
+        if __stopsongafter MusicStop() else {
+            MusicNext()
+        }
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -124,18 +137,6 @@ applies_to=self
 */
 ///MOUSE GRABBING WINDOW
 WindowGrab()
-#define Keyboard_17
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-exit
-if keyboard_check_pressed(ord('N'))
-{
-global.dirr=get_string('Type n the new directory wherre to find music.','')
-
-}
 #define Keyboard_18
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -152,20 +153,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-///Draw TOP MENU && GET POS
-
-
-if global.play {
-    if global.pos>=0.5 and !global.preloaded and __PreloadNextSong then
-        MusicPreload()
-
-    if global.pos>=1 and FMODInstanceGetLoopCount(global.playing)>-1 {
-        if __stopsongafter MusicStop() else {
-            MusicNext()
-        }
-    }
-}
-
+///Draw TOP MENU
 
 if useimgforfront=0 {
     draw_set_color(global.frontcol)
@@ -182,7 +170,7 @@ draw_set_color(global.captioncol)
 draw_set_font(global.__fon_cap)
 
 if drawcaption then
-draw_text(x+4,y,room_caption)
+    draw_text(x+4,y,room_caption)
 
 draw_set_color(c_white)
 #define KeyPress_1
@@ -192,24 +180,37 @@ action_id=603
 applies_to=self
 */
 if keyboard_check_pressed(vk_f7) and global.play {
-if global.paused MusicResume() else {if global.stopped MusicResume() else MusicPause()}
+    if global.paused then
+        MusicResume()
+    else {
+        if global.stopped then
+            MusicResume()
+        else
+            MusicPause()
+        }
 }
 
-if keyboard_check_pressed(vk_f5) and global.play MusicStop()
-if keyboard_check_pressed(vk_f8) {
-MusicNext()
-}
-if keyboard_check_pressed(vk_f6) {
-MusicPrev()
-}
+if keyboard_check_pressed(vk_f5) and global.play then
+    MusicStop()
+
+if keyboard_check_pressed(vk_f8) then
+    MusicNext()
+
+if keyboard_check_pressed(vk_f6) then
+    MusicPrev()
+
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) {
-if !keyboard_check(vk_shift) show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#Volume:{5}",global.trackname,current_time_format(FMODSoundGetLength(global.musicsound)),string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz",global.current+1,ds_list_size(global.list),global.volume))
-else {
-var i,list;i=0;list=''; repeat(ds_list_size(global.list)) {list+=string(i+1)+'. '+ds_list_find_value(global.list,i)+'#' i+=1}
-message_size(global.plrwidth,string_height(list))
-show_message(
-string_ext("Queue:{0}",
-list
-))}
+    if !keyboard_check(vk_shift) then
+        show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#Volume:{5}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz",global.current+1,global.list_size,global.volume))
+    else {
+        var i,list;i=0;list='';
+        repeat(global.list_size) {
+            list+=string(i+1)+'. '+GetListEntryRaw(i)+'#'
+            i+=1
+        }
+
+        message_size(global.plrwidth,string_height(list))
+        show_message(string_ext("Queue:#{0}",list))
+    }
 }
