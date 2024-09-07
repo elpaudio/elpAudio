@@ -1,0 +1,1 @@
+return external_define(argument0,argument1,argument2,argument3,argument4,argument[5],argument[6],argument[7],argument[8],argument[9],argument[10],argument[11],argument[12],argument[13],argument[14],argument[15])
