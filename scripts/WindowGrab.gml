@@ -26,20 +26,20 @@ if mouse_check_direct(mb_left) {
 	or display_mouse_get_x()-mx+window_get_width()>=display_get_width()-16 or display_mouse_get_y()-my+window_get_height()>=display_get_height()-16 )
 	and __stick_to_edges
 	{
-		if display_mouse_get_x()-mx<=16 then 
-			wx=0 
-		else if display_mouse_get_x()-mx+window_get_width()>=display_get_width()-16 then 
+		if display_mouse_get_x()-mx<=16 then
+			wx=0
+		else if display_mouse_get_x()-mx+window_get_width()>=display_get_width()-16 then
 			wx=display_get_width()-window_get_width()
 		else wx=display_mouse_get_x()-mx
-	
-		if display_mouse_get_y()-my<=16 then 
-			wy=0 
-		else if display_mouse_get_y()-my+window_get_height()>=display_get_height()-16 then 
+
+		if display_mouse_get_y()-my<=16 then
+			wy=0
+		else if display_mouse_get_y()-my+window_get_height()>=display_get_height()-16 then
 			wy=display_get_height()-window_get_height()
 		else wy=display_mouse_get_y()-my
-	} 
+	}
 	else {
-		wx=display_mouse_get_x()-mx 
+		wx=display_mouse_get_x()-mx
 		wy=display_mouse_get_y()-my
 	}
 
