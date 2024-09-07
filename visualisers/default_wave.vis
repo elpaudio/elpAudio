@@ -7,6 +7,10 @@ if surface_exists(__wavesurf) ClearSurface(__wavesurf);
 if surface_exists(__surf2) ClearSurface(__surf2);
 global.__wave_vis=1;
 }
+
+if !surface_exists(__wavesurf) {__wavesurf=surface_create(w,h);ClearSurface(__wavesurf);}
+if surface_exists(__surf2) {__surf2=surface_create(w,h);ClearSurface(__surf2);}
+
 surface_copy(__surf2,0,0,__wavesurf);
 surface_set_target(__wavesurf);
 draw_surface_ext(__surf2,0,0,1,1,0,c_white,0.2);
@@ -18,7 +22,6 @@ repeat(maxw)
     draw_line((w/maxw)*i,SNAPWAVEENTRY(i,maxw)*h,(w/maxw)*(i+1),SNAPWAVEENTRY(i+1,maxw)*h)
     i+=1;
 }
-xx=x;
 i=0;
 GetWaveBuffer(maxw,1,myinst)
 SetVisColorAlpha(global.visfgcol,0.6);
