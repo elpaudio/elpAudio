@@ -1,7 +1,7 @@
 global.themepath=argument0
 if !file_exists(global.themepath) global.themepath=working_directory+'\themes\default\theme.ini'
 
-fontlast=$FFFF
+fontlast=4096
 
 // Icons.
 
