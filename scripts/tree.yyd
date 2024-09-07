@@ -70,6 +70,7 @@
 	|CheckSelect
 	|DrawTextSpecial
 	|eaPlay
+	|ClearSurface
 +elpaudio
 	|FilterString
 	|SoundIsStereo
@@ -303,3 +304,6 @@
 			|SpriteSetIndex
 		+HANDLERS
 			|plgListIsLoaded
+		+EXT
+			|ExternalCall
+			|ExternalDefine

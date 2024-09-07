@@ -284,3 +284,6 @@ HandlePlaylistLoad
 plgListIsLoaded
 MusicPreload
 GetListEntryRaw
+ExternalCall
+ExternalDefine
+ClearSurface
