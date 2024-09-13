@@ -16,18 +16,19 @@ if string_lower(filename_ext(fname))=='.epl' then { //.epl start
 
     /*    elpAudio should know what type of playlist it loads.
             Opens the file and reads first line.
-            0 - regular playlist, 1 - "radio playlist"
+            first line is a version
             If the first line is something else,
-            then elpAudio automatically sets list type to 0. (old .elf file type)
+            then elpAudio automatically sets list version to 0. (old .elf file type)
       */
 
     file=file_text_open_read(fname)
     ds_list_clear(global.list)
-    if file_text_read_string(file)!='0'
-    or file_text_read_string(file)!='1' then
+
+    if string_copy(file_text_read_string(file),0,1)!='0'
+    or string_copy(file_text_read_string(file),0,1)!='1' then
         global.list_type=0
     else
-        global.list_type=real(string_replace_all(file_text_read_string(file),' ',''))
+        global.list_type=file_text_read_real(file)
 
     file_text_readln(file);
 
@@ -58,7 +59,7 @@ if string_lower(filename_ext(fname))=='.epl' then { //.epl start
     }
 file_text_close(file)
 
-}  // .elf end
+}  // .epl end
 else if string_lower(filename_ext(fname))=='.elf' then {
     file=file_text_open_read(fname)
     ds_list_clear(global.list)
@@ -72,8 +73,7 @@ else if string_lower(filename_ext(fname))=='.elf' then {
         if file_exists(myfile) or isweb {
            if FileIsSupported(myfile) or isweb then
               ds_list_add(adl,myfile)
-           else
-              if room=mainroom then
+           else if room=mainroom then
                   show_message('Unsupported file format: "'+filename_ext(myfile)+'".#('+myfile+')')
 
           } else {
@@ -89,7 +89,7 @@ else if string_lower(filename_ext(fname))=='.elf' then {
     file_text_readln(file)
     }
 file_text_close(file)
-
+// .elf end
 } else { // migrating start
     playlist_migrate(fname)
     migrated=1
@@ -110,6 +110,6 @@ if global.play MusicStop()
 global.current=0
 MusicPlay(ds_list_find_value(global.list,0))
 }
+}
 global._loaded_list=1
 HandlePlaylistLoad() // FOR VISUALISERS AND PLUGINS !
-}
