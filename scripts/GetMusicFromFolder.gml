@@ -16,7 +16,7 @@ mus[i]=file_find_next();
 if mus[i]!='' {
 if FileIsSupported(mus[i]) ds_list_add(global.list,global.dirr+mus[i]);
 i+=1
-}
+} else break;
 }
 }
 file_find_close()
