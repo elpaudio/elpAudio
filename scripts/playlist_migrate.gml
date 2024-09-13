@@ -29,7 +29,7 @@ file_text_writeln(hf)
 var hf2; hf2 = file_text_open_read(fullname);
 if(!hf2)
 {
-    show_message("Error opening source play list file.  Failed to migrate file:#"+fullname);
+    show_message("Error opening source playlist file.  Failed to migrate file:#"+fullname);
     return "";;
 }
 
@@ -471,7 +471,7 @@ if(ext = ".pls")
     var hf; hf = file_text_open_write(destfile);
     if(!hf)
     {
-        show_message("Error opening destination play list file:#" + destfile +"##Failed to migrate file:#"+fullname);
+        show_message("Error opening destination playlist file:#" + destfile +"##Failed to migrate file:#"+fullname);
         return "";
     }
     ini_open("dummy.ini")
@@ -505,7 +505,7 @@ else if(ext = ".kpl" and isINI)
     var hf; hf = file_text_open_write(destfile);
     if(!hf)
     {
-        show_message("Error opening destination play list file:#" + destfile +"##Failed to migrate file:#"+fullname);
+        show_message("Error opening destination playlist file:#" + destfile +"##Failed to migrate file:#"+fullname);
         return "";;
     }
     ini_open("dummy.ini")
