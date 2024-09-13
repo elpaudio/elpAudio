@@ -1,5 +1,6 @@
 SettingsLoad()
 read_wh()
+io_set_roomend_clear(1)
 view_wview[0]=global.plrwidth
 view_hview[0]=global.plrheight
 view_wport[0]=global.plrwidth
