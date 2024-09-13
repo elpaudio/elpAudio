@@ -30,6 +30,14 @@ y=global.visualy
 width=global.visualw
 height=global.visualh
 
+//taken from Visual Music and fixed for elpAudio
+if global.play and !global.paused and !global.stopped {
+//FMODUpdateTakeOverWhileLocked()
+sleep_ext(20)
+//FMODUpdateTakeOverDone()
+}
+/*/
+
 draw_set_color(global.visbgcol)
 draw_set_alpha(1)
 
@@ -42,10 +50,6 @@ if usebgvisimg==0 {
 }
 
 draw_set_color(c_white)
-
-if global.play then
-    if !window_get_active() and __DisVisWhenNotAct==1 n=1
-    else execute_string(global.vis[__visualiser])
 
 if usefgvisimg {
     if sprite_exists(visfgimg) and visfgimg>-1 {

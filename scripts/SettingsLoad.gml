@@ -1,10 +1,13 @@
-if !variable_global_exists('list') global.list=ds_list_create()
-else ds_list_clear(global.list)
+if !variable_global_exists('list') then
+    global.list=ds_list_create()
+else
+    ds_list_clear(global.list)
 
-if !registry_exists_ext('elpAudio','work_dir')
-registry_write_string_ext('elpAudio','work_dir',program_directory)
+if !registry_exists_ext('elpAudio','work_dir') then
+    registry_write_string_ext('elpAudio','work_dir',program_directory)
 
 room_caption='elpAudio '+Get_elpAudioVersion()
+room_speed=60
 global.play=0
 global.paused=0
 global.stopped=0
@@ -16,12 +19,29 @@ global.thesong=''
 global.volume=100
 global.randomized=0
 global._loaded_list=0
-global.list_type=0 // 0 - regular, 1 - "radio"
+global.list_type=0 // 0 - regular, 1 and on will be used later
 global.preloaded=0
+global.curpreloaded=-1
+global.is_stereo=0
+global.list_size=0
+global.pos=0
 
-global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\'
-if debug_mode global.__progdir=working_directory+'\'
-if os_type==os_linux global.__progdir=program_directory+'\'
+global.songartist=''
+global.songtitle=''
+global.songnumber=''
+global.songalbum=''
+global.songimg=''
+global.songgenre=''
+global.songyear=''
+
+if registry_exists_ext('elpAudio','work_dir') then
+    global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\';
+else {
+    show_message(string_ext('Sorry, but elpAudio can{0}t initialize, because it can{0}t read registry value HKEY_CURRENT_USER/elpAudio/work_dir.',"'"))
+    game_end()
+    exit
+    }
+
 set_working_directory(global.__progdir)
 if !directory_exists(global.__progdir+'playlists') directory_create(global.__progdir+'playlists')
 
@@ -30,7 +50,8 @@ __enablevisdist,__changecaption,__captionchangespd,
 __customcaption_idle,__customcaption_play,__customcaption_ch1,__customcaption_ch2,
 __enable_fswitch,__elp_enable_old_themes,
 __preload_type,__open_migrated_list,
-__DisVisWhenNotAct,__PreloadNextSong
+__DisVisWhenNotAct,__PreloadNextSong,
+__FrameSkip,__millisecs
 ;
 
 __elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
@@ -45,23 +66,16 @@ __captionchangespd=3;       // changing caption speed in seconds
 __enable_fswitch=1;         // enable fullscreen switching
 __preload_type=1;           // stream song or not
 __open_migrated_list=1;     // open migrated playlist after converting
-__DisVisWhenNotAct=0;       //disable visualiser when window is not active nor focused
-__PreloadNextSong=1;        //preload next song when current song is about to end
-
+__DisVisWhenNotAct=0;       // disable visualiser when window is not active nor focused
+__PreloadNextSong=1;        // preload next song when current song is about to end
+__FrameSkip=0;              // skip frames enabler
+__millisecs=1;              // frames for skip (if __FrameSkip==1)
 
 __customcaption_idle='elpAudio '+Get_elpAudioVersion();
 __customcaption_play='';
 __customcaption_ch1='';
 __customcaption_ch2='';
 
-
-global.songartist=''
-global.songtitle=''
-global.songnumber=''
-global.songalbum=''
-global.songimg=''
-global.songgenre=''
-global.songyear=''
 
 if file_exists(global.__progdir+'settings.ini') {
 ini_open(global.__progdir+'settings.ini')
@@ -87,32 +101,19 @@ __DisVisWhenNotAct=ini_read_real('','DisableVisualiserWhenNotFocused',0)
 __PreloadNextSong=ini_read_real('','PreloadNextSong',1)
 global.randomized=ini_read_real('','ShuffleSongs',0)
 room_speed=max(ini_read_real('','framerate',60),1)
+__FrameSkip=ini_read_real('','SkipFrames',0)
+__millisecs=ini_read_real('','FramesForSkip',1)
 ini_close()
 } else {
-ini_open(global.__progdir+'settings.ini')
-ini_write_string('','themePath',global.__progdir+'themes\default\theme.ini')
-ini_write_real('','textSpeed',15)
-ini_write_real('','lastSong',0)
-ini_write_real('','lastVisualiser',0)
-ini_write_real('','visualiserBars',64)
-ini_write_real('','enableSwitchFScreen',1)
-ini_write_string('Caption','customCaptionIdle','elpAudio %v')
-ini_write_string('Caption','customCaptionPlay','(%t1 / %ta1) elpAudio %v [%pn/%ps]')
-ini_write_real('Caption','changeCaption',1)
-ini_write_real('Caption','captionChangeSpeed',3)
-ini_write_string('Caption','customCaptionChange1','(%t1 / %ta1) elpAudio %v [%pn/%ps]')
-ini_write_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
-ini_write_real('','framerate',60)
-ini_write_real('','ShuffleSongs',0)
-ini_write_real('','EnableOldThemes',0)
-ini_write_real('','OpenMigratedListAfterConverting',1)
-ini_write_real('','MusicPreloadType',1)
-ini_write_real('','DisableVisualiserWhenNotFocused',0)
-ini_write_real('','PreloadNextSong',1)
-room_speed=60
-ini_close()
+var ffff;ffff=file_text_open_write('settings.ini')
+file_text_write_string(ffff,'[]')
+repeat(2)file_text_writeln(ffff)
+file_text_close(ffff)
 }
-if file_exists(global.__progdir+'playlists\temp.epl') ListLoad(global.__progdir+'playlists\temp.epl',0)
-else GetMusicFromFolder(global.__progdir+'music_examples\')
+
+if file_exists(global.__progdir+'playlists\temp.epl') then
+    ListLoad(global.__progdir+'playlists\temp.epl',0)
+else
+    GetMusicFromFolder(global.__progdir+'music_examples\')
 
 __customcaption_idle='elpAudio '+Get_elpAudioVersion()
