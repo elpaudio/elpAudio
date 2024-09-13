@@ -2,7 +2,6 @@
 	|newmain
 	|MainMenu
 	|thebutton
-	|PlaylistManager
 	|objPlugin
 +MUSIC-CONTROL
 	|ButtonPlay
@@ -17,11 +16,14 @@
 |FloatText
 |ButtonSettings
 |ButtonGUIControls
-|ButtonVisualiser
-|ButtonSaveList
-|ButtonLoadList
-|VolumeSlider
-|PosSlider
-|Visualiser
 |BackgroundHolder
 |Monoster
++SLIDERS
+	|VolumeSlider
+	|PosSlider
++LIST
+	|ButtonSaveList
+	|ButtonLoadList
++VISUALISERS
+	|ButtonVisualiser
+	|Visualiser
