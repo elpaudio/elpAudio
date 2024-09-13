@@ -11,7 +11,7 @@ file=file_text_open_write(fname)
 i=0
 
 //list type. 0-normal, 1-radio
-file_text_write_string(file,global.list_type)
+file_text_write_string(file,string(global.list_type))
 file_text_writeln(file)
 
 repeat(ds_list_size(global.list))
