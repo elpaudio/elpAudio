@@ -9,7 +9,7 @@ if variable_global_exists('musicsound') then
 if isweb then {
     global.musicsound=FMODSoundAddAsyncStream(argument0,0)
     debug('song is streaming from the web')
-} else if global.preloaded>0 then {
+} else if global.preloaded>0 and global.curpreloaded==global.current then {
     global.musicsound=global.preloaded
     debug('song is preloaded')
     global.preloaded=0
@@ -25,6 +25,7 @@ if isweb then exit
 
 global.playing=FMODSoundLoop(song,0)
 FMODInstanceSetLoopCount(global.playing,-1*ButtonLoop.on)
+
 FMODMasterSetVolume((global.volume)/100)
 
 global.play=1
