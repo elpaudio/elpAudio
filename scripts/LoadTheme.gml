@@ -134,6 +134,11 @@ if file_exists(filename_path(argument0)+ini_read_string('Default','floatbg','flo
 else global.__floatbg=-1
 } else global.__floatbg=-1
 
+if ini_key_exists('Default','floatfg') {
+if file_exists(filename_path(argument0)+ini_read_string('Default','floatfg','floatfg.png')) global.__floatfg=sprite_add(filename_path(argument0)+ini_read_string('Default','floatfg','floatfg.png')          ,1,0,0,0,0)
+else global.__floatfg=-1
+} else global.__floatfg=-1
+
 if ini_key_exists('Default','visFont') {
 global.__fon_vis_size=ini_read_real('Default','visSize',16)
 global.__fon_vis=font_add_file(filename_path(argument0)+ini_read_string('Default','visFont','visual.ttf'),
