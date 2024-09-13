@@ -1,15 +1,13 @@
-var f;f=global.__colfile
-var str1,str2,str3,str4,str5,str6,str7,str8,str9;
-ini_open(f)
-str1=ini_read_string('Color','Color1','$FFFFFF')
-str2=ini_read_string('Color','Color2','$FFFFFF')
-str3=ini_read_string('Color','VisColBG','$FFFFFF')
-str4=ini_read_string('Color','VisColFG','$FFFFFF')
-str5=ini_read_string('Color','FloatCol',string(c_lime))
-str6=ini_read_string('Color','FrontWinCol','$606060')
-str7=ini_read_string('Color','FrontCapCol','$FFFFFF')
-str8=ini_read_string('Color','FloatBGCol','$101010')
-str9=ini_read_string('Color','FloatAlpha','255')
+ini_open(global.__colfile)
+global.color1=          ereal(ini_read_string('Color','Color1','$FFFFFF'))
+global.color2=          ereal(ini_read_string('Color','Color2','$FFFFFF'))
+global.visbgcol=        ereal(ini_read_string('Color','VisColBG','$FFFFFF'))
+global.visfgcol=        ereal(ini_read_string('Color','VisColFG','$FFFFFF'))
+global.floatcolor=      ereal(ini_read_string('Color','FloatCol',string(c_lime)))
+global.frontcol=        ereal(ini_read_string('Color','FrontWinCol','$606060'))
+global.captioncol=      ereal(ini_read_string('Color','FrontCapCol','$FFFFFF'))
+global.floatbgcol=      ereal(ini_read_string('Color','FloatBGCol','$101010'))
+global.floatalpha=      ereal(ini_read_string('Color','FloatAlpha','255'))/255
 
 __frontmenucol=         ereal(ini_read_string('Color','MenuCol',          '$FFFFFF'))
 __visbgcol=             ereal(ini_read_string('Color','VisualBGCol',      '$FFFFFF'))
@@ -39,17 +37,5 @@ __floatbgcol=           ereal(ini_read_string('Color','FloatBGSpriteCol', '$FFFF
 __butsortcol=           ereal(ini_read_string('Color','FloatBGSpriteCol', '$FFFFFF'))
 __bgcol=                ereal(ini_read_string('Color','BGSpriteCol',      '$FFFFFF'))
 
-global.color1=ereal(str1)
-global.color2=ereal(str2)
-global.visbgcol=ereal(str3)
-global.visfgcol=ereal(str4)
-global.floatcolor=ereal(str5)
-global.frontcol=ereal(str6)
-global.captioncol=ereal(str7)
-global.floatbgcol=ereal(str8)
-global.floatalpha=real(string_digits(str9))/255
-
-
-
-background_color=ereal(ini_read_string('Color','bgCol','$014426'))
+background_color=       ereal(ini_read_string('Color','bgCol','$014426'))
 ini_close()
