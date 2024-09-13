@@ -1,12 +1,6 @@
-var time,mintime,hourtime,sectime;
-time=argument0
-hourtime=0
-sectime=0
-mintime=0
-i=0
-repeat(time/1000) {
-sectime+=1
-i+=1
-if i>59 {mintime+=1 sectime=0 i=0}
-}
-return string_pad(mintime,2)+':'+string_pad(sectime,2)
+///(raw_time): real
+//taken from renex engine with some fixes for elpAudio
+var mintime,sectime;
+sectime=(argument0 div 1000)
+mintime=(sectime div 60)
+return string_pad(mintime mod 60,2)+':'+string_pad(sectime mod 60,2)
