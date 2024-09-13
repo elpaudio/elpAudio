@@ -50,11 +50,9 @@
 	|InitVisVars
 	|VisSetX
 	|VisSetY
-	|ea_do_command
 	|GetSpecBuffer
 	|SetBlendMode
 	|ClearVisCanvas
-	|DrawLinePrec
 	|SetVisColorAlpha
 	|GetBufferMedian
 	|GetCurrentList
@@ -66,7 +64,6 @@
 	|GetListSize
 	|DrawRect
 	|DrawRectOutline
-	|CheckListPos
 	|CheckSelect
 	|DrawTextSpecial
 	|eaPlay
@@ -94,6 +91,7 @@
 		|LoadTheme
 		|LoadThemeGUI
 		|LoadThemeCols
+	|LoadVisualisers
 +EXT
 	+GMFMODSimpleScripts
 		|HowToUse
@@ -255,35 +253,6 @@
 		|FMODCreateSoundFromMicInput
 		|FMODMicStart
 		|FMODMicStop
-	+gmSDL
-		|dllSDL_init
-		|gmSDL_init
-		|gmSDL_musLoad
-		|gmSDL_musPlay
-		|gmSDL_close
-		|gmSDL_windowCreate
-		|gmSDL_windowTitleSet
-		|gmSDL_windowTitleGet
-		|gmSDL_windowClose
-		|gmSDL_spriteLoad
-		|gmSDL_spriteDraw
-		|gmSDL_spriteGetImages
-		|gmSDL_windowUpdate
-		|gmSDL_windowGetX
-		|gmSDL_windowSetPos
-		|gmSDL_windowGetY
-		|gmSDL_drawButton
-		|gmSDL_windowBorderSet
-		|gmSDL_windowBorderGet
-		|gmSDL_mouseGetX
-		|gmSDL_mouseGetY
-		|gmDLL_error
-		|gmDLL_errorGet
-		|gmSDL_spriteGetWidth
-		|gmSDL_spriteGetHeight
-		|gmSDL_windowGetBorderSize
-		|gmSDL_drawRectangle
-		|gmSDL_windowSetShape
 +TRACK
 	|GetTrackInfo
 	|CompileFloatText
