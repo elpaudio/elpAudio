@@ -1,32 +1,7 @@
 with ButtonSettings instance_destroy()
 fontlast=$FFFF
 
-if directory_exists(working_directory+'\visualisers\') {
-var iii;iii=1
-global.vis[0]=file_find_first(working_directory+'\visualisers\*.vis',fa_hidden)
-if global.vis[0]!='' {
-//show_message(global.vis[0])
-global.visname[0]=filename_name(global.vis[0])
-global.vis[0]=file_text_read_all(working_directory+'\visualisers\'+global.vis[0],' ')
-global.customvisuals+=1
-repeat(128) {
-global.vis[iii]=file_find_next()
-if global.vis[iii]!='' {
-//show_message(global.vis[0])
-global.visname[iii]=filename_name(global.vis[iii])
-global.vis[iii]=file_text_read_all(working_directory+'\visualisers\'+global.vis[iii],' ')
-global.customvisuals+=1
-iii+=1
-}
-}
-
-}
-}
-/* IMPORTANT !!!!!!!!!!!!!!!!!!!!!! */
-//show_message(global.customvisuals)
-//if global.customvisuals<1 game_end()
-if __visualiser>global.customvisuals __visualiser=__visualiser mod global.customvisuals
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+LoadVisualisers();
 
 mybutton=Visualiser
 global.visualx=ini_read_real('Interface','visX',336)
@@ -168,6 +143,8 @@ MainMenu.x=ini_read_real('Interface','frontmenux',64)
 MainMenu.y=ini_read_real('Interface','frontmenuy',16)
 MainMenu.w=ini_read_real('Interface','frontmenuw',480)
 MainMenu.h=ini_read_real('Interface','frontmenuh',16)
+MainMenu.textx=ini_read_real('Interface','frontmenutextx',0)
+MainMenu.texty=ini_read_real('Interface','frontmenutexty',0)
 MainMenu.useimgforfront=ini_read_real('Interface','useimgforfront',0)
 global.__img_front=sprite_add(fname_path(argument0)+ini_read_string('Interface','imgfront','front.png'),1,0,0,0,0)
 MainMenu.useimgforback=ini_read_real('Interface','useimgforback',0)
@@ -209,40 +186,6 @@ i+=1
 mybutton=instance_create(0,0,ButtonSettings)
 mybutton.x=ini_read_real('Interface','butsetx',336)
 mybutton.y=ini_read_real('Interface','butsety',336)
-
-
-
-/*****************************************PLAYLIST************************************/
-//for playlist manager gmSDL using;
-globalvar __pl_window;
-__pl_window=-1;
-
-var _sec;_sec='playmgr'
-mybutton=instance_create(-1,-1,PlaylistManager)
-
-mybutton.pl_w=ini_read_real(_sec,'listW',0)
-mybutton.pl_h=ini_read_real(_sec,'listH',0)
-
-mybutton.pl_drawtop=ini_read_real(_sec,'listDrawTopImg',1)
-mybutton.pl_topimg=fname_path(argument0)+ini_read_string(_sec,'listTopImg','playlist/pl_front.png')
-mybutton.pl_topx=ini_read_real(_sec,'listTopX',0)
-mybutton.pl_topy=ini_read_real(_sec,'listTopY',0)
-
-mybutton.pl_drawback=ini_read_real(_sec,'listDrawBackImg',1)
-mybutton.pl_backimg=fname_path(argument0)+ini_read_string(_sec,'listBackImg','playlist/pl_back.png')
-mybutton.pl_bgx=ini_read_real(_sec,'listBackX',0)
-mybutton.pl_bgy=ini_read_real(_sec,'listBackY',0)
-
-mybutton.pl_butclose=fname_path(global.themepath)+ini_read_string(_sec,'imgButClose','playlist/but_close.png')
-mybutton.pl_closex=ini_read_real(_sec,'butCloseX',430)
-mybutton.pl_closey=ini_read_real(_sec,'butCloseY',3)
-
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-instance_destroy_id(PlaylistManager)
-
-/***************************PLAYLIST_END*************************************/
-
 
 global.plrwidth=ini_read_real('Interface','playerW',480)
 if global.plrwidth=0 global.plrwidth=display_get_width()

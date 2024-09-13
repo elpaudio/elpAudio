@@ -170,7 +170,7 @@ draw_set_color(global.captioncol)
 draw_set_font(global.__fon_cap)
 
 if drawcaption then
-    draw_text(x+4,y,room_caption)
+    draw_text(x+4+textx,y+texty,room_caption)
 
 draw_set_color(c_white)
 #define KeyPress_1
