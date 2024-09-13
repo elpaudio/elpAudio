@@ -28,7 +28,12 @@ sprite;
 lives;
 x;
 y;
-They are GameMaker preserved functions, so it can break the player! Better use '_' symbol before variable names. And for your own x/y you should use '_xx','_yy' things.
+They are GameMaker preserved functions, and these:
+xx;
+yy;
+w;
+h;
+They can break elpAudio! Better use '_' symbol before variable names. And for your own x/y you should use '_xx','_yy' things.
 
 Every variable initialiser should end with ';' to prevent future errors.
 
