@@ -4,10 +4,9 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-can=0
-global.pos=0
 sprite_index=global.__ico_slid2
 image_blend=__butslidecol
+pr=0
 #define Mouse_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -33,13 +32,16 @@ applies_to=self
 slw=sprite_get_width(global.__ico_slide)
 
 
-if point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) {
-if mouse_check_button(mb_left)
-myx=clamp(mouse_x-slw/2,x,x+sprite_width-slw)
-else
-myx=round(clamp(x+global.pos*sprite_width,x,x+sprite_width-slw))
+if point_in_rectangle(mouse_x,mouse_y,-pr*100+x,y,pr*100+x+sprite_width,y+sprite_height) {
+    if mouse_check_button(mb_left) then {
+        myx=clamp(mouse_x-slw/2,x,x+sprite_width-slw)
+        pr=1
+    } else {
+        myx=round(clamp(x+global.pos*sprite_width,x,x+sprite_width-slw))
+        pr=0
+        }
 } else
-myx=round(clamp(x+global.pos*sprite_width,x,x+sprite_width-slw))
+    myx=round(clamp(x+global.pos*sprite_width,x,x+sprite_width-slw))
 
 draw_self()
 draw_sprite_part_ext(sprite_index,1,0,0,myx-x+slw/2,sprite_height,x,y,1,1,c_white,1)
@@ -53,14 +55,14 @@ if
 point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height)
 and global.play
 {
-mypos=clamp(mouse_x-x,0,sprite_width)//-slw/2
+mypos=clamp(mouse_x-x,0,sprite_width)
 if mouse_check_button_released(mb_left) {
 FMODInstanceSetPosition(global.playing,(mypos)/(sprite_width))
 }
 mx1=4
 mx2=100
 tx=10
-if mouse_x+100>view_wview[0] {mx1=-4 mx2=-100 tx=-96}
+if mouse_x+100>view_wview {mx1=-4 mx2=-100 tx=-96}
 draw_set_color(c_white)
 draw_rectangle(mouse_x+mx1,mouse_y-24,mouse_x+mx2,mouse_y-4,0)
 draw_set_color(c_black)
