@@ -113,7 +113,6 @@ if drawqueue {
     draw_text(x+queuex,y+queuey,string(string_pad(global.current+1,2))+'/'+string(string_pad(global.list_size,2)))
 }
 
-if usefgimg
-and sprite_exists(global.__floatfg)
+if usefgimg and sprite_exists(global.__floatfg)
 and global.__floatfg>0 then
     draw_sprite_stretched_ext(global.__floatfg,1,x,y,width,height,__floatfgcol,1)
