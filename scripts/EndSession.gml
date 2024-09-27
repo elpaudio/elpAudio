@@ -1,5 +1,5 @@
 with other instance_destroy()
-with newmain SettingsSave()
+SettingsSave()
 debug('GAME END: Bye!')
 game_end()
 FMODfree()
