@@ -28,6 +28,18 @@ if !window_get_active() exit
 image_index=0
 enter=0
 execute_program(global.__progdir+'data\elpaudiosettings.exe','',0)
+#define Mouse_8
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+var s;s=show_menu('Reload visualisers|Reload plugins',-1)
+switch(s){
+case 0: object_event_clear(Visualiser,ev_other,ev_user0); LoadVisualisers(); break;
+case 1: with objPlugin instance_destroy(); LoadPlugins(); break;
+default: break;
+}
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
