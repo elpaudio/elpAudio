@@ -49,6 +49,8 @@ if usebgvisimg==0 {
     }
 }
 
+event_user(0) //draws visualisers
+
 draw_set_color(c_white)
 
 if usefgvisimg {
