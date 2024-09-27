@@ -21,10 +21,10 @@ SettingsSave
 SettingsLoad
 EndSession
 LoadThemeGUI
-view_stabilize
+
 current_time_format2
 CompileFloatText
-merge_color_normal
+
 GetSoundLength
 GetXMName
 
@@ -32,7 +32,7 @@ GetMODName
 GetS3MName
 draw_point_width
 NumberIsNegative
-filename_ext_new
+
 GetITName
 SoundIsStereo
 string_ext
@@ -40,8 +40,8 @@ FileIsSupported
 
 SNAPWAVEENTRY
 
-HowToUse
-Known_Problems_and_Questions
+
+
 LoadFMOD
 UnloadFMOD
 FMODfree
@@ -284,8 +284,12 @@ HandlePlaylistLoad
 plgListIsLoaded
 MusicPreload
 GetListEntryRaw
-ExternalCall
-ExternalDefine
+
+
 ClearSurface
 
 LoadVisualisers
+MergeColor
+SpritePull
+SnapSpecEntry2
+FindFile

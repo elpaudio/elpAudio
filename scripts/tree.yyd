@@ -12,6 +12,7 @@
 	|GetS3MName
 	|GetITName
 +MUSIC-CONTROL
+	|MusicPreload
 	|MusicPlay
 	|MusicPause
 	|MusicResume
@@ -20,14 +21,11 @@
 	|MusicPrev
 	|Shuffle
 	|HandlePlaylistLoad
-	|MusicPreload
 +MISC
 	+lini
 		|lini_open
 		|lini_read_key
-	|view_stabilize
 	|draw_point_width
-	|filename_ext_new
 	|string_ext
 	|debug
 	|read_wh
@@ -39,35 +37,39 @@
 		|draw_textblur
 		|draw_spriteblur
 	+COLORS
-		|merge_color_normal
 		|ereal
 		|HexToColor
 	|do_nothing
+	|SpritePull
+	|FindFile
 +VISUALISERS
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
-	|GetWaveBuffer
-	|InitVisVars
-	|VisSetX
-	|VisSetY
-	|GetSpecBuffer
-	|SetBlendMode
-	|ClearVisCanvas
-	|SetVisColorAlpha
-	|GetBufferMedian
-	|GetCurrentList
-	|GetFontWidth
-	|GetFontHeight
-	|FontSet
-	|GetListEntry
-	|GetListEntryRaw
-	|GetListSize
-	|DrawRect
-	|DrawRectOutline
-	|CheckSelect
-	|DrawTextSpecial
-	|eaPlay
-	|ClearSurface
+	|SnapSpecEntry2
+	+SCRIPTS
+		|GetWaveBuffer
+		|InitVisVars
+		|VisSetX
+		|VisSetY
+		|GetSpecBuffer
+		|SetBlendMode
+		|ClearVisCanvas
+		|SetVisColorAlpha
+		|GetBufferMedian
+		|GetCurrentList
+		|GetListEntry
+		|GetListEntryRaw
+		|GetListSize
+		|DrawTextSpecial
+		|DrawRect
+		|DrawRectOutline
+		|FontSet
+		|GetFontWidth
+		|GetFontHeight
+		|CheckSelect
+		|eaPlay
+		|ClearSurface
+		|MergeColor
 +elpaudio
 	|FilterString
 	|SoundIsStereo
@@ -94,8 +96,6 @@
 	|LoadVisualisers
 +EXT
 	+GMFMODSimpleScripts
-		|HowToUse
-		|Known_Problems_and_Questions
 		|LoadFMOD
 		|UnloadFMOD
 		|FMODfree
@@ -273,6 +273,3 @@
 			|SpriteSetIndex
 		+HANDLERS
 			|plgListIsLoaded
-		+EXT
-			|ExternalCall
-			|ExternalDefine
