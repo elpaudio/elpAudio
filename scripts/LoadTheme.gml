@@ -88,54 +88,54 @@ EndSession()
 if ini_key_exists('Default','themeName') {global.themename=ini_read_string('Default','themeName','Default')}
 else {ini_close() show_message('That .ini file is not a theme file.') EndSession()}
 //play button
-if ini_key_exists('Default','plbt') sprite_replace(global.__ico_play,filename_path(argument0)+ini_read_string('Default','plbt','butplay.png')               ,2,0,0,0,0)
+if ini_key_exists('Default','plbt') SpritePull(global.__ico_play,filename_path(argument0)+ini_read_string('Default','plbt','butplay.png')               ,2,0,0,0,0)
 //pause button
-if ini_key_exists('Default','psbt') sprite_replace(global.__ico_pause,filename_path(argument0)+ini_read_string('Default','psbt','butpause.png')             ,2,0,0,0,0)
+if ini_key_exists('Default','psbt') SpritePull(global.__ico_pause,filename_path(argument0)+ini_read_string('Default','psbt','butpause.png')             ,2,0,0,0,0)
 //prev button
-if ini_key_exists('Default','prbt') sprite_replace(global.__ico_prev,filename_path(argument0)+ini_read_string('Default','prbt','butprev.png')               ,2,0,0,0,0)
+if ini_key_exists('Default','prbt') SpritePull(global.__ico_prev,filename_path(argument0)+ini_read_string('Default','prbt','butprev.png')               ,2,0,0,0,0)
 //next button
-if ini_key_exists('Default','nxbt') sprite_replace(global.__ico_next,filename_path(argument0)+ini_read_string('Default','nxbt','butnext.png')               ,2,0,0,0,0)
+if ini_key_exists('Default','nxbt') SpritePull(global.__ico_next,filename_path(argument0)+ini_read_string('Default','nxbt','butnext.png')               ,2,0,0,0,0)
 //stop button
-if ini_key_exists('Default','stbt') sprite_replace(global.__ico_stop,filename_path(argument0)+ini_read_string('Default','stbt','butstop.png')               ,2,0,0,0,0)
+if ini_key_exists('Default','stbt') SpritePull(global.__ico_stop,filename_path(argument0)+ini_read_string('Default','stbt','butstop.png')               ,2,0,0,0,0)
 //settings button
-if ini_key_exists('Default','snbt') sprite_replace(global.__ico_stngs,filename_path(argument0)+ini_read_string('Default','snbt','butstng.png')              ,2,0,0,0,0)
+if ini_key_exists('Default','snbt') SpritePull(global.__ico_stngs,filename_path(argument0)+ini_read_string('Default','snbt','butstng.png')              ,2,0,0,0,0)
 //sort button
-if ini_key_exists('Default','srbt') sprite_replace(global.__ico_sortb,filename_path(argument0)+ini_read_string('Default','srbt','butsort.png')              ,3,0,0,0,0)
+if ini_key_exists('Default','srbt') SpritePull(global.__ico_sortb,filename_path(argument0)+ini_read_string('Default','srbt','butsort.png')              ,3,0,0,0,0)
 //loop button
-if ini_key_exists('Default','lpbt') sprite_replace(global.__ico_loop ,filename_path(argument0)+ini_read_string('Default','lpbt','butloop.png')              ,3,0,0,0,0)
+if ini_key_exists('Default','lpbt') SpritePull(global.__ico_loop ,filename_path(argument0)+ini_read_string('Default','lpbt','butloop.png')              ,3,0,0,0,0)
 //add music button
-if ini_key_exists('Default','ambt') sprite_replace(global.__ico_admus,filename_path(argument0)+ini_read_string('Default','ambt','butaddmus.png')            ,2,0,0,0,0)
+if ini_key_exists('Default','ambt') SpritePull(global.__ico_admus,filename_path(argument0)+ini_read_string('Default','ambt','butaddmus.png')            ,2,0,0,0,0)
 //always on top button
-if ini_key_exists('Default','atbt') sprite_replace(global.__ico_alont,filename_path(argument0)+ini_read_string('Default','atbt','butalont.png')             ,2,0,0,0,0)
+if ini_key_exists('Default','atbt') SpritePull(global.__ico_alont,filename_path(argument0)+ini_read_string('Default','atbt','butalont.png')             ,2,0,0,0,0)
 //load list button
-if ini_key_exists('Default','llbt') sprite_replace(global.__ico_loadl,filename_path(argument0)+ini_read_string('Default','llbt','butloadlist.png')          ,2,0,0,0,0)
+if ini_key_exists('Default','llbt') SpritePull(global.__ico_loadl,filename_path(argument0)+ini_read_string('Default','llbt','butloadlist.png')          ,2,0,0,0,0)
 //save list button
-if ini_key_exists('Default','slbt') sprite_replace(global.__ico_savel,filename_path(argument0)+ini_read_string('Default','slbt','butsavelist.png')          ,2,0,0,0,0)
+if ini_key_exists('Default','slbt') SpritePull(global.__ico_savel,filename_path(argument0)+ini_read_string('Default','slbt','butsavelist.png')          ,2,0,0,0,0)
 //visual button
-if ini_key_exists('Default','vibt') sprite_replace(global.__ico_visua,filename_path(argument0)+ini_read_string('Default','vibt','butvisual.png')            ,2,0,0,0,0)
+if ini_key_exists('Default','vibt') SpritePull(global.__ico_visua,filename_path(argument0)+ini_read_string('Default','vibt','butvisual.png')            ,2,0,0,0,0)
 //float fg
-if ini_key_exists('Default','flot') sprite_replace(global.__floatfg,filename_path(argument0)+ini_read_string('Default','flot','floatfg.png')                ,1,0,0,0,0)
+if ini_key_exists('Default','flot') SpritePull(global.__floatfg,filename_path(argument0)+ini_read_string('Default','flot','floatfg.png')                ,1,0,0,0,0)
 //mini gui buttons
-if ini_key_exists('Default','mgui') sprite_replace(global.__ico_migui,filename_path(argument0)+ini_read_string('Default','mgui','minigui.png')              ,9,0,0,0,0)
+if ini_key_exists('Default','mgui') SpritePull(global.__ico_migui,filename_path(argument0)+ini_read_string('Default','mgui','minigui.png')              ,9,0,0,0,0)
 //position slide
-if ini_key_exists('Default','poss') sprite_replace(global.__ico_slid2,filename_path(argument0)+ini_read_string('Default','poss','positionslide.png')        ,2,0,0,0,0)
+if ini_key_exists('Default','poss') SpritePull(global.__ico_slid2,filename_path(argument0)+ini_read_string('Default','poss','positionslide.png')        ,2,0,0,0,0)
 //posiition slider
-if ini_key_exists('Default','slide') sprite_replace(global.__ico_slide,filename_path(argument0)+ini_read_string('Default','slide','slider.png')             ,1,0,0,0,0)
-sprite_set_offset(global.__ico_slide,0,sprite_get_height(global.__ico_slide)/2)
+if ini_key_exists('Default','slide') SpritePull(global.__ico_slide,filename_path(argument0)+ini_read_string('Default','slide','slider.png')             ,1,0,0,0,0)
+sprite_set_offset(global.__ico_slide,sprite_get_width(global.__ico_slide)/2,sprite_get_height(global.__ico_slide)/2)
 //volume slide
-if ini_key_exists('Default','vols') sprite_replace(global.__ico_volbt,filename_path(argument0)+ini_read_string('Default','vols','volumeslide.png')          ,2,0,0,0,0)
+if ini_key_exists('Default','vols') SpritePull(global.__ico_volbt,filename_path(argument0)+ini_read_string('Default','vols','volumeslide.png')          ,2,0,0,0,0)
 //volume slider
-if ini_key_exists('Default','slide2') sprite_replace(global.__ico_slide2,filename_path(argument0)+ini_read_string('Default','slide2','volslider.png')             ,1,0,0,0,0)
+if ini_key_exists('Default','slide2') SpritePull(global.__ico_slide2,filename_path(argument0)+ini_read_string('Default','slide2','volslider.png')             ,1,0,0,0,0)
 sprite_set_offset(global.__ico_slide2,sprite_get_width(global.__ico_slide2)/2,sprite_get_height(global.__ico_slide2)/2)
 
 if ini_key_exists('Default','useOldFloat') global.oldfloat=ini_read_real('Default','useOldFloat',0)
 if ini_key_exists('Default','floatbg') {
-if file_exists(filename_path(argument0)+ini_read_string('Default','floatbg','floatbg.png')) global.__floatbg=sprite_add(filename_path(argument0)+ini_read_string('Default','floatbg','floatbg.png')          ,1,0,0,0,0)
+if file_exists(filename_path(argument0)+ini_read_string('Default','floatbg','floatbg.png')) global.__floatbg=SpritePull(global.__floatbg,filename_path(argument0)+ini_read_string('Default','floatbg','floatbg.png')          ,1,0,0,0,0)
 else global.__floatbg=-1
 } else global.__floatbg=-1
 
 if ini_key_exists('Default','floatfg') {
-if file_exists(filename_path(argument0)+ini_read_string('Default','floatfg','floatfg.png')) global.__floatfg=sprite_add(filename_path(argument0)+ini_read_string('Default','floatfg','floatfg.png')          ,1,0,0,0,0)
+if file_exists(filename_path(argument0)+ini_read_string('Default','floatfg','floatfg.png')) SpritePull(global.__floatfg,filename_path(argument0)+ini_read_string('Default','floatfg','floatfg.png')          ,1,0,0,0,0)
 else global.__floatfg=-1
 } else global.__floatfg=-1
 

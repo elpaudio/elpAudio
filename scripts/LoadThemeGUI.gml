@@ -146,7 +146,7 @@ MainMenu.h=ini_read_real('Interface','frontmenuh',16)
 MainMenu.textx=ini_read_real('Interface','frontmenutextx',0)
 MainMenu.texty=ini_read_real('Interface','frontmenutexty',0)
 MainMenu.useimgforfront=ini_read_real('Interface','useimgforfront',0)
-global.__img_front=sprite_add(fname_path(argument0)+ini_read_string('Interface','imgfront','front.png'),1,0,0,0,0)
+global.__img_front=SpritePull(-1,fname_path(argument0)+ini_read_string('Interface','imgfront','front.png'),1,0,0,0,0)
 MainMenu.useimgforback=ini_read_real('Interface','useimgforback',0)
 
 with BackgroundHolder instance_destroy()
@@ -164,7 +164,7 @@ mybutton.backh=ini_read_real('Interface','backh',80)
 
 mybutton=instance_create(0,0,Monoster)
 mybutton.usemonoster=ini_read_real('Interface','usemonoster',0)
-mybutton.monosterimg=sprite_add(fname_path(argument0)+ini_read_string('Interface','monosterimg','monoster.png'),2,0,0,0,0)
+mybutton.monosterimg=SpritePull(-1,fname_path(argument0)+ini_read_string('Interface','monosterimg','monoster.png'),2,0,0,0,0)
 mybutton.monosterx=ini_read_real('Interface','monosterx',0)
 mybutton.monostery=ini_read_real('Interface','monostery',0)
 
