@@ -5,6 +5,9 @@ else
 
 if !registry_exists_ext('elpAudio','work_dir') then
     registry_write_string_ext('elpAudio','work_dir',program_directory)
+/*else
+    if program_directory!=registry_read_string_ext('elpAudio','work_dir') then
+        registry_write_string_ext('elpAudio','work_dir',program_directory)*/
 
 room_caption='elpAudio '+Get_elpAudioVersion()
 room_speed=60
@@ -22,6 +25,7 @@ global._loaded_list=0
 global.list_type=0 // 0 - regular, 1 and on will be used later
 global.preloaded=0
 global.curpreloaded=-1
+global.preloadedsong=-1
 global.is_stereo=0
 global.list_size=0
 global.pos=0
@@ -103,6 +107,7 @@ global.randomized=ini_read_real('','ShuffleSongs',0)
 room_speed=max(ini_read_real('','framerate',60),1)
 __FrameSkip=ini_read_real('','SkipFrames',0)
 __millisecs=ini_read_real('','FramesForSkip',1)
+set_synchronization(ini_read_real('','VerticalSync',0))
 ini_close()
 } else {
 var ffff;ffff=file_text_open_write('settings.ini')
