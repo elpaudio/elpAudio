@@ -18,6 +18,4 @@ ag=string_replace_all(ag,'%pn',string(global.current+1))
 ag=string_replace_all(ag,'%ps',string(ds_list_size(global.list)))
 ag=string_replace_all(ag,'%sn',global.trackname)
 }
-//ag=string_replace_all(ag,'%v',get_version())
-//show_message(ag)
 return ag;
