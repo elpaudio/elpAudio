@@ -9,7 +9,7 @@ global.__wave_vis=1;
 }
 
 if !surface_exists(__wavesurf) {__wavesurf=surface_create(w,h);ClearSurface(__wavesurf);}
-if surface_exists(__surf2) {__surf2=surface_create(w,h);ClearSurface(__surf2);}
+if !surface_exists(__surf2) {__surf2=surface_create(w,h);ClearSurface(__surf2);}
 
 surface_copy(__surf2,0,0,__wavesurf);
 surface_set_target(__wavesurf);
