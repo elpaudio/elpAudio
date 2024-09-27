@@ -41,9 +41,17 @@ and others.
 
 You can reuse them, but it's better to just declare vars or do stuff in only one /*(*EVENT*)*/.
 
+You can put them like this:
+	/*(*CREATE*)*/
+	/*(*STEP*)*/
+	/*(*STEP_END*)*/
+	/*(*CREATE_END*)*/
+but this will not work. what did you expect
+
 Comments:
 
 You can write comments before /*(*CREATE*)*/, /*(*STEP*)*/ or /*(*DRAW*)*/. 
+
 Like here:
 	
 	My comment that will not be compiled with my plugin aoaoaoaooaoaeoaoeaofofoadkfosifjaogijasfiguba
@@ -69,7 +77,7 @@ BUT, if you're making mega cool plugin and wanna make it more faster to load, yo
 	/*(*CREATE_END*)*/
 
 The script above is a modified script that creates a button, that shows "Hello world" on press.
-The script was checked for work. It was compiled for ~0.8 seconds, neither if you whitespace more (~0.9 seconds)
+The script was checked for work. It was compiled for ~0.8 seconds, neither if you whitespace more (~1 seconds)
 
 How it works? Simple. elpAudio read EVERY line of plugin, and checks if there are any /*(*EVENT*)*/ opener or exiter.
 The more you have comments or whitespaces, the more elpAudio should read, so, try to make you plugin less whitespaced. =-)
