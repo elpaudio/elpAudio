@@ -7,7 +7,6 @@ if string_lower(filename_ext(f))=='.dls' return true
 if string_lower(filename_ext(f))=='.flac' return true
 if string_lower(filename_ext(f))=='.fsb' return true
 if string_lower(filename_ext(f))=='.it' return true
-if string_lower(filename_ext(f))=='.m3u' return true
 if string_lower(filename_ext(f))=='.midi' return true
 if string_lower(filename_ext(f))=='.mid' return true
 if string_lower(filename_ext(f))=='.rmi' return true
@@ -16,11 +15,9 @@ if string_lower(filename_ext(f))=='.mp2' return true
 if string_lower(filename_ext(f))=='.mp3' return true
 if string_lower(filename_ext(f))=='.ogg' return true
 if string_lower(filename_ext(f))=='.opus' return true
-if string_lower(filename_ext(f))=='.pls' return true
 if string_lower(filename_ext(f))=='.s3m' return true
 if string_lower(filename_ext(f))=='.vag' return true
 if string_lower(filename_ext(f))=='.wav' return true
-if string_lower(filename_ext(f))=='.wax' return true
 if string_lower(filename_ext(f))=='.wma' return true
 if string_lower(filename_ext(f))=='.xm' return true
 if string_lower(filename_ext(f))=='.raw' return true
