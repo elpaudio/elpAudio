@@ -34,11 +34,14 @@ action_id=603
 applies_to=self
 */
 ///Initializer
+if !variable_global_exists('___init111') {
 LoadPlugins() //find plugins from plugins folder
 LoadFMOD()
-FMODinit(100,1)
+FMODinit(8,1)
 global.played_from_arg=0
 FMODSpectrumSetSnapshotType(5)
+global.___init111=1
+}
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -129,6 +132,13 @@ file_delete('save_list')
 ListSave(global.__progdir+'playlists\temp.elf')
 SettingsSave()
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+///Update delta time
+delta_time=room_speed//(60/max(fps,1))
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -179,15 +189,21 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if keyboard_check_pressed(vk_f7) and global.play {
-    if global.paused then
-        MusicResume()
-    else {
-        if global.stopped then
+if keyboard_check_pressed(vk_f4) and __enable_fswitch then
+    window_set_fullscreen(!window_get_fullscreen())
+
+if keyboard_check_pressed(vk_f7) {
+    if global.play {
+        if global.paused then
             MusicResume()
-        else
-            MusicPause()
-        }
+        else {
+            if global.stopped then
+                MusicResume()
+            else
+                MusicPause()
+            }
+    } else
+        MusicPlay(GetListEntryRaw(global.current))
 }
 
 if keyboard_check_pressed(vk_f5) and global.play then
@@ -200,17 +216,5 @@ if keyboard_check_pressed(vk_f6) then
     MusicPrev()
 
 draw_set_color(c_white)
-if keyboard_check_pressed(vk_f1) {
-    if !keyboard_check(vk_shift) then
-        show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#Volume:{5}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz",global.current+1,global.list_size,global.volume))
-    else {
-        var i,list;i=0;list='';
-        repeat(global.list_size) {
-            list+=string(i+1)+'. '+GetListEntryRaw(i)+'#'
-            i+=1
-        }
-
-        message_size(global.plrwidth,string_height(list))
-        show_message(string_ext("Queue:#{0}",list))
-    }
-}
+if keyboard_check_pressed(vk_f1) then
+        show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#Volume:{5}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume))
