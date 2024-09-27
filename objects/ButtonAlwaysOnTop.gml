@@ -4,9 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-enter=0
 image_speed=0
-always=0
 sprite_index=global.__ico_alont
 image_blend=__butalontcol
 #define Mouse_4
@@ -25,8 +23,7 @@ applies_to=self
 */
 if !window_get_active() exit
 image_index=0
-always=!always
-window_set_stayontop(always)
+window_set_stayontop(!window_get_stayontop())
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
