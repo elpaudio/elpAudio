@@ -20,9 +20,11 @@ yftime=1
 
 randomize()
 
-chroma=1
+chroma=0
+/*/
 if chroma then
     window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
+/*/
 
 message_position(window_get_x(),window_get_y()+window_get_height())
 message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
@@ -41,6 +43,8 @@ FMODinit(8,1)
 global.played_from_arg=0
 FMODSpectrumSetSnapshotType(5)
 global.___init111=1
+if variable_global_exists('__rmspd') room_speed=global.__rmspd
+HandlePlaylistLoad()
 }
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
@@ -50,26 +54,18 @@ applies_to=self
 */
 ///PARAMETER STRING
 if parameter_count()>0 and global.played_from_arg==0 {
-    MusicPlay(parameter_string(1)) ds_list_add(global.list,parameter_string(1))
+    ds_list_add(global.list,parameter_string(1))
+    global.current=ds_list_size(global.list)-1
+    MusicPlay(parameter_string(1))
     global.played_from_arg=1
     }
-#define Alarm_1
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-///MESSAGE BOX POS
-exit
-message_position(window_get_x(),window_get_y()+window_get_height())
-alarm[1]=15
 #define Alarm_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-if global._loaded_list global._loaded_list=0
+global._loaded_list=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -102,24 +98,27 @@ applies_to=self
 ///CAPTION
 
 if !__enablefloat {
-if global.play=0 room_caption=CompileCaptions(__customcaption_idle) else {
+    if global.play=0 room_caption=CompileCaptions(__customcaption_idle) else {
 
-if !__changecaption {
-room_caption=CompileCaptions(__customcaption_play)
-} else {
-if cwait>0 cwait-=1*(60/max(fps,30)) else cwait=__captionchangespd*2
-if cwait>=__captionchangespd {
-room_caption=CompileCaptions(__customcaption_ch1)
-} else {
-room_caption=CompileCaptions(__customcaption_ch2)
-}
-}
+        if !__changecaption then
+            room_caption=CompileCaptions(__customcaption_play)
+        else {
+            if cwait>0 then
+                cwait-=1*(60/max(fps,30))
+            else
+                cwait=__captionchangespd*2
 
-}
+            if cwait>=__captionchangespd then
+                room_caption=CompileCaptions(__customcaption_ch1)
+            else
+                room_caption=CompileCaptions(__customcaption_ch2)
+        }
+
+    }
 }
 if window_get_taskbar_caption()!=room_caption
 window_set_taskbar_caption(room_caption)
-if global.current>global.list_size and global.list_size>0 global.current=0
+if global.current>global.list_size global.current=0
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -217,4 +216,4 @@ if keyboard_check_pressed(vk_f6) then
 
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) then
-        show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#Volume:{5}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume))
+        show_message(string_ext("Now playing: {0}#Song length: {1}#Frequency: {2}#Song number: {3}/{4}#Volume: {5}%#Monitors: {6}#(DEBUG)Monitorpos: {7}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume,__monitors,__monitorpos))
