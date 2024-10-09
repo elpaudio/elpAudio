@@ -35,7 +35,7 @@ global.stopped=0
 global.paused=0
 global.songlength=GetSoundLength(song)
 
-GetTrackInfo(global.playing)
+MetadataGetTags(global.playing)
 
 if FileIsModule(argument0) then
 global.trackname=GetTrackerName(argument0)
