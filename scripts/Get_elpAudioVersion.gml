@@ -1,1 +1,1 @@
-return "2.0rc-1"
+return "2.0"
