@@ -1,8 +1,8 @@
-
+//(fname)
 var artist,name;
 
-name=global.songtitle
-artist=global.songartist
+name=MetadataGetTag('TITLE')
+artist=MetadataGetTag('ARTIST')
 
 if name+artist='??'
 or string_length(name+artist)=0
