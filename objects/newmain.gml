@@ -5,8 +5,6 @@ action_id=603
 applies_to=self
 */
 set_working_directory(global.__progdir)
-global.dirr=working_directory
-global.FMODbuf = string_repeat(chr(0), 256)
 message_input_font('Open Sans',10,c_white,0)
 message_button_font('MS UI Gothic',10,c_white,0)
 if !registry_exists_ext('elpAudio','FIRST_TIME_DISABLE') {
