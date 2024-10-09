@@ -1,5 +1,6 @@
 ///(fname,DEST_FNAME)
 //thanks to visual music by icuurd12b21
+//'<>' is pascal's '!='
 
 // *.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;
 
@@ -44,18 +45,24 @@ while(!file_text_eof(hf2))
 {
     str=HTMLTagDecode(UDecode(file_text_read_string(hf2)));
     file_text_readln(hf2);
-    if(ext = ".m3u" or ext = ".ram")
+    if(ext = ".m3u" or ext = ".ram" or ext=".m3u8")
     {
         if(string_char_at(str,1) = "#")
+        {
+        if(string_upper(string_copy(str,1,7))="#EXTM3U")
+           file_text_readln(hf2); 
+        else 
         {
             pos = 2;
             if(string_char_at(str,2) = " ")
                 pos = string_pos(" ",str)+1;
             if(string_upper(string_copy(str,1,8)) = "#EXTINF:")
                 pos = string_pos(",",str)+1;
+
             title = string_copy(str,pos,10000);
         }
-        else if(string_length(str) > 3)
+        }
+        else if(string_length(str) > 3) and !string_pos('#EXTM3U',str)
         {
             track = str;
             track = string_replace(track,"FILE:","")
