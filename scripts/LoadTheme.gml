@@ -79,7 +79,7 @@ if file_exists(argument0) {
 ini_open(argument0)
 if Get_elpAudioVersion()!=ini_read_string('Default','RequiredVersion',Get_elpAudioVersion())
 and ini_read_real('Default','RequiredVersion',1.6)<1.6 //last version with environment changes
-and __elp_enable_old_themes
+and !__elp_enable_old_themes
 {
 show_message('Sorry, but this theme is not suitable for this elpAudio version. elpAudio will now close.#(You can disable this warning in elpAudio settings.)')
 EndSession()
