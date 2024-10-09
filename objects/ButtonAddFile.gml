@@ -23,9 +23,8 @@ action_id=603
 applies_to=self
 */
 if click>1 {
-file=get_open_filename('All supported files|*.mp3;*.ogg;*.wav;*.m4v;*.mp3;*.opus;*.mp2;*.3gp;*.mod;*.xm;*.etm;*.stm;*.s3m;*.it;*.mus;*.wasd;*.flac','')
+file=get_open_filename('All supported files|'+__fformats,'')
 if file='' nothing=1 else ds_list_add(global.list,file)}
-else draw=1
 click=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -41,7 +40,7 @@ repeat(file_drag_count()) {
 if FileIsSupported(file_drag_name(i)) then
 ds_list_add(global.list,file_drag_name(i))
 else
-if filename_ext(file_drag_name(i))=='.elf' then {
+if filename_ext(file_drag_name(i))=='.elf' or filename_ext(file_drag_name(i))=='.epl' then {
 global.current=0
 ListLoad(file_drag_name(i))
 }
@@ -50,17 +49,25 @@ else continue;
 i+=1
 
 }
+//using ds_list_size becuase global.list_size holds old size on this :p
+if ds_list_size(global.list)>file_drag_count() then
+global.current=ds_list_size(global.list)-file_drag_count()
+else
+global.current=0
 
 if global.play then MusicStop()
 MusicPlay(ds_list_find_value(global.list,global.current))
 
-if global.list_size>file_drag_count() then
-global.current=global.list_size-file_drag_count()+1
-else
-global.current=0
-
 file_drag_clear()
 #define Mouse_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if !window_get_active() exit
+image_index=1
+#define Mouse_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -76,9 +83,17 @@ applies_to=self
 */
 if !window_get_active() exit
 image_index=0
-if click=0 then
-    alarm[0]=30
-click+=1
+click=2
+alarm[0]=1
+#define Mouse_8
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if !window_get_active() exit
+draw=1
+image_index=0
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -94,16 +109,13 @@ applies_to=self
 */
 draw_self()
 
-if click=1 and alarm[0]<10 then
-    alarm[0]=1
-
 if draw=1 then {
 
-select=show_menu_pos(window_get_x()+x,window_get_y()+y,'Add file|Add folder|Add URL|Download from URL|Show files|Clear playlist',-1)
+select=show_menu_pos(window_get_x()+x+sprite_width,window_get_y()+y+sprite_height,'Add file|Add folder|Add URL|Download from URL|Show files|Clear playlist',-1)
 
 if select=0 then {
 
-    file=get_open_filename('All supported files|*.aiff;*.asf;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp3;*.mp2;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.raw;*.iff;','')
+    file=get_open_filename('All supported files|'+__fformats,'')
 
     if file='' then
         nothing=1
@@ -170,8 +182,11 @@ if select=3 {
 if select=4 then
     execute_program('explorer.exe','/root,"'+global.dirr+'"',0)
 
-if select=5 then
+if select=5 then {
+    MusicStop();
+    global.current=0
     ds_list_clear(global.list)
+    }
 
 draw=0
 
