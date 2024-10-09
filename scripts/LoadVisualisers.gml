@@ -4,7 +4,7 @@ if directory_exists(working_directory+'\visualisers\') then {
     global.vis[0]=file_find_first(working_directory+'\visualisers\*.vis',fa_hidden)
     if global.vis[0]!='' {
         global.visname[0]=filename_name(global.vis[0])
-        global.vis[0]=file_text_read_all(working_directory+'\visualisers\'+global.vis[0],' ')
+        object_event_add(Visualiser,ev_other,ev_user0,string_ext('if __visualiser=={0} and global.play if !window_get_active() and __DisVisWhenNotAct==1 n=1 else {{{1}}}',0,file_text_read_all(working_directory+'\visualisers\'+global.vis[0],' ')))
         global.customvisuals=1
         repeat(128) {
             global.vis[iii]=file_find_next()
