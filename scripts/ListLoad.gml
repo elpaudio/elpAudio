@@ -6,7 +6,7 @@ var migrated
 {migrated=0;}
 
 if !file_exists(fname) then {
-    show_message('The playlist "'+argument0+'" doesnt seem to exist.')
+    show_message(string_ext('The playlist {0}{2}{0} doesn{1}t seem to exist.','"',argument0,"'")) // shows "D:\not_exist.epl"
     exit
 }
 
@@ -82,7 +82,7 @@ else if string_lower(filename_ext(fname))=='.elf' then {
                 ds_list_add(adl,myfile)
           } else {
             if room=mainroom then
-                show_message("File doesn't exists: "+string(myfile))
+                show_message("File doesn't exist: "+string(myfile))
             }
           }
 
