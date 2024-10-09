@@ -1,9 +1,8 @@
 if !window_get_active() exit
 if point_in_rectangle(
-display_mouse_get_x(),display_mouse_get_y(),
-window_get_x()+x-1000*pressed,window_get_y()+y-1000*pressed
-,
-window_get_x()+x+w-w/6+1000*pressed,window_get_y()+y+h+1000*pressed
+    display_mouse_get_x(),display_mouse_get_y(),
+    window_get_x()+x-1000*pressed,window_get_y()+y-1000*pressed,
+    window_get_x()+x+w-w/6+1000*pressed,window_get_y()+y+h+1000*pressed
 )
 {
 if mouse_check_direct(mb_left) {
@@ -22,29 +21,33 @@ if yftime=1 then yonb=0
 
 
 ///WINDOW STICKS TO EDGES
-if (display_mouse_get_x()-mx<=16 or display_mouse_get_y()-my<=16
-or display_mouse_get_x()-mx+window_get_width()>=display_get_width()-16 or display_mouse_get_y()-my+window_get_height()>=display_get_height()-16 )
+if (display_mouse_get_x()-mx<=-global.realwidth+display_get_width()+16 or display_mouse_get_y()-my<=-global.realheight+display_get_height()+16
+or display_mouse_get_x()-mx+window_get_width()>=global.realwidth-16 or display_mouse_get_y()-my+window_get_height()>=global.realheight-16)
 and __stick_to_edges
 {
-if display_mouse_get_x()-mx<=16 then
-wx=0
-else if display_mouse_get_x()-mx+window_get_width()>=display_get_width()-16 then
-wx=display_get_width()-window_get_width()
-else wx=display_mouse_get_x()-mx
+    if display_mouse_get_x()-mx<=-global.realwidth+display_get_width()+16 then
+        wx=-global.realwidth+display_get_width()
+    else
+    if display_mouse_get_x()-mx+window_get_width()>=global.realwidth-16 then
+        wx=global.realwidth-window_get_width()
+    else
+        wx=display_mouse_get_x()-mx
 
-if display_mouse_get_y()-my<=16 then
-wy=0
-else if display_mouse_get_y()-my+window_get_height()>=display_get_height()-16 then
-wy=display_get_height()-window_get_height()
-else wy=display_mouse_get_y()-my
-}
-else {
-wx=display_mouse_get_x()-mx
-wy=display_mouse_get_y()-my
-}
+    if display_mouse_get_y()-my<=-global.realheight+display_get_height()+16 then
+        wy=-global.realheight+display_get_height()
+    else
+    if display_mouse_get_y()-my+window_get_height()>=global.realheight-16 then
+        wy=global.realheight-window_get_height()
+    else
+        wy=display_mouse_get_y()-my
+    }
+    else {
+        wx=display_mouse_get_x()-mx
+        wy=display_mouse_get_y()-my
+    }
 
-window_set_position(wx,wy)
+    window_set_position(wx,wy)
 
-pressed=1
-} else {pressed=0 hh=0}
+    pressed=1
+    } else {pressed=0 hh=0}
 }
