@@ -3,11 +3,25 @@ if !variable_global_exists('list') then
 else
     ds_list_clear(global.list)
 
+MetadataCreate()
+
 if !registry_exists_ext('elpAudio','work_dir') then
     registry_write_string_ext('elpAudio','work_dir',program_directory)
 /*else
     if program_directory!=registry_read_string_ext('elpAudio','work_dir') then
         registry_write_string_ext('elpAudio','work_dir',program_directory)*/
+
+globalvar __fformats; //file formats
+__fformats='*.aiff;*.asf;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp3;*.mp2;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;';
+
+globalvar __monitors  , //monitor count
+          __monitorpos; //monitor position
+
+__monitors=1;   //one monitor
+__monitorpos=0 //-1 - two monitors, second monitor on left
+                //0 - one monitor,
+                //1 - two monitors, second monitor on right
+                //you can change it with Shift+Left/Right arrow
 
 room_caption='elpAudio '+Get_elpAudioVersion()
 room_speed=60
@@ -30,13 +44,11 @@ global.is_stereo=0
 global.list_size=0
 global.pos=0
 
-global.songartist=''
-global.songtitle=''
-global.songnumber=''
-global.songalbum=''
-global.songimg=''
-global.songgenre=''
-global.songyear=''
+global.dirr=''
+global.FMODbuf = string_repeat(chr(0), 256)
+
+global.realwidth=display_get_width()
+global.realheight=display_get_height()
 
 if registry_exists_ext('elpAudio','work_dir') then
     global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\';
@@ -83,31 +95,32 @@ __customcaption_ch2='';
 
 if file_exists(global.__progdir+'settings.ini') {
 ini_open(global.__progdir+'settings.ini')
-global.themepath=global.__progdir+string_copy(ini_read_string('','themePath','themes\default\theme.ini'),string_pos('themes\',ini_read_string('','themePath','themes\default\theme.ini')),1024)
-__speed=ini_read_real('','textSpeed',15)
-global.volume=ini_read_real('','volume',100)
-global.current=ini_read_real('','lastSong',0)
-__visualiser=ini_read_real('','lastVisualiser',0)
-__visual_freq=ini_read_real('','visualiserBars',64)
-__customcaption_idle=ini_read_string('Caption','customCaptionIdle','elpAudio %v')
-__customcaption_play=ini_read_string('Caption','customCaptionPlay','(%t1:%ta1) elpAudio %v [%pn/%ps]')
-__customcaption_ch1=ini_read_string('Caption','customCaptionChange1','(%t1 / %ta1) elpAudio %v [%pn/%ps]')
-__customcaption_ch2=ini_read_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
-__changecaption=ini_read_real('Caption','changeCaption',1)
-__captionchangespd=ini_read_real('Caption','captionChangeSpeed',3)*60
-__enable_fswitch=ini_read_real('','enableSwitchFScreen',1)
-__stick_to_edges=ini_read_real('','windowSticksToEdges',1)
-__stopsongafter=ini_read_real('','stopSongAfterPlaying',0)
+global.themepath=       global.__progdir+string_copy(ini_read_string('','themePath','themes\default\theme.ini'),string_pos('themes\',ini_read_string('','themePath','themes\default\theme.ini')),1024)
+__speed=                ini_read_real('','textSpeed',15)
+global.volume=          ini_read_real('','volume',100)
+global.current=         ini_read_real('','lastSong',0)
+__visualiser=           ini_read_real('','lastVisualiser',0)
+__visual_freq=          ini_read_real('','visualiserBars',64)
+__customcaption_idle=   ini_read_string('Caption','customCaptionIdle','elpAudio %v')
+__customcaption_play=   ini_read_string('Caption','customCaptionPlay','(%t1:%ta1) elpAudio %v [%pn/%ps]')
+__customcaption_ch1=    ini_read_string('Caption','customCaptionChange1','(%t1 / %ta1) elpAudio %v [%pn/%ps]')
+__customcaption_ch2=    ini_read_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
+__changecaption=        ini_read_real('Caption','changeCaption',1)
+__captionchangespd=     ini_read_real('Caption','captionChangeSpeed',3)*60
+__enable_fswitch=       ini_read_real('','enableSwitchFScreen',1)
+__stick_to_edges=       ini_read_real('','windowSticksToEdges',1)
+__stopsongafter=        ini_read_real('','stopSongAfterPlaying',0)
 __elp_enable_old_themes=ini_read_real('','EnableOldThemes',0)
-__open_migrated_list=ini_read_real('','OpenMigratedListAfterConverting',1)
-__preload_type=ini_read_real('','MusicPreloadType',1)
-__DisVisWhenNotAct=ini_read_real('','DisableVisualiserWhenNotFocused',0)
-__PreloadNextSong=ini_read_real('','PreloadNextSong',1)
-global.randomized=ini_read_real('','ShuffleSongs',0)
-room_speed=max(ini_read_real('','framerate',60),1)
-__FrameSkip=ini_read_real('','SkipFrames',0)
-__millisecs=ini_read_real('','FramesForSkip',1)
-set_synchronization(ini_read_real('','VerticalSync',0))
+__open_migrated_list=   ini_read_real('','OpenMigratedListAfterConverting',1)
+__preload_type=         ini_read_real('','MusicPreloadType',1)
+__DisVisWhenNotAct=     ini_read_real('','DisableVisualiserWhenNotFocused',0)
+__PreloadNextSong=      ini_read_real('','PreloadNextSong',1)
+global.randomized=      ini_read_real('','ShuffleSongs',0)
+global.__rmspd=         max(ini_read_real('','framerate',60),1)
+__FrameSkip=            ini_read_real('','SkipFrames',0)
+__millisecs=            ini_read_real('','FramesForSkip',1)
+set_synchronization(    ini_read_real('','VerticalSync',0))
+__monitorpos=           ini_read_real('','MonitorPositions',0)
 ini_close()
 } else {
 var ffff;ffff=file_text_open_write('settings.ini')
