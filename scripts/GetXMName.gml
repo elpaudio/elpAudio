@@ -1,8 +1,7 @@
-var b;
+var b,h,i,xmname;
 b=buffer_create()
 buffer_load_part(b,argument0,0,256)
 buffer_set_pos(b,0)
-var h,i;
 i=0
 h=buffer_read_string(b)
 xmname=string_copy(h,18,20)
