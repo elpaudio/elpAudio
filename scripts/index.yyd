@@ -246,8 +246,8 @@ ClearVisCanvas
 
 SetVisColorAlpha
 draw_spriteblur
-GetTrackInfo
-GetSongGenre
+MetadataGetTags
+MetadataGetGenre
 GetBufferMedian
 copy_to_playlist
 FileIsOnDrives
@@ -273,7 +273,7 @@ MusicPrev
 InitPlugin
 LoadPlugins
 do_nothing
-README
+
 ButtonCreate
 ButtonAddCode
 ButtonPull
@@ -293,3 +293,6 @@ MergeColor
 SpritePull
 SnapSpecEntry2
 FindFile
+MetadataCreate
+MetadataGetTag
+ds_map_duplicate

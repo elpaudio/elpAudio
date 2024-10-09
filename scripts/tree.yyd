@@ -1,9 +1,4 @@
 |Get_elpAudioVersion
-|README
-+PLMIGRATE
-	|playlist_migrate
-	|UDecode
-	|HTMLTagDecode
 +TRACKER-FILES
 	|FileIsModule
 	|GetTrackerName
@@ -42,6 +37,7 @@
 	|do_nothing
 	|SpritePull
 	|FindFile
+	|ds_map_duplicate
 +VISUALISERS
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
@@ -71,6 +67,12 @@
 		|ClearSurface
 		|MergeColor
 +elpaudio
+	+METADATA
+		|MetadataCreate
+		|MetadataGetTags
+		|CompileFloatText
+		|MetadataGetGenre
+		|MetadataGetTag
 	|FilterString
 	|SoundIsStereo
 	|NumberIsNegative
@@ -86,6 +88,10 @@
 		|FileIsSupported
 		|GetMusicFromFolder
 		|FileIsOnDrives
+		+PLMIGRATE
+			|playlist_migrate
+			|UDecode
+			|HTMLTagDecode
 	+SETTINGS
 		|SettingsLoad
 		|SettingsSave
@@ -253,10 +259,6 @@
 		|FMODCreateSoundFromMicInput
 		|FMODMicStart
 		|FMODMicStop
-+TRACK
-	|GetTrackInfo
-	|CompileFloatText
-	|GetSongGenre
 +WINDOW
 	|WindowGrab
 +PLUGIN
