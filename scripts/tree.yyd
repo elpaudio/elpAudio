@@ -70,6 +70,7 @@
 	+METADATA
 		|MetadataCreate
 		|MetadataGetTags
+		|MetadataGetModuleName
 		|CompileFloatText
 		|MetadataGetGenre
 		|MetadataGetTag

@@ -296,3 +296,4 @@ FindFile
 MetadataCreate
 MetadataGetTag
 ds_map_duplicate
+MetadataGetModuleName
