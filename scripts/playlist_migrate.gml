@@ -21,7 +21,7 @@ var hf; hf = file_text_open_write(destfile);
 if(!hf)
 {
     show_message("Error opening destination playlist file:#" + destfile +"##Failed to migrate file:#"+fullname);
-    return "";;
+    return "";
 }
 
 file_text_write_string(hf,'0') // TYPICAL PLAYLIST.
@@ -30,8 +30,8 @@ file_text_writeln(hf)
 var hf2; hf2 = file_text_open_read(fullname);
 if(!hf2)
 {
-    show_message("Error opening source playlist file.  Failed to migrate file:#"+fullname);
-    return "";;
+    show_message("Error opening source playlist file. Failed to migrate file:#"+fullname);
+    return "";
 }
 
 var title,track;
@@ -462,7 +462,7 @@ while(!file_text_eof(hf2))
     }
     else
     {
-        show_message("Unsuported format:##" + fullname + "##Operation canceled." )
+        show_message("Unsupported format:##" + fullname + "##Operation canceled." )
         file_text_close(hf2);
         file_text_close(hf);
         return "";
