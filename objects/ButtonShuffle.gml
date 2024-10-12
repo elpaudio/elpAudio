@@ -4,6 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+sprite_index=global.__ico_sortb
 image_speed=0
 image_index=global.randomized
 image_blend=__butstopcol

@@ -4,6 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+sprite_index=global.__ico_migui
 image_speed=0
 full=0
 #define Mouse_4

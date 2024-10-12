@@ -20,7 +20,7 @@ yftime=1
 
 randomize()
 
-chroma=0
+chroma=1
 /*/
 if chroma then
     window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
