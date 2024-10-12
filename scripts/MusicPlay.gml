@@ -1,7 +1,7 @@
 ///(fname)
 var song,mylastsong;
 mylastsong=0
-isweb=string_count('http://',argument0)>0 or string_count('https://',argument0)>0
+isweb=(string_count('http://',argument0)>0 or string_count('https://',argument0)>0)
 
 if variable_global_exists('musicsound') then
     mylastsong=global.musicsound
@@ -35,9 +35,10 @@ global.stopped=0
 global.paused=0
 global.songlength=GetSoundLength(song)
 
-MetadataGetTags(global.playing)
-
-if FileIsModule(argument0) then
-global.trackname=GetTrackerName(argument0)
-else
-global.trackname=CompileFloatText(argument0)
+if FileIsModule(argument0) then {
+    MetadataGetModuleName(argument0)
+    global.trackname=GetTrackerName(argument0)
+} else {
+    MetadataGetTags(global.playing)
+    global.trackname=CompileFloatText(argument0)
+}
