@@ -6,7 +6,7 @@ var migrated
 {migrated=0;}
 
 if !file_exists(fname) then {
-    show_message(string_ext('The playlist {0}{2}{0} doesn{1}t seem to exist.','"',argument0,"'")) // shows "D:\not_exist.epl"
+    show_message(string_ext('The playlist {0}{1}{0} doesn{2}t seem to exist.','"',argument0,"'")) // shows "D:\not_exist.epl"
     exit
 }
 
