@@ -2,38 +2,42 @@ global.songartist=''
 global.songtitle=''
 global.songnumber=''
 global.songalbum=''
-global.songimg=''
 global.songgenre=''
 global.songyear=''
 
 var res; res = FMODInstanceGetNextTag(argument0)
 var tag;
-while(res)
-{
-if(res = 1)
-{
-tag=FMODGetTagName()
+var mydata;
+var me;me=filename_ext(ds_list_find_value(global.list,global.current))
+while(res){if(res = 1){
+    tag=string_lettersdigits(string_upper(FMODGetTagName()))
 
-if tag == "TITLE" then
-global.songtitle = string_replace_all(string(FMODGetTagData()),'#','//');
-else
-if tag == "ARTIST" then
-global.songartist = string_replace_all(string(FMODGetTagData()),'#','//');
-else
-if tag=="ALBUM" then
-global.songalbum=string_replace_all(string(FMODGetTagData()),'#','//');
-else
-if tag=="YEAR" then
-global.songyear=string_replace_all(string(FMODGetTagData()),'#','//');
-else
-if tag=="TRACK" then
-global.songnumber=string_replace_all(string(FMODGetTagData()),'#','//');
-else
-if tag=="GENRE" or tag=="TCON" then
-global.songgenre=GetSongGenre(string(FMODGetTagData()));
+    mydata=string_replace_all(string(FMODGetTagData()),'#','//');
+    show_message(tag)
+    show_message(mydata)
 
-//else if tag=="APIC" then global.songimg=string(FMODGetTagData());
-
-}
+    if tag == "TITLE" then
+        global.songtitle = mydata
+    else
+    if tag == "ARTIST" then
+        global.songartist = mydata
+    else
+    if tag=="ALBUM" then
+        global.songalbum=mydata
+    else
+    if tag=="YEAR" or tag=='DATE' then
+        global.songyear=mydata
+    else
+    if tag=="TRACK" then
+        global.songnumber=mydata
+    else if tag=="TRACKNUMBER" then
+        global.songnumber=string_copy(mydata,1,string_pos('/',tag)-1)
+    else
+    if tag=="GENRE" or tag=="TCON" then
+        if string_digits(mydata)==mydata then
+            global.songgenre=GetSongGenre(mydata);
+        else
+            global.songgenre=mydata;
+    }
     res = FMODInstanceGetNextTag(argument0)
 }
