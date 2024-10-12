@@ -1,8 +1,8 @@
 //(fname)
 var artist,name;
 
-name=MetadataGetTag('TITLE')
-artist=MetadataGetTag('ARTIST')
+name=string(MetadataGetTag('TITLE'))
+artist=string(MetadataGetTag('ARTIST'))
 
 if name+artist='??'
 or string_length(name+artist)=0
