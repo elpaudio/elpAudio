@@ -1,1 +1,0 @@
-return global.current

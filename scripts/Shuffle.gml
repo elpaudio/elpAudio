@@ -1,2 +1,0 @@
-///()
-global.randomized=!global.randomized

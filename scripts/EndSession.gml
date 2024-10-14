@@ -1,6 +1,0 @@
-with other instance_destroy()
-SettingsSave()
-debug('GAME END: Bye!')
-game_end()
-FMODfree()
-UnloadFMOD()

@@ -1,1 +1,0 @@
-return(FMODSoundGetLength(argument0))
