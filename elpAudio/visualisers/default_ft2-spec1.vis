@@ -1,0 +1,9 @@
+InitVisVars(x,y,width,height)
+GetWaveBuffer(maxw,0,myinst)
+SetVisColorAlpha(global.visfgcol,1)
+repeat(maxw)
+{
+    draw_point(xx+(w/maxw)*i,yy+SNAPWAVEENTRY(i,maxw)*h)
+    i+=1;
+}
+SetVisColorAlpha(c_white,1)
