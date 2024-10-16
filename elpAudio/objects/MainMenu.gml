@@ -20,10 +20,10 @@ yftime=1
 
 randomize()
 
+chroma=0
+//*
 chroma=1
-/*/
-if chroma then
-    window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
+window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
 /*/
 
 message_position(window_get_x(),window_get_y()+window_get_height())

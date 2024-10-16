@@ -270,9 +270,5 @@
 			|ButtonCreate
 			|ButtonAddCode
 			|ButtonPull
-		+SPRITES
-			|SpriteAdd
-			|SpriteSetVars
-			|SpriteSetIndex
 		+HANDLERS
 			|plgListIsLoaded

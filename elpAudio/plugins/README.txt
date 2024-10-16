@@ -100,8 +100,6 @@ The simple script that shows hello world:
 
 The simple script that creates a button, which shows "Hello world" on press
 
-
-
 /*(*CREATE*)*/
 
 b=ButtonCreate(); /*creates button handler*/
@@ -119,3 +117,14 @@ ButtonPull(b);
 /* creates button's instance */
 
 /*(*CREATE_END*)*/
+
+You can get metadata tags from playing song, with MetadataGetTag() function.
+MetadataGetTag('tag_name') -> returns tag string
+Available tags:
+	- TITLE
+	- ARTIST
+	- ALBUM
+	- DATE/YEAR
+	- TRACK
+	- TRACKNUMBER
+	- 
