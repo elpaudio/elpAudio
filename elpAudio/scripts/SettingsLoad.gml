@@ -36,7 +36,7 @@ global.thesong=''
 global.volume=100
 global.randomized=0
 global._loaded_list=0
-global.list_type=0 // 0 - regular, 1 and on will be used later
+global.list_type=0
 global.preloaded=0
 global.curpreloaded=-1
 global.preloadedsong=-1
@@ -67,7 +67,8 @@ __customcaption_idle,__customcaption_play,__customcaption_ch1,__customcaption_ch
 __enable_fswitch,__elp_enable_old_themes,
 __preload_type,__open_migrated_list,
 __DisVisWhenNotAct,__PreloadNextSong,
-__FrameSkip,__millisecs
+__FrameSkip,__millisecs,
+__recursive
 ;
 
 __elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
@@ -86,6 +87,7 @@ __DisVisWhenNotAct=0;       // disable visualiser when window is not active nor 
 __PreloadNextSong=1;        // preload next song when current song is about to end
 __FrameSkip=0;              // skip frames enabler
 __millisecs=1;              // frames for skip (if __FrameSkip==1)
+__recursive=0;              // recursive file adder in Add File button
 
 __customcaption_idle='elpAudio '+Get_elpAudioVersion();
 __customcaption_play='';
@@ -102,8 +104,8 @@ global.current=         ini_read_real('','lastSong',0)
 __visualiser=           ini_read_real('','lastVisualiser',0)
 __visual_freq=          ini_read_real('','visualiserBars',64)
 __customcaption_idle=   ini_read_string('Caption','customCaptionIdle','elpAudio %v')
-__customcaption_play=   ini_read_string('Caption','customCaptionPlay','(%t1:%ta1) elpAudio %v [%pn/%ps]')
-__customcaption_ch1=    ini_read_string('Caption','customCaptionChange1','(%t1 / %ta1) elpAudio %v [%pn/%ps]')
+__customcaption_play=   ini_read_string('Caption','customCaptionPlay','(%t1/%ta1) elpAudio %v [%pn/%ps]')
+__customcaption_ch1=    ini_read_string('Caption','customCaptionChange1','(%t1/%ta1) elpAudio %v [%pn/%ps]')
 __customcaption_ch2=    ini_read_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
 __changecaption=        ini_read_real('Caption','changeCaption',1)
 __captionchangespd=     ini_read_real('Caption','captionChangeSpeed',3)*60
@@ -121,6 +123,7 @@ __FrameSkip=            ini_read_real('','SkipFrames',0)
 __millisecs=            ini_read_real('','FramesForSkip',1)
 set_synchronization(    ini_read_real('','VerticalSync',0))
 __monitorpos=           ini_read_real('','MonitorPositions',0)
+__recursive=            ini_read_real('','RecursiveFolders',0)
 ini_close()
 } else {
 var ffff;ffff=file_text_open_write('settings.ini')

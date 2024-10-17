@@ -7,25 +7,12 @@ applies_to=self
 image_speed=0
 sprite_index=global.__ico_admus
 draw=0
-
-add=0
-click=0
-
+file=''
 showagain=1
 image_blend=__butaddmuscol
 prevdir=working_directory
 
 globalvar __pl_window;__pl_window=-1
-#define Alarm_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-if click>1 {
-file=get_open_filename('All supported files|'+__fformats,'')
-if file='' nothing=1 else ds_list_add(global.list,file)}
-click=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -83,8 +70,16 @@ applies_to=self
 */
 if !window_get_active() exit
 image_index=0
-click=2
-alarm[0]=1
+
+file=get_open_filename('All supported files|'+__fformats,'')
+
+if file!='' {
+    if FileIsSupported(file) then {
+        ds_list_add(global.list,file)
+        prevdir=filename_dir(file)
+    } else
+        show_message("Unsupported file: "+file)
+}
 #define Mouse_8
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -117,9 +112,7 @@ if select=0 then {
 
     file=get_open_filename('All supported files|'+__fformats,'')
 
-    if file='' then
-        nothing=1
-    else {
+    if file!='' {
         if FileIsSupported(file) then {
             ds_list_add(global.list,file)
             prevdir=filename_dir(file)
@@ -133,8 +126,15 @@ if select=1 then {
     folder=get_directory_alt('Add folder to your playlist','')
     if folder='' then
         nothing=1
-    else
-        GetMusicFromFolder(folder+'\')
+    else {
+        if !__recursive GetMusicFromFolder(folder+'\')
+        else {
+        listt=file_find_list(folder,'*.*',fa_hidden,1,1)
+        i=0
+        repeat ds_list_size(listt) {val=ds_list_find_value(listt,i) if FileIsSupported(val) ds_list_add(global.list,val) i+=1}
+        ds_list_destroy(listt)
+        }
+    }
 
 } //select=1
 
