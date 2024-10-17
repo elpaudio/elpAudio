@@ -25,7 +25,7 @@ applies_to=self
 if !window_get_active() exit
 image_index=0
 enter=0
-if ds_list_size(global.list)<1 exit
+if ds_list_empty(global.list) exit
 if global.play MusicStop()
 #define Mouse_11
 /*"/*'/**//* YYD ACTION

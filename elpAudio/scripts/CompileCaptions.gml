@@ -16,7 +16,7 @@ ag=string_replace_all(ag,'%trg','')
 ag=string_replace_all(ag,'%try','')
 ag=string_replace_all(ag,'%trn','')
 } else { //if it plays
-ag=string_replace_all(ag,'%t1',current_time_format(FMODInstanceGetPosition(global.playing)*global.songlength))
+ag=string_replace_all(ag,'%t1',current_time_format(global.pos*global.songlength))
 ag=string_replace_all(ag,'%ta1',current_time_format(global.songlength))
 ag=string_replace_all(ag,'%t2',global.formatted_cur_pos)
 ag=string_replace_all(ag,'%ta2',global.formatted_time)

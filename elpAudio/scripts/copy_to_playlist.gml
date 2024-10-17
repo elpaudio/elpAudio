@@ -1,3 +1,4 @@
-var i{i=0}repeat(ds_list_size(argument1)) {
-ds_list_add(argument0,ds_list_find_value(argument1,i))i+=1;
+var i;i=0;
+repeat(ds_list_size(argument1)) {
+ds_list_duplicate(argument0,argument1,i) i+=1;
 }

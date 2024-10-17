@@ -1,5 +1,5 @@
 ///(fname)
-var song,mylastsong;
+var song,mylastsong,isweb;
 mylastsong=0
 isweb=(string_count('http://',argument0)>0 or string_count('https://',argument0)>0)
 

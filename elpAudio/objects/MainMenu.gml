@@ -5,13 +5,8 @@ action_id=603
 applies_to=self
 */
 ///Vars
-
-did=0
-fade=1
-hh=0
-stri=0
 alarm[0]=10
-alarm[1]=10
+alarm[10]=10
 
 cwait=360
 
@@ -21,13 +16,12 @@ yftime=1
 randomize()
 
 chroma=0
-//*
+//* <//* for original version, /* for no-chromakey version>
 chroma=1
 window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
 /*/
 
 message_position(window_get_x(),window_get_y()+window_get_height())
-message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
 
 pressed=0
 /*"/*'/**//* YYD ACTION
@@ -37,14 +31,14 @@ applies_to=self
 */
 ///Initializer
 if !variable_global_exists('___init111') {
-LoadPlugins() //find plugins from plugins folder
-LoadFMOD()
-FMODinit(8,1)
-global.played_from_arg=0
-FMODSpectrumSetSnapshotType(5)
-global.___init111=1
-if variable_global_exists('__rmspd') room_speed=global.__rmspd
-HandlePlaylistLoad()
+    LoadPlugins() //find plugins from plugins folder
+    LoadFMOD()
+    FMODinit(8,1)
+    global.played_from_arg=0
+    FMODSpectrumSetSnapshotType(5)
+    if variable_global_exists('__rmspd') room_speed=global.__rmspd
+    HandlePlaylistLoad()
+    global.___init111=1
 }
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
@@ -65,6 +59,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///playlist handle
 global._loaded_list=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -75,6 +70,7 @@ applies_to=self
 ///global vars
 
 global.list_size=ds_list_size(global.list)
+global._focused= (window_has_focus()||window_get_active())
 
 if global.play {
     global.pos=FMODInstanceGetPosition(global.playing)
@@ -127,9 +123,9 @@ applies_to=self
 */
 ///SAVE LIST AND CLOSE
 if file_exists('save_list') {
-file_delete('save_list')
-ListSave(global.__progdir+'playlists\temp.elf')
-SettingsSave()
+    file_delete('save_list')
+    ListSave(global.__progdir+'playlists\temp.epl')
+    SettingsSave()
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

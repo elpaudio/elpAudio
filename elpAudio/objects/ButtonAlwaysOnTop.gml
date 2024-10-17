@@ -21,7 +21,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=0
 window_set_stayontop(!window_get_stayontop())
 #define Mouse_11

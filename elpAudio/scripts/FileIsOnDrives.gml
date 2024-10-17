@@ -1,16 +1,13 @@
-var l
-{l=argument0}
-var mydrive
-{mydrive=ord("C")}
-var i
-{i=0}
+var l,mydrive,i,mydir;
+l=argument0
+mydrive=ord("C")
+i=0
 repeat(23) {
-var mydir
-{mydir=chr(mydrive+i)+string_copy(l,2,256)}
+    mydir=chr(mydrive+i)+string_copy(l,2,256)
 
-if file_exists(mydir) then
-return 1
+    if file_exists(mydir) then
+        return mydir
 
-i+=1;
+    i+=1;
 }
-return 0
+return ''

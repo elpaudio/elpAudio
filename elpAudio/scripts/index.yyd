@@ -193,8 +193,8 @@ FMODMicStop
 SNAPSPECENTRY
 WindowGrab
 read_wh
-lini_open
-lini_read_key
+
+
 CompileCaptions
 fname_path
 ini_rs
@@ -250,3 +250,4 @@ MetadataCreate
 MetadataGetTag
 ds_map_duplicate
 MetadataGetModuleName
+ds_list_duplicate

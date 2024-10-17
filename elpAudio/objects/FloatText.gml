@@ -29,7 +29,7 @@ draw_set_font(global.__fon_vis)
 xx-=string_width('A')
 if xx<-string_width(mystr)/2 xx=0
 }
-alarm[0]=(((15/__speed)*(max(fps,30)/60))*20)
+alarm[0]=(((15/__speed)*(max(fps,30)/60))*20) //hardcoded
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -67,26 +67,25 @@ draw_set_halign(fa_left)
 
 if global.oldfloat==0 and global.play {
 
-if instance_exists(Visualiser) and ontop==0 then
-    Visualiser.depth=depth-1
+    if instance_exists(Visualiser) and ontop==0 then
+        Visualiser.depth=depth-1
 
-if floatdrawtime1 then
-{ // Draw with time
-    mystr=global.trackname+' ('+global.formatted_time+')'
-}
-else
-{ // Draw without the time
-    mystr=global.trackname
-}
+    if floatdrawtime1 then
+    { // Draw with time
+        mystr=global.trackname+' ('+global.formatted_time+')'
+    }
+    else
+    { // Draw without the time
+        mystr=global.trackname
+    }
 
-if floatiertext {
-    if textx+string_width(mystr)+16>width then
-    xx-=((__speed)/15)*(room_speed/max(fps,30))
-}
+    if floatiertext {
+        if textx+string_width(mystr)+16>width then
+        xx-=((__speed)/15)*(room_speed/max(fps,30))
+    }
 
-if xx<-string_width(mystr)-textx then
-    xx=width+10+text_centered*width/2
-
+    if xx<-string_width(mystr)-textx then
+        xx=width+10+text_centered*width/2
 }
 
 // Draws text

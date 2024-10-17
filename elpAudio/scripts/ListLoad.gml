@@ -1,9 +1,9 @@
-var file,fname,i,disknames,myfile,origfile,letter;
-disknames="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var file,fname,myfile,va,isweb,migrated,str_unsupported,str_notexist;
 fname=argument0
-
-var migrated
-{migrated=0;}
+va= (room==mainroom)
+migrated=0
+str_unsupported='Unsupported file format: "{0}".#({1})'
+str_notexist='File does not exists: "{0}".'
 
 if !file_exists(fname) then {
     show_message(string_ext('The playlist {0}{1}{0} doesn{2}t seem to exist.','"',argument0,"'")) // shows "D:\not_exist.epl"
@@ -22,7 +22,6 @@ if string_lower(filename_ext(fname))=='.epl' then { //.epl start
       */
 
     file=file_text_open_read(fname)
-    ds_list_clear(global.list)
 
     if string_copy(file_text_read_string(file),0,1)!='0'
     or string_copy(file_text_read_string(file),0,1)!='1' then
@@ -34,26 +33,19 @@ if string_lower(filename_ext(fname))=='.epl' then { //.epl start
 
     while !file_text_eof(file)
     {
-        i=1
-        myfile=file_text_read_string(file)
+        myfile=FileIsOnDrives(file_text_read_string(file))
+        isweb=string_count('https://',string_lower(myfile)) or string_count('http://',string_lower(myfile))
 
-        var isweb;isweb=string_count('https://',string_lower(myfile)) or string_count('http://',string_lower(myfile))
         if file_exists(myfile) or isweb {
            if FileIsSupported(myfile) or isweb then
               ds_list_add(adl,myfile)
            else
-              if room=mainroom then
-                  show_message('Unsupported file format: "'+filename_ext(myfile)+'".#('+myfile+')')
-
+              if va then
+                  show_message(string_ext(str_unsupported,filename_ext(myfile),myfile))
           } else {
-          if FileIsOnDrives(myfile) then {
-            if FileIsSupported(myfile) then
-                ds_list_add(adl,myfile)
-          } else {
-            if room=mainroom then
-                show_message("File doesn't exists: "+string(myfile))
+              if va then
+                  show_message(string_ext(str_notexist,string(myfile)))
             }
-          }
 
     file_text_readln(file)
     }
@@ -62,29 +54,21 @@ file_text_close(file)
 }  // .epl end
 else if string_lower(filename_ext(fname))=='.elf' then {
     file=file_text_open_read(fname)
-    ds_list_clear(global.list)
 
     while !file_text_eof(file)
     {
-        i=1
-        myfile=file_text_read_string(file)
+        myfile=FileIsOnDrives(file_text_read_string(file))
+        isweb=string_count('https://',string_lower(myfile)) or string_count('http://',string_lower(myfile))
 
-        var isweb;isweb=string_count('https://',string_lower(myfile)) or string_count('http://',string_lower(myfile))
         if file_exists(myfile) or isweb {
            if FileIsSupported(myfile) or isweb then
               ds_list_add(adl,myfile)
-           else if room=mainroom then
-                  show_message('Unsupported file format: "'+filename_ext(myfile)+'".#('+myfile+')')
-
-          } else {
-          if FileIsOnDrives(myfile) then {
-            if FileIsSupported(myfile) then
-                ds_list_add(adl,myfile)
-          } else {
-            if room=mainroom then
-                show_message("File doesn't exist: "+string(myfile))
-            }
-          }
+           else if va then
+                  show_message(string_ext(str_unsupported,filename_ext(myfile),myfile))
+        } else {
+            if va then
+                show_message(string_ext(str_notexist,string(myfile),"'"))
+        }
 
     file_text_readln(file)
     }
@@ -94,22 +78,25 @@ file_text_close(file)
     playlist_migrate(fname)
     migrated=1
     if __open_migrated_list==0 then
-        show_message('Your file ('+fname+') was converted to .EPL playlist if everything went well. Find it at playlists\migrated folder and open them again here.')
+        show_message(string_ext('Your file ({0}) was converted to .EPL playlist if everything went well. Find it at playlists\migrated folder and open them again here.',fname))
     else
         ListLoad(global.__progdir+'playlists\migrate\'+filename_change_ext(filename_name(fname),'.epl'),1)
 } // migrating end
 
-
-copy_to_playlist(global.list,adl)
+if !ds_list_empty(adl) {
+    ds_list_clear(global.list)
+    copy_to_playlist(global.list,adl)
+}
 ds_list_destroy(adl)
 
-
 if argument_count>1 {
-if argument[1] and migrated=0 {
-if global.play MusicStop()
-global.current=0
-MusicPlay(ds_list_find_value(global.list,0))
-}
+    if argument[1] and migrated=0 {
+        if global.play MusicStop()
+        global.current=0
+        MusicPlay(ds_list_find_value(global.list,0))
+        global.curpreloaded=-1
+        global.preloaded=-1
+    }
 }
 global._loaded_list=1
 HandlePlaylistLoad() // FOR VISUALISERS AND PLUGINS !

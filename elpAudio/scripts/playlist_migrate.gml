@@ -4,20 +4,21 @@
 
 // *.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;
 
-var fullname; fullname = argument0;
-var filename; filename = filename_change_ext(filename_name(fullname),''); //removes .* from filename
-var ext; ext = string_lower(filename_ext(fullname));
-var path; path = filename_path(fullname);
-var drive; drive = filename_drive(fullname);
+var fullname,filename,ext,path,drive,destfile; 
+fullname = argument0;
+filename = filename_remove_ext(filename_name(fullname)); //removes .* from filename
+ext = string_lower(filename_ext(fullname));
+path = filename_path(fullname);
+drive = filename_drive(fullname);
 
-var destfile; destfile = working_directory +"\playlists\migrate\"+filename+".epl"
+destfile = working_directory +"\playlists\migrate\"+filename+".epl"
 
 if(!directory_exists(working_directory +"\playlists"))
     directory_create(working_directory +"\playlists");
 if(!directory_exists(working_directory +"\playlists\migrate"))
     directory_create(working_directory +"\playlists\migrate");
 
-var hf; hf = file_text_open_write(destfile);
+var hf,hf2; hf = file_text_open_write(destfile);
 if(!hf)
 {
     show_message("Error opening destination playlist file:#" + destfile +"##Failed to migrate file:#"+fullname);
@@ -27,19 +28,18 @@ if(!hf)
 file_text_write_string(hf,'0') // TYPICAL PLAYLIST.
 file_text_writeln(hf)
 
-var hf2; hf2 = file_text_open_read(fullname);
+hf2 = file_text_open_read(fullname);
 if(!hf2)
 {
     show_message("Error opening source playlist file. Failed to migrate file:#"+fullname);
     return "";
 }
 
-var title,track;
-var pos,pos2;
+var isINI,title,track,pos,pos2;
 title = "<unknown>";
 track = ""
 
-var isINI{isINI = false}
+isINI = false
 
 while(!file_text_eof(hf2))
 {

@@ -195,6 +195,6 @@ if a0='189' return "Dubstep"
 if a0='190' return "Garage Rock"
 if a0='191' return "Psybient"
 if a0='255' return "None"
-if a0='CR'return "Cover"
-if a0='RX'return "Remix"
+if a0='CR'  return "Cover"
+if a0='RX'  return "Remix"
 return 'None'
