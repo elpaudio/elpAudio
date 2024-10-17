@@ -6,7 +6,7 @@
  ### elpAudio - simple audio player using FMOD, made on Game Maker 8.2. Has more liberty than WinAmp.
 
 ## FEATURES
-elpAudio supports custom themes, music files (`.mp3, .midi, .wav, .ogg, .flac, .opus`), tracker music (`.mod, .xm, .s3m, .it`) and other types (`.m3u,.m3u8,.pls,.fsb,.mp2,.wma`). 
+elpAudio supports custom themes, music files (`.mp3, .wav, .ogg, .flac, .opus`), tracker music (`.mod, .xm, .s3m, .it`) and other types (`.m3u, .m3u8, .pls, .fsb, .mp2, .wma`). 
 elpAudio has it's own playlist format called elpAudio PlayList (`.epl`), it's so simple to edit and save!
 
 **elpAudio has a discord server - you can <a href="https://discord.gg/n64mcGT6Sr">click here</a> to join it!**
