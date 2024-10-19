@@ -16,6 +16,7 @@
 	|MusicPrev
 	|Shuffle
 	|HandlePlaylistLoad
+	|MusicShowBalloon
 +MISC
 	|draw_point_width
 	|string_ext
