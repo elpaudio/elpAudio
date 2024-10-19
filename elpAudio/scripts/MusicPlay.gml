@@ -42,3 +42,4 @@ if FileIsModule(argument0) then {
     MetadataGetTags(global.playing)
     global.trackname=CompileFloatText(argument0)
 }
+MusicShowBalloon()
