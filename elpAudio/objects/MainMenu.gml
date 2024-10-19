@@ -9,6 +9,7 @@ alarm[0]=10
 alarm[10]=10
 
 cwait=360
+hh=0
 
 xftime=1
 yftime=1
