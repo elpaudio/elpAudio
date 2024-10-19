@@ -12,6 +12,8 @@ showagain=1
 image_blend=__butaddmuscol
 prevdir=working_directory
 
+menustr='Add file|Add folder|Add URL|Download from URL|Show files|Clear playlist'
+
 globalvar __pl_window;__pl_window=-1
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -106,88 +108,78 @@ draw_self()
 
 if draw=1 then {
 
-select=show_menu_pos(window_get_x()+x+sprite_width,window_get_y()+y+sprite_height,'Add file|Add folder|Add URL|Download from URL|Show files|Clear playlist',-1)
+select=show_menu_pos(window_get_x()+x+sprite_width,window_get_y()+y+sprite_height,menustr,-1)
+switch(select) {
+    case 0: {
+        file=get_open_filename('All supported files|'+__fformats,'')
 
-if select=0 then {
-
-    file=get_open_filename('All supported files|'+__fformats,'')
-
-    if file!='' {
-        if FileIsSupported(file) then {
-            ds_list_add(global.list,file)
-            prevdir=filename_dir(file)
-        } else
-            show_message("Unsupported file: "+file)
+        if file!='' {
+            if FileIsSupported(file) then {
+                ds_list_add(global.list,file)
+                prevdir=filename_dir(file)
+            } else
+                show_message("Unsupported file: "+file)
+        } break;
     }
-} //select=0
-
-if select=1 then {
-
-    folder=get_directory_alt('Add folder to your playlist','')
-    if folder='' then
-        nothing=1
-    else {
-        if !__recursive GetMusicFromFolder(folder+'\')
+    case 1: {
+        folder=get_directory_alt('Add folder to your playlist','')
+        if folder='' then
+            nothing=1
         else {
-        listt=file_find_list(folder,'*.*',fa_hidden,1,1)
-        i=0
-        repeat ds_list_size(listt) {val=ds_list_find_value(listt,i) if FileIsSupported(val) ds_list_add(global.list,val) i+=1}
-        ds_list_destroy(listt)
-        }
+            if !__recursive GetMusicFromFolder(folder+'\')
+            else {
+                listt=file_find_list(folder,'*.*',fa_hidden,1,1)
+                i=0
+                repeat ds_list_size(listt) {val=ds_list_find_value(listt,i) if FileIsSupported(val) ds_list_add(global.list,val) i+=1}
+                ds_list_destroy(listt)
+            }
+        } break;
     }
-
-} //select=1
-
-if select=2 {
-
-    myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/elpAudio/music/welcome.mp3')
-    var isweb;isweb=string_count('https://',string_lower(myurl)) or string_count('http://',string_lower(myurl))
-    if FileIsSupported(myurl) or isweb then
-        ds_list_add(global.list,myurl)
-
-} //select=2
-
-if select=3 {
-
-    myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/elpAudio/music/welcome.mp3')
-    if myurl='' then
-        nothing=1
-    else {
-        _connect=httprequest_create()
-        httprequest_connect(_connect,httprequest_urlencode(myurl,0),0)
-        mfile=buffer_create()
-        while true {
-            httprequest_update(_connect);
-            st = httprequest_get_state(_connect);
-            if st=4 or st=5 then
-                break;
-        sleep_ext(10);
+    case 2: {
+        myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/elpAudio/music/welcome.mp3')
+        isweb=string_count('https://',string_lower(myurl)) or string_count('http://',string_lower(myurl))
+        if FileIsSupported(myurl) or isweb then
+            ds_list_add(global.list,myurl)
+        break;
         }
-    if st=5 then {
-        show_message("Internet-download failed.#Your url: "+myurl);
-    } else {
-        //show_message("Downloading succeeded.");
-        httprequest_get_message_body_buffer(_connect,mfile)
-        var f;f=working_directory+'\music_examples\http_'+string(irandom_range(10000,100000))+filename_ext(myurl)
-        buffer_save(mfile,f)
-        ds_list_add(global.list,f)
+    case 3: {
+        myurl=get_string('Type in the URL to download music from','https://elpoepgames.site/elpAudio/music/welcome.mp3')
+        if myurl!=''{
+            _connect=httprequest_create()
+            httprequest_connect(_connect,httprequest_urlencode(myurl,0),0)
+            mfile=buffer_create()
+            while true {
+                httprequest_update(_connect);
+                st = httprequest_get_state(_connect);
+                if st=4 or st=5 then
+                    break;
+            sleep_ext(10);
+            }
+        if st=5 then {
+            show_message("Internet-download failed.#Your url: "+myurl);
+        } else {
+            //show_message("Downloading succeeded.");
+            httprequest_get_message_body_buffer(_connect,mfile)
+            var f;f=working_directory+'\music_examples\http_'+string(irandom_range(10000,100000))+filename_ext(myurl)
+            buffer_save(mfile,f)
+            ds_list_add(global.list,f)
+        }
+        buffer_destroy(mfile)
+        httprequest_destroy(_connect)
+        } //url!=''
+    break;
     }
-    buffer_destroy(mfile)
-    httprequest_destroy(_connect)
-
-    } //url!=''
-
-} //select=3
-
-if select=4 then
-    execute_program('explorer.exe','/root,"'+global.dirr+'"',0)
-
-if select=5 then {
-    MusicStop();
+    case 4: execute_program('explorer.exe','/root,"'+global.dirr+'"',0); break;
+    case 5: {
+    MusicStop()
     global.current=0
+    global.curpreloaded=-1
+    global.preloaded=-1
     ds_list_clear(global.list)
+    break;
     }
-
+    default: break;
+}
 draw=0
 
 } //draw=1
