@@ -67,7 +67,7 @@ else if string_lower(filename_ext(fname))=='.elf' then {
                   show_message(string_ext(str_unsupported,filename_ext(myfile),myfile))
         } else {
             if va then
-                show_message(string_ext(str_notexist,string(myfile),"'"))
+                show_message(string_ext(str_notexist,string(myfile)))
         }
 
     file_text_readln(file)
