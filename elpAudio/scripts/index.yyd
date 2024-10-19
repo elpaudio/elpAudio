@@ -251,3 +251,5 @@ MetadataGetTag
 ds_map_duplicate
 MetadataGetModuleName
 ds_list_duplicate
+
+MusicShowBalloon
