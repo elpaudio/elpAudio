@@ -2,14 +2,14 @@ gm82_version=5
 gameid=20240803
 
 info_author=elpoep
-info_version=200
+info_version=210
 info_information=
 
 exe_company=elpoep Interactive design of the old future
-exe_product=elpAudio 2.0
+exe_product=elpAudio 2.1
 exe_copyright=elpoep 2024
-exe_description=elpAudio 2.0
-exe_version=2.0.0.0
+exe_description=elpAudio 2.1
+exe_version=2.1.0.0
 
 has_backgrounds=0
 has_datafiles=0
