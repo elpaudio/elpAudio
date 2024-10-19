@@ -53,7 +53,7 @@ global.realheight=display_get_height()
 if registry_exists_ext('elpAudio','work_dir') then
     global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\';
 else {
-    show_message(string_ext('Sorry, but elpAudio can{0}t initialize, because it can{0}t read registry value HKEY_CURRENT_USER/elpAudio/work_dir.',"'"))
+    show_message("Sorry, but elpAudio can't initialize, because it can't read registry value HKEY_CURRENT_USER/elpAudio/work_dir.")
     game_end()
     exit
     }
@@ -68,7 +68,8 @@ __enable_fswitch,__elp_enable_old_themes,
 __preload_type,__open_migrated_list,
 __DisVisWhenNotAct,__PreloadNextSong,
 __FrameSkip,__millisecs,
-__recursive
+__recursive,
+delta_time
 ;
 
 __elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
@@ -88,6 +89,7 @@ __PreloadNextSong=1;        // preload next song when current song is about to e
 __FrameSkip=0;              // skip frames enabler
 __millisecs=1;              // frames for skip (if __FrameSkip==1)
 __recursive=0;              // recursive file adder in Add File button
+delta_time=room_speed;      // delta speed
 
 __customcaption_idle='elpAudio '+Get_elpAudioVersion();
 __customcaption_play='';
