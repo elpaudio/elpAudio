@@ -33,7 +33,7 @@ height=global.visualh
 //taken from Visual Music and fixed for elpAudio
 if global.play and !global.paused and !global.stopped {
 //FMODUpdateTakeOverWhileLocked()
-sleep_ext(20)
+sleep_ext(__millisecs)
 //FMODUpdateTakeOverDone()
 }
 /*/
