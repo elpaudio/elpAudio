@@ -27,7 +27,7 @@ ag=string_replace_all(ag,'%tra',MetadataGetTag('ARTIST'))
 ag=string_replace_all(ag,'%trt',MetadataGetTag('TITLE'))
 ag=string_replace_all(ag,'%trf',MetadataGetTag('ALBUM'))
 ag=string_replace_all(ag,'%trg',MetadataGetTag('GENRE'))
-ag=string_replace_all(ag,'%try',MetadataGetTag('YEAR'))
+ag=string_replace_all(ag,'%try',MetadataGetTag('DATE'))
 ag=string_replace_all(ag,'%trn',MetadataGetTag('TRACKNUMBER'))
 }
 return ag;
