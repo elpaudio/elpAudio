@@ -253,3 +253,4 @@ MetadataGetModuleName
 ds_list_duplicate
 
 MusicShowBalloon
+MetadataClear
