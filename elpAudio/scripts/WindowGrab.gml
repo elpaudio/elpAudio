@@ -1,4 +1,4 @@
-if !window_get_active() exit
+if !global._focused exit
 if point_in_rectangle(
     display_mouse_get_x(),display_mouse_get_y(),
     window_get_x()+x-1000*pressed,window_get_y()+y-1000*pressed,
