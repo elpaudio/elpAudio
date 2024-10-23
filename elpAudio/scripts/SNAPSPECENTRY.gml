@@ -1,3 +1,8 @@
+//*
+do_nothing(argument1)
+return SnapSpecEntry2(argument0)
+
+/* /
 var _v,vf;_v=argument0;vf=argument1
 if global.paused or global.stopped {
 return 0.5+lengthdir_x(0.5,current_time*0.05+_v)
@@ -12,3 +17,4 @@ i+=1
 //myres/=floor(256/__visual_freq)//__visual_freq
 return (myres/max(myk,1))/240
 }
+/*/
