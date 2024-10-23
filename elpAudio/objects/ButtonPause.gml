@@ -14,7 +14,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=1
 #define Mouse_7
 /*"/*'/**//* YYD ACTION
@@ -22,7 +22,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=0
 enter=0
 if ds_list_size(global.list)<1 exit
@@ -33,5 +33,5 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=0

@@ -54,7 +54,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=1
 #define Mouse_5
 /*"/*'/**//* YYD ACTION
@@ -62,7 +62,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=1
 #define Mouse_7
 /*"/*'/**//* YYD ACTION
@@ -70,7 +70,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=0
 
 file=get_open_filename('All supported files|'+__fformats,'')
@@ -88,7 +88,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 draw=1
 image_index=0
 #define Mouse_11

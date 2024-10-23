@@ -21,16 +21,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 can=1
-#define Mouse_11
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-if !window_get_active() exit
-//can=0
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -13,7 +13,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !window_get_active() exit
+if !global._focused exit
 image_index=1
 #define Mouse_7
 /*"/*'/**//* YYD ACTION
@@ -22,7 +22,7 @@ action_id=603
 applies_to=self
 */
 ///VISUALISER PICKING
-if !window_get_active() exit
+if !global._focused exit
 image_index=0
 if global.customvisuals>1 {
 if __visualiser<global.customvisuals-1 __visualiser+=1 else __visualiser=0

@@ -39,6 +39,7 @@ if !variable_global_exists('___init111') {
     FMODSpectrumSetSnapshotType(5)
     if variable_global_exists('__rmspd') room_speed=global.__rmspd
     HandlePlaylistLoad()
+    draw_set_circle_precision(60)
     global.___init111=1
 }
 #define Alarm_0
@@ -71,7 +72,7 @@ applies_to=self
 ///global vars
 
 global.list_size=ds_list_size(global.list)
-global._focused= (window_has_focus()||window_get_active())
+global._focused= (window_has_focus()||window_get_active()||window_get_minimized())
 
 if global.play {
     global.pos=FMODInstanceGetPosition(global.playing)
