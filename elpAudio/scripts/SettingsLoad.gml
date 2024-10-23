@@ -4,6 +4,7 @@ else
     ds_list_clear(global.list)
 
 MetadataCreate()
+MetadataClear()
 
 if !registry_exists_ext('elpAudio','work_dir') then
     registry_write_string_ext('elpAudio','work_dir',program_directory)
@@ -69,7 +70,8 @@ __preload_type,__open_migrated_list,
 __DisVisWhenNotAct,__PreloadNextSong,
 __FrameSkip,__millisecs,
 __recursive,
-delta_time
+delta_time,
+__buffer_size
 ;
 
 __elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
@@ -90,6 +92,7 @@ __FrameSkip=0;              // skip frames enabler
 __millisecs=1;              // frames for skip (if __FrameSkip==1)
 __recursive=0;              // recursive file adder in Add File button
 delta_time=room_speed;      // delta speed
+__buffer_size=256;         // audio buffer size
 
 __customcaption_idle='elpAudio '+Get_elpAudioVersion();
 __customcaption_play='';
@@ -126,6 +129,7 @@ __millisecs=            ini_read_real('','FramesForSkip',1)
 set_synchronization(    ini_read_real('','VerticalSync',0))
 __monitorpos=           ini_read_real('','MonitorPositions',0)
 __recursive=            ini_read_real('','RecursiveFolders',0)
+__buffer_size=          ini_read_real('','AudioBufferSize',256);
 ini_close()
 } else {
 var ffff;ffff=file_text_open_write('settings.ini')

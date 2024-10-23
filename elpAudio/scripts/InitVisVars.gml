@@ -1,6 +1,6 @@
 ///(x,y,w,h)
 maxs =__visual_freq;
-maxw = 256;
+maxw = __buffer_size;
 xx = argument0;
 yy = argument1;
 w = argument2;
