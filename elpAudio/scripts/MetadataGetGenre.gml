@@ -1,6 +1,8 @@
 var a0;a0=string(argument0);
-//if string_length(string_digits(a0))==0 return a0
-i=0 repeat(256) {if a0!=string(i) return a0}
+var i,ret;ret=0;
+i=0 repeat(256) {if a0!=string(i) ret+=1 i+=1}
+if ret=i then
+    return argument0;
 
 if a0='0'   return "Blues"
 if a0='1'   return "Classic Rock"
