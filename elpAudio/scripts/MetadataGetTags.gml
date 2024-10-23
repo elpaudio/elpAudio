@@ -1,4 +1,4 @@
-ds_map_clear(global.metatags);
+MetadataClear()
 var res; res = FMODInstanceGetNextTag(argument0)
 var tag;
 var mydata;
@@ -19,6 +19,10 @@ if filename_ext(ds_list_find_value(global.list,global.current))=='.mp3' {
 } else {
     //if !ds_map_exists(global.metatags,'TITLE') then
         ds_map_duplicate(global.metatags,'TRACK','TITLE') //TRACK in FLACs is title
+}
+if ds_map_exists(global.metatags,'GENRE') {
+    mygenre=string(MetadataGetGenre(ds_map_get(global.metatags,'GENRE')))
+    ds_map_set(global.metatags,'GENRE',mygenre)
 }
 
 if ds_map_exists(global.metatags,'DATE') ds_map_duplicate(global.metatags,'DATE','YEAR')
