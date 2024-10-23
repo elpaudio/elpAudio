@@ -73,6 +73,7 @@
 		|CompileFloatText
 		|MetadataGetGenre
 		|MetadataGetTag
+		|MetadataClear
 	|FilterString
 	|SoundIsStereo
 	|NumberIsNegative
