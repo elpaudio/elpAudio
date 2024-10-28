@@ -260,6 +260,7 @@
 		|FMODCreateSoundFromMicInput
 		|FMODMicStart
 		|FMODMicStop
+	|GetOpenFilename
 +WINDOW
 	|WindowGrab
 +PLUGIN
@@ -272,3 +273,4 @@
 			|ButtonPull
 		+HANDLERS
 			|plgListIsLoaded
+		|AddFileAction

@@ -254,3 +254,8 @@ ds_list_duplicate
 
 MusicShowBalloon
 MetadataClear
+
+
+GetOpenFilename
+
+AddFileAction
