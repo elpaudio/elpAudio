@@ -1,6 +1,7 @@
-# elpAudio <img align="right" width="128" height="128" src="https://github.com/elpaudio/elpAudio/raw/master/elpAudio/data/ico.bmp" alt="elpAudio icon" />
-![ssdasda](https://github.com/user-attachments/assets/4a5b4f75-f95c-478b-8e6e-449bb0cfed99)
-![image](https://github.com/user-attachments/assets/128a51ca-ffbd-4e6e-9c45-0fe7e44f99ca)
+# elpAudio <img align="right" width="128" height="128" src="https://github.com/elpaudio/elpAudio/raw/master/screenshots/ico.png" alt="elpAudio icon" />
+<img src="https://github.com/elpaudio/elpAudio/raw/master/screenshots/player1.png" alt="elpAudio screenshot 1" />
+<img src="https://github.com/elpaudio/elpAudio/raw/master/screenshots/player2.png" alt="elpAudio screenshot 2" />
+<img src="https://github.com/elpaudio/elpAudio/raw/master/screenshots/player3.png" alt="elpAudio screenshot 3" />
 
 
  ### elpAudio - simple audio player using FMOD, made on Game Maker 8.2. Has more liberty than WinAmp.
