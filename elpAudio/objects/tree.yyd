@@ -20,9 +20,6 @@
 +SLIDERS
 	|VolumeSlider
 	|PosSlider
-+LIST
-	|ButtonSaveList
-	|ButtonLoadList
 +VISUALISERS
 	|ButtonVisualiser
 	|Visualiser
