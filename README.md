@@ -9,7 +9,7 @@
 ## FEATURES
 elpAudio supports popular music file formats (`.mp3, .wav, .ogg, .flac, .opus`), tracker music (`.mod, .xm, .s3m, .it`) and other formats (`.m3u, .m3u8, .pls, .fsb, .mp2, .wma`). 
 elpAudio has it's own playlist format called elpAudio PlayList (`.epl`), it's so simple to edit and save!
-And, most important, **elpAudio supports custom themes (skins), visualisers and plugins!**
+And, most important, **elpAudio supports custom themes (skins), visualisers and plugins!** and even support Winamp2 skin files (`.wsz` or `.zip`), they will be converted to elpAudio theme with `wsz2eat` that is available in elpAudio settings 
 
 For the moment elpAudio supports only Windows systems and can run even on Windows XP! 
 
