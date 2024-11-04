@@ -12,13 +12,15 @@ showagain=1
 image_blend=__butaddmuscol
 prevdir=working_directory
 
-menustr='Add file|Add folder|Add URL|Show files|Clear playlist'
+menustr='Add file|Add folder|Add URL|Show files|Load playlist|Save playlist|Clear playlist'
 
-AddFileAction(0,"file=GetOpenFilename('Add files to your playlist.',working_directory,'somefile.mp3','All supported files|'+__fformats)if file!='' {if FileIsSupported(file) then {ds_list_add(global.list,file)prevdir=filename_dir(file)} else show_message('Unsupported file: '+file)}")
+AddFileAction(0,"file=GetOpenFilename('Add a file to your playlist.',working_directory,'somefile.mp3','All supported files|'+__fformats)if file!='' {if FileIsSupported(file) then {ds_list_add(global.list,file)prevdir=filename_dir(file)} else show_message('Unsupported file: '+file)}")
 AddFileAction(1,"folder=get_directory_alt('Add folder to your playlist','')if folder='' then nothing=1 else {if !__recursive GetMusicFromFolder(folder+'\') else {listt=file_find_list(folder,'*.*',fa_hidden,1,1)i=0 repeat ds_list_size(listt) {val=ds_list_find_value(listt,i) if FileIsSupported(val) ds_list_add(global.list,val) i+=1} ds_list_destroy(listt)}}")
 AddFileAction(2,"myurl=get_string('Type in the URL to stream music from (radio)','https://elpoepgames.site/elpAudio/music/welcome.mp3') isweb=string_count('https://',string_lower(myurl)) or string_count('http://',string_lower(myurl)) if isweb then ds_list_add(global.list,myurl)")
 AddFileAction(3,string_ext("execute_program('explorer.exe','/root,{0}'+filename_dir(GetListEntryRaw(global.current))+'{0}',0);",'"'))
-AddFileAction(4,"MusicStop() MetadataClear() global.current=0 global.curpreloaded=-1 global.preloaded=-1 ds_list_clear(global.list) global._loaded_list=1 HandlePlaylistLoad()")
+AddFileAction(4,"myfile=get_open_filename('All supported files|'+__flists+'|elpAudio playlist files|*.epl;*.elf|Other playlist files|*.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;','list.epl')if myfile!='' ListLoad(myfile,1)")
+AddFileAction(5,"myfile=get_save_filename('elpAudio Play List|*.epl','list-1.epl')if myfile='' nothing=1 else ListSave(myfile)")
+AddFileAction(6,"MusicStop() MetadataClear() global.current=0 global.curpreloaded=-1 global.preloaded=-1 ds_list_clear(global.list) global._loaded_list=1 HandlePlaylistLoad()")
 #define Alarm_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
