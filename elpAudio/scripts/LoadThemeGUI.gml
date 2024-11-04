@@ -63,14 +63,6 @@ mybutton=ButtonAlwaysOnTop
 mybutton.x=ini_read_real('Interface','butontopx',64)
 mybutton.y=ini_read_real('Interface','butontopy',16)
 
-mybutton=ButtonSaveList
-mybutton.x=ini_read_real('Interface','butsaplx',64)
-mybutton.y=ini_read_real('Interface','butsaply',16)
-
-mybutton=ButtonLoadList
-mybutton.x=ini_read_real('Interface','butloplx',64)
-mybutton.y=ini_read_real('Interface','butloply',16)
-
 mybutton=ButtonStop
 mybutton.x=ini_read_real('Interface','butstopx',64)
 mybutton.y=ini_read_real('Interface','butstopy',16)

@@ -6,32 +6,30 @@ var mysec;mysec='Default'
 
 // Icons.
 
-global.__ico_play=  -1//sprButtonPlay
-global.__ico_pause= -1//sprButtonPause
-global.__ico_stop=  -1//sprButtonStop
-global.__ico_next=  -1//sprButtonNext
-global.__ico_prev=  -1//sprButtonPrev
-global.__ico_float= -1//sprFloatText
-global.__ico_stngs= -1//sprButtonSettings
-global.__ico_migui= -1//sprGUIControls
-global.__ico_alont= -1//sprButtonAlwaysOnTop
-global.__ico_admus= -1//sprButtonAddFile
-global.__ico_volbt= -1//sprVolumeSlider
-global.__ico_slide= -1//sprVolumeSlider2
-global.__ico_sortb= -1//sprButtonShuffle
-global.__ico_slid2= -1//sprPosSlider
-global.__ico_slide2=-1//sprPosSlider2
-global.__ico_visua= -1//sprButtonVisualiser
-global.__ico_savel= -1//sprButtonSaveList
-global.__ico_loadl= -1//sprButtonLoadList
-global.__ico_loop=  -1//sprButtonLoop
+global.__ico_play=  -1
+global.__ico_pause= -1
+global.__ico_stop=  -1
+global.__ico_next=  -1
+global.__ico_prev=  -1
+global.__ico_float= -1
+global.__ico_stngs= -1
+global.__ico_migui= -1
+global.__ico_alont= -1
+global.__ico_admus= -1
+global.__ico_volbt= -1
+global.__ico_slide= -1
+global.__ico_sortb= -1
+global.__ico_slid2= -1
+global.__ico_slide2=-1
+global.__ico_visua= -1
+global.__ico_loop=  -1
 global.__ico_visfg=-1
 global.__ico_front=-1
 global.__ico_back=-1
-global.__fon_vis=-1//fntVisual
-global.__fon_cap=-1//fntCaption
+global.__fon_vis=-1
+global.__fon_cap=-1
 global.__floatbg=-1
-global.__floatfg=-1//sprFloatText
+global.__floatfg=-1
 global.__floatw=128
 global.__floath=32
 global.__drawfloattime2=0
@@ -48,10 +46,9 @@ global.floatalpha=1
 global.customvisuals=0
 global.plrwidth=480
 global.plrheight=80
-//with all {visible=1}// depth-=1}
 with all image_speed=0
 
-// Colors .
+// Colors.
 
 global.color1=c_fuchsia
 global.color2=c_aqua
@@ -108,10 +105,6 @@ if ini_key_exists(mysec,'lpbt') global.__ico_loop=SpritePull(-1,filename_path(ar
 if ini_key_exists(mysec,'ambt') global.__ico_admus=SpritePull(-1,filename_path(argument0)+ini_read_string(mysec,'ambt','butaddmus.png')            ,2,0,0,0,0)
 //always on top button
 if ini_key_exists(mysec,'atbt') global.__ico_alont=SpritePull(-1,filename_path(argument0)+ini_read_string(mysec,'atbt','butalont.png')             ,2,0,0,0,0)
-//load list button
-if ini_key_exists(mysec,'llbt') global.__ico_loadl=SpritePull(-1,filename_path(argument0)+ini_read_string(mysec,'llbt','butloadlist.png')          ,2,0,0,0,0)
-//save list button
-if ini_key_exists(mysec,'slbt') global.__ico_savel=SpritePull(-1,filename_path(argument0)+ini_read_string(mysec,'slbt','butsavelist.png')          ,2,0,0,0,0)
 //visual button
 if ini_key_exists(mysec,'vibt') global.__ico_visua=SpritePull(-1,filename_path(argument0)+ini_read_string(mysec,'vibt','butvisual.png')            ,2,0,0,0,0)
 //float fg
@@ -152,7 +145,6 @@ ini_read_string(mysec,'captionName','Tahoma'),
 ini_read_real(mysec,'capSize',16),ini_read_real(mysec,'capIsBold',0),ini_read_real(mysec,'capIsItalic',0),0,fontlast)
 }
 
-//ini_close()
 }
 
 global.changeview=1
