@@ -51,7 +51,7 @@ Load sprites:
 myspr=sprite_add(`file name`,`image frames (only horizontal)`,`smooth image`,`remove color taken from left-top pixel on all image`,`origin x of sprite`,`origin y of sprite`);
 
 Load Sounds (GM-Built-in audio):
-mysnd=sound_add(`sound file name`);
+mysnd=sound_add(`sound file name`, 'preload type');
 
 ===================================
 	SOUND PLAYER
