@@ -259,3 +259,5 @@ MetadataClear
 GetOpenFilename
 
 AddFileAction
+
+MinVisVars

@@ -65,6 +65,7 @@
 		|eaPlay
 		|ClearSurface
 		|MergeColor
+		|MinVisVars
 +elpaudio
 	+METADATA
 		|MetadataCreate
