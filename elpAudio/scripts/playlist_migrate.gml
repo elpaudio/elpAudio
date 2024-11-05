@@ -25,7 +25,7 @@ if(!hf)
     return "";
 }
 
-file_text_write_string(hf,'0') // TYPICAL PLAYLIST.
+file_text_write_string(hf,'0') // .epl
 file_text_writeln(hf)
 
 hf2 = file_text_open_read(fullname);
@@ -462,7 +462,7 @@ while(!file_text_eof(hf2))
     }
     else
     {
-        show_message("Unsupported format:##" + fullname + "##Operation canceled." )
+        show_message("Unsupported format:#" + fullname + "##Operation canceled." )
         file_text_close(hf2);
         file_text_close(hf);
         return "";
