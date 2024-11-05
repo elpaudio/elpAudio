@@ -8,9 +8,6 @@ MetadataClear()
 
 if !registry_exists_ext('elpAudio','work_dir') then
     registry_write_string_ext('elpAudio','work_dir',program_directory)
-/*else
-    if program_directory!=registry_read_string_ext('elpAudio','work_dir') then
-        registry_write_string_ext('elpAudio','work_dir',program_directory)*/
 
 globalvar __fformats; //file formats
     __fformats='*.aiff;*.asf;*.at3;*.at9;*.cda;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp2;*.mp3;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.xma';
