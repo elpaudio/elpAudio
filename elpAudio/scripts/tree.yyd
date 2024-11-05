@@ -37,6 +37,7 @@
 	|FindFile
 	|ds_map_duplicate
 	|ds_list_duplicate
+	|ds_list_replace2
 +VISUALISERS
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY

@@ -261,3 +261,4 @@ GetOpenFilename
 AddFileAction
 
 MinVisVars
+ds_list_replace2
