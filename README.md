@@ -1,7 +1,7 @@
 # elpAudio <img align="right" width="128" height="128" src="screenshots/ico.png" alt="elpAudio icon" />
 <img src="screenshots/player1.png" alt="elpAudio screenshot 1" />
-<img src="screenshots/player2.png" alt="elpAudio screenshot 2" />
-<img src="screenshots/player3.png" alt="elpAudio screenshot 3" />
+<img src="screenshots/player3.png" alt="elpAudio screenshot 2" />
+<img src="screenshots/player2.png" alt="elpAudio screenshot 3" />
 
 
  ### elpAudio - simple audio player using FMOD, made on Game Maker 8.2. Has more liberty than WinAmp.
