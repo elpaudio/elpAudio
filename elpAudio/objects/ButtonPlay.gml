@@ -57,8 +57,8 @@ FloatText.xx=0
 }
 enter=0
 if ds_list_empty(global.list) exit
+if !global.playing MusicPlay(GetListEntryRaw(global.current))
 if global.paused or global.stopped {MusicResume() exit}
-if global.play=0 MusicPlay(GetListEntryRaw(global.current))
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
