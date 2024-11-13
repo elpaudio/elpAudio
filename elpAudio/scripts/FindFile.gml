@@ -2,12 +2,13 @@
 var ff,e1;
 ff=argument0
 e1=argument1
-var str;str=ff+'*'+e1+';'
+var str;str=''
+var f;f=''
 if !string_ends_with(ff,'\') ff+='\'
 var i;i=1 repeat(argument_count-1) {
-str+=ff+argument[i]+';'
+str=ff+argument[i]
+f=file_find_first(str,fa_hidden+fa_readonly);
+if f!='' {file_find_close() return ff+f}
 i+=1;
 }
-var f;f=file_find_first(str,fa_hidden+fa_readonly);
-if f!='' {file_find_close() return f}
-else return '';
+return '';
