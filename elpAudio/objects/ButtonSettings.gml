@@ -37,7 +37,7 @@ applies_to=self
 var s;s=show_menu('Reload visualisers|Reload plugins',-1)
 switch(s){
 case 0: object_event_clear(Visualiser,ev_other,ev_user0); LoadVisualisers(); break;
-case 1: with objPlugin instance_destroy(); LoadPlugins(); break;
+case 1: with all {if object_index==objPlugin instance_destroy();} LoadPlugins(); break;
 default: break;
 }
 #define Mouse_11
