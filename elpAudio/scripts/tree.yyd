@@ -27,7 +27,7 @@
 	|ini_rs
 	|copy_to_playlist
 	+BLUR
-		|draw_textblur
+		|draw_text_blur
 		|draw_spriteblur
 	+COLORS
 		|ereal
@@ -37,7 +37,7 @@
 	|FindFile
 	|ds_map_duplicate
 	|ds_list_duplicate
-	|ds_list_replace2
+	|ds_list_swap
 +VISUALISERS
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
