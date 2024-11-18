@@ -41,12 +41,11 @@ surf=surface_create(oldfloatw,40)
 
 draw_set_font(global.__fon_vis)
 
-//draws text to surface and then that surfaces is drawing in "Draw"
+//draws text to surface and then that surface is drawing in "Draw"
 surface_set_target(surf)
 draw_clear_alpha(0,0)
 draw_set_color(global.floatcolor)
 draw_set_halign(fa_left*(1-text_centered)+fa_center*text_centered)
-
 draw_text_transformed(xx+text_centered*width/2,6,mystr,1,1,0)
 surface_reset_target()
 #define Draw_0
