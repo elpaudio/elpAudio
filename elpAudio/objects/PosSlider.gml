@@ -33,14 +33,14 @@ slw=sprite_get_width(global.__ico_slide)
 
 if point_in_rectangle(mouse_x,mouse_y,-pr*100+x,y-pr*10,pr*100+x+sprite_width,y+sprite_height+pr*10) and press {
     if mouse_check_button(mb_left) then {
-        myx=clamp(mouse_x+slw/2,x+slw/2,x+sprite_width-slw/2)
+        myx=clamp(mouse_x,x+slw/2,x+sprite_width-slw/2)
         pr=1
     } else {
-        myx=round(clamp(x+global.pos*sprite_width+slw/2,x+slw/2,x+sprite_width-slw/2))
+        myx=round(clamp(x+global.pos*sprite_width,x+slw/2,x+sprite_width-slw/2))
         pr=0
         }
 } else
-    myx=round(clamp(x+global.pos*sprite_width+slw/2,x+slw/2,x+sprite_width-slw/2))
+    myx=round(clamp(x+global.pos*sprite_width,x+slw/2,x+sprite_width-slw/2))
 
 draw_self()
 draw_sprite_part_ext(sprite_index,1,0,0,myx-x,sprite_height,x,y,1,1,c_white,1)
