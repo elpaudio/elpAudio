@@ -1,10 +1,9 @@
-
 GetMusicFromFolder
 MusicPlay
 MusicStop
 MusicPause
 MusicResume
-draw_textblur
+draw_text_blur
 LoadTheme
 FilterString
 Shuffle
@@ -193,8 +192,6 @@ FMODMicStop
 SNAPSPECENTRY
 WindowGrab
 read_wh
-
-
 CompileCaptions
 fname_path
 ini_rs
@@ -251,15 +248,9 @@ MetadataGetTag
 ds_map_duplicate
 MetadataGetModuleName
 ds_list_duplicate
-
 MusicShowBalloon
 MetadataClear
-
-
 GetOpenFilename
-
 AddFileAction
-
 MinVisVars
-ds_list_replace2
-
+ds_list_swap
