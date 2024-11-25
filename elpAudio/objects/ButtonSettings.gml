@@ -28,6 +28,7 @@ if !global._focused exit
 image_index=0
 enter=0
 execute_program(global.__progdir+'data\elpaudiosettings.exe','',0)
+io_clear()
 #define Mouse_8
 /*"/*'/**//* YYD ACTION
 lib_id=1
