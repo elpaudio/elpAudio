@@ -55,11 +55,11 @@ action_id=603
 applies_to=self
 */
 draw_set_font(global.__fon_vis)
+draw_set_color(c_white)
 
-if usebgimg and sprite_exists(global.__floatbg) and global.__floatbg>0 {
-    draw_set_color(c_white)
+if usebgimg and sprite_exists(global.__floatbg) and global.__floatbg>0
     draw_sprite_stretched_ext(global.__floatbg,0,x,y,width,height,__floatbgcol,1)
-}
+
 
 draw_set_color(global.floatcolor)
 draw_set_halign(fa_left)
@@ -113,4 +113,4 @@ if drawqueue {
 
 if usefgimg and sprite_exists(global.__floatfg)
 and global.__floatfg>0 then
-    draw_sprite_stretched_ext(global.__floatfg,1,x,y,width,height,__floatfgcol,1)
+    draw_sprite_stretched_ext(global.__floatfg,0,x,y,width,height,__floatfgcol,1)
