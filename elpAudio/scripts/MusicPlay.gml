@@ -28,6 +28,7 @@ song=global.musicsound
 if isweb then exit
 
 global.playing=FMODSoundLoop(song,0)
+FMODMasterSetVolume(global.volume/100)
 
 FMODInstanceSetLoopCount(global.playing,-1*ButtonLoop.on)
 
