@@ -1,3 +1,4 @@
+if __skipdrivecheck {return argument0 exit}
 var l,mydrive,i,mydir;
 l=argument0
 mydrive=ord("C")
