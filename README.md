@@ -17,7 +17,7 @@ For the moment elpAudio supports only Windows systems and can run even on Window
 ![Screenshot at 2024-10-18 18-33-02](https://github.com/user-attachments/assets/38f3dc73-6316-4e83-b240-bd03a092cfcd)
 
 ## Do you have a bug? Or you just want to help the project, ask a question or give an idea? 
-Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gmail.com**, **elpaudiodev@gmail.com**
+Send your message to discord: **elpoep**, or on e-mail: **elpoepstudios@gmail.com**, **elpaudiodev@gmail.com**
 
 ****For older releases, please consider to <a href='https://github.com/elpoeprod/elpAudio/releases'>this link.</a>****
 
