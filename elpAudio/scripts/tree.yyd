@@ -17,6 +17,7 @@
 	|Shuffle
 	|HandlePlaylistLoad
 	|MusicShowBalloon
+	|MusicImmediatelyStop
 +MISC
 	|draw_point_width
 	|string_ext

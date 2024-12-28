@@ -254,3 +254,5 @@ GetOpenFilename
 AddFileAction
 MinVisVars
 ds_list_swap
+MusicImmediatelyStop
+
