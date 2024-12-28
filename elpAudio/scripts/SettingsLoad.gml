@@ -10,7 +10,7 @@ if !registry_exists_ext('elpAudio','work_dir') then
     registry_write_string_ext('elpAudio','work_dir',program_directory)
 
 globalvar __fformats; //file formats
-    __fformats='*.aiff;*.asf;*.at3;*.at9;*.cda;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp2;*.mp3;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.xma';
+    __fformats='*.aiff;*.asf;*.at3;*.at9;*.cda;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp2;*.mp3;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wma;*.xm;*.xma';
 
 globalvar __flists; // supported playlist formats
     __flists='*.epl;*.elf;*.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;'
