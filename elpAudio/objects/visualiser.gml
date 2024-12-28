@@ -25,10 +25,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-x=global.visualx
-y=global.visualy
-width=global.visualw
-height=global.visualh
+x=global.visx
+y=global.visy
+width=global.visw
+height=global.vish
 
 //taken from Visual Music and fixed for elpAudio
 if global.play and !global.paused and !global.stopped {
