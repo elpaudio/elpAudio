@@ -1,6 +1,6 @@
 InitVisVars(x,y,width,height);
 GetSpecBuffer(maxw,0,myinst);
-repeat(maxs){SetVisColorAlpha(MergeColor(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05+i*0.5)),1);
+i=0 repeat(maxs){SetVisColorAlpha(MergeColor(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05+i*0.5)),1);
 draw_rectangle(xx+ii,yy+h,xx+ii+w/maxs,yy+h-SNAPSPECENTRY(i,maxs)*h,0);
 i+=1;
 ii+=w/maxs;}

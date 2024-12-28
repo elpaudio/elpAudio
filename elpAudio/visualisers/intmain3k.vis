@@ -1,0 +1,148 @@
+/* foobar2000-like menu by elpoep */
+if !variable_local_exists('__fb2kinit') {
+__fb2kinit=0;
+myimg=sprite_add(working_directory+'\visualisers\img\noalbum.png',1,0,0,0,0);myfa=fa_hidden+fa_readonly
+myfont=font_add_file('../themes/sourcesans.ttf','Source Sans Pro',10,0,0,0,4096)
+check=0;
+smooth=0;
+noimg=0;
+_mysong=global.current;myscale=1;
+clicks=0;
+__clickwait=0;
+myfile='';
+global.pminit=0;
+mystart=0;
+InitVisVars(x+width*0.25,y,width-width*0.25,height);
+pminit=0;
+wh=GetFontHeight('custom',myfont);
+_sel=CheckSelect();
+_rolled=0;
+__wait=5;
+myh=floor(h/wh)
+mystart=0
+__ss=-1;
+clicks=0;
+__clickwait=0;
+fh=floorto(h,wh)
+InitVisVars(x+width*0.25,y,width-width*0.25,height*0.1);
+__swavesurf=surface_create(w,h);
+__ssurf2=surface_create(w,h);
+if surface_exists(__swavesurf) ClearSurface(__swavesurf);
+if surface_exists(__ssurf2) ClearSurface(__ssurf2);
+}
+
+InitVisVars(x,y,width,height);
+if !MinVisVars(128,wh*4) exit;
+
+FontSet('custom',myfont);
+
+/* !!!!FOLDERIMG!!!! */
+InitVisVars(x,y,width*0.25,width*0.25);
+if _mysong!=global.current {
+/*if fname_path(GetListEntryRaw(_mysong))==fname_path(GetListEntryRaw(global.current)) and plgListIsLoaded()==0 nothing=1 else {*/
+_mysong=global.current;
+check=0;
+/*}*/
+}
+if global.play {
+if !check {
+__rawentry=GetListEntryRaw(_mysong)
+myfile=FindFile(fname_path(__rawentry),filename_remove_ext(filename_name(__rawentry))+'.jpg',filename_remove_ext(filename_name(__rawentry))+'.jpeg',filename_remove_ext(filename_name(__rawentry))+'.png','*.jpg','*.png','*.bmp','*.jpeg','*.gif','*.tga');
+if myfile='' myfile=FindFile(directory_previous(fname_path(__rawentry))+'/',filename_remove_ext(filename_name(__rawentry))+'.jpg',filename_remove_ext(filename_name(__rawentry))+'.jpeg',filename_remove_ext(filename_name(__rawentry))+'.png','*.jpg','*.png','*.bmp','*.jpeg','*.gif','*.tga');
+if file_exists(myfile) and !noimg and myfile!='' {
+if sprite_exists(myimg) sprite_delete(myimg);
+myimg=sprite_add(myfile,1,0,0,0,0);
+} else {if sprite_exists(myimg) sprite_delete(myimg); myimg=sprite_add('visualisers\img\noalbum.png',1,0,0,0,0)}
+myscale=min(width/sprite_get_width(myimg),height/sprite_get_height(myimg))*0.5;
+check=1;}}
+
+if mouse_check_button_pressed(mb_right) and point_in_rectangle(mouse_x,mouse_y,xx,yy,xx+w,yy+h) {settings=show_menu('Reload image|Enable/disable album image|Open image in image viewer',-1) if settings=-1 n=1; if settings=0 _mysong=-12341234; if settings=1 {noimg=!noimg _mysong=-12341234} if settings=2 execute_shell(myfile,'')}
+draw_set_color(0);
+draw_rectangle(xx,yy,xx+w,yy+h,1);
+draw_set_color(c_white);
+if myimg>-1 {
+texture_set_interpolation(1); draw_sprite_stretched_ext(myimg,0,xx,yy,w,h,c_white,1); texture_set_interpolation(0);
+}
+
+/* !!!!PLAYLIST!!!! */
+InitVisVars(x+width*0.25,y+height*0.1,width-width*0.25,height-height*0.1);
+if __wait>0 __wait-=1*delta_time else {_sel=CheckSelect(); __wait=5; fh=floorto(h,wh);myh=floor(h/wh);}
+if __clickwait>0 __clickwait-=1 else {clicks=0}
+if mouse_wheel_down() {if _rolled+myh<GetListSize() _rolled+=clamp(myh,1,5)}
+if mouse_wheel_up() {if _rolled>0 _rolled-=clamp(myh,1,5)}
+if plgListIsLoaded()==1 {_rolled=0;}
+_rolled=clamp(_rolled,0,max(0,GetListSize()-myh))
+SetVisColorAlpha(c_black,1);
+DrawRect(xx,yy,xx+w,yy+h);
+if point_in_rectangle(mouse_x,mouse_y,xx,yy,xx+w,yy+h) {
+they=clamp(floor((mouse_y-yy)/(wh*(h/fh)))+_rolled,0,GetListSize()-1)
+draw_set_color(c_gray*(1-mouse_check_button(mb_left))+c_dkgray*mouse_check_button(mb_left))
+DrawRectOutline(xx,yy+((they-_rolled)*(wh*(h/fh))),xx+w-1,yy+((they-_rolled)*(wh*(h/fh)))+(wh*(h/fh)))
+if mouse_check_button_pressed(mb_left) {mystart=they __clickwait=20 clicks+=1 if clicks>1 and _sel!=they {_sel=they global.current=they eaPlay(they) io_clear() clicks=0}}
+if mouse_check_button(mb_left) and mystart!=they {ds_list_swap(GetCurrentList(),mystart,they) mystart=they if _sel!=they _sel=they}
+if mouse_check_button_released(mb_right) {
+__ss=show_menu('Add to favorites|Add to playlist...|Remove from playlist',-1) if __ss=0 {_fname='playlists\favorites.epl' if !file_exists(_fname) {v=file_text_open_write(_fname) file_text_write_string(v,'0');file_text_writeln(v);file_text_close(v);} v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}if __ss=1 {_fname=get_open_filename('Any .epl playlist|*.epl',''); if _fname==1 n=1 else {v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}} if __ss=2 {ds_list_delete(global.list,they) if they==CheckSelect() {global.preloaded=-1 global.curpreloaded=-1 eaPlay(they); } else if they<global.current global.current-=1;}}
+}
+
+i=0 repeat(clamp(GetListSize(),0,myh)) {
+if i+_rolled>GetListSize() and string(GetListEntry(i+_rolled))=="0" n=1 else {
+
+draw_set_color(c_aqua)
+if i+_rolled=_sel DrawRectOutline(xx,yy+i*(wh*(h/fh)),xx+w-1,yy+i*(wh*(h/fh))+(wh*(h/fh)))
+_s=string(GetListEntry(i+_rolled))
+draw_set_color(c_white)
+DrawTextSpecial(xx+2,yy+i*(wh*(h/fh)),string(i+1+_rolled)+'. '+_s,floor(string_length(_s)*(w/string_width(_s))))
+}
+i+=1
+}
+draw_set_color(c_gray)
+DrawRect(xx+w-2,yy+(_rolled*(h/max(GetListSize(),1))),xx+w,yy+((_rolled+h/max(GetListSize(),1))*(h/max(GetListSize(),1))))
+draw_set_color(c_white)
+
+/* !!!!METADATA!!!! */
+InitVisVars(x,y+width*0.25,width*0.25,height-width*0.25)
+draw_set_color(c_white)
+_mysa="Artist: "+MetadataGetTag("ARTIST")
+DrawTextSpecial(xx+2,yy+2,_mysa,floor(string_length(_mysa)*(w/max(string_width(_mysa),1))))
+_mysa="Title: "+MetadataGetTag("TITLE")
+DrawTextSpecial(xx+2,yy+2+wh,_mysa,floor(string_length(_mysa)*(w/max(string_width(_mysa),1))))
+_mysa="Album: "+MetadataGetTag("ALBUM")
+DrawTextSpecial(xx+2,yy+2+wh*2,_mysa,floor(string_length(_mysa)*(w/max(string_width(_mysa),1))))
+_mysa="Date: "+MetadataGetTag("DATE")
+DrawTextSpecial(xx+2,yy+2+wh*3,_mysa,floor(string_length(_mysa)*(w/max(string_width(_mysa),1))))
+_mysa="Genre: "+MetadataGetTag("GENRE")
+DrawTextSpecial(xx+2,yy+2+wh*4,_mysa,floor(string_length(_mysa)*(w/max(string_width(_mysa),1))))
+_mysa="Format: "+MetadataGetTag("FORMAT")
+DrawTextSpecial(xx+2,yy+2+wh*5,_mysa,floor(string_length(_mysa)*(w/max(string_width(_mysa),1))))
+_mysa="Channels: "+MetadataGetTag("CHANNELS")
+DrawTextSpecial(xx+2,yy+2+wh*6,_mysa,floor(string_length(_mysa)*(w/max(string_width(_mysa),1))))
+
+/* !!!!WAVE VIS!!!! */
+InitVisVars(x+width*0.25,y,width-width*0.25,height*0.1);
+if !surface_exists(__swavesurf) {__swavesurf=surface_create(w,h);ClearSurface(__swavesurf);}
+if !surface_exists(__ssurf2) {__ssurf2=surface_create(w,h);ClearSurface(__ssurf2);}
+
+surface_copy(__ssurf2,0,0,__swavesurf);
+surface_set_target(__swavesurf);
+draw_surface_ext(__ssurf2,0,0,1,1,0,c_white,0.2);
+
+GetWaveBuffer(maxw,0,myinst)
+SetVisColorAlpha(global.visfgcol,1)
+repeat(maxw)
+{
+    draw_line((w/maxw)*i,SNAPWAVEENTRY(i,maxw)*h,(w/maxw)*(i+1),SNAPWAVEENTRY(i+1,maxw)*h)
+    i+=1;
+}
+i=0;
+GetWaveBuffer(maxw,1,myinst)
+SetVisColorAlpha(global.visfgcol,0.6);
+repeat(maxw)
+{
+    draw_line((w/maxw)*i,SNAPWAVEENTRY(i,maxw)*h,(w/maxw)*(i+1),SNAPWAVEENTRY(i+1,maxw)*h)
+    i+=1;
+}
+
+SetVisColorAlpha(c_white,1)
+surface_reset_target();
+
+draw_surface_ext(__swavesurf,xx,yy,1,1,0,c_white,0.98);

@@ -1,0 +1,51 @@
+/* List Control Plugin by elpoep */
+/* Update on 18.11.2024*/
+InitVisVars(x,y,width,height);
+if !variable_local_exists('pminit') {
+pminit=0;
+wh=GetFontHeight('default');
+_sel=CheckSelect();
+_rolled=0;
+__wait=5;
+myh=floor(h/wh)
+mystart=0
+__ss=-1;
+clicks=0;
+__clickwait=0;
+fh=floorto(h,wh)
+}
+
+FontSet('default')
+
+if __wait>0 __wait-=1*delta_time else {_sel=CheckSelect(); __wait=5; fh=floorto(h,wh);myh=floor(h/wh);}
+if __clickwait>0 __clickwait-=1 else {clicks=0}
+if mouse_wheel_down() {if _rolled+myh<GetListSize() _rolled+=clamp(myh,1,5)}
+if mouse_wheel_up() {if _rolled>0 _rolled-=clamp(myh,1,5)}
+if plgListIsLoaded()==1 {_rolled=0;}
+_rolled=clamp(_rolled,0,max(0,GetListSize()-myh))
+SetVisColorAlpha(c_black,1);
+DrawRect(xx,yy,xx+w,yy+h);
+if point_in_rectangle(mouse_x,mouse_y,xx,yy,xx+w-4,yy+h) {
+they=clamp(floor((mouse_y-yy)/(wh*(h/fh)))+_rolled,0,GetListSize()-1)
+draw_set_color(c_gray*(1-mouse_check_button(mb_left))+c_dkgray*mouse_check_button(mb_left))
+DrawRectOutline(xx,yy+((they-_rolled)*(wh*(h/fh))),xx+w-5,yy+((they-_rolled)*(wh*(h/fh)))+(wh*(h/fh)))
+if mouse_check_button_pressed(mb_left) {mystart=they __clickwait=20 clicks+=1 if clicks>1 and _sel!=they {_sel=they global.current=they eaPlay(they) io_clear() clicks=0}}
+if mouse_check_button(mb_left) and mystart!=they {ds_list_swap(GetCurrentList(),mystart,they) mystart=they if _sel!=they _sel=they}
+if mouse_check_button_released(mb_right) {
+__ss=show_menu('Add to favorites|Add to playlist...|Remove from playlist',-1) if __ss=0 {_fname='playlists\favorites.epl' if !file_exists(_fname) {v=file_text_open_write(_fname) file_text_write_string(v,'0');file_text_writeln(v);file_text_close(v);} v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}if __ss=1 {_fname=get_open_filename('Any .epl playlist|*.epl',''); if _fname==1 n=1 else {v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}} if __ss=2 {ds_list_delete(global.list,they) if they==CheckSelect() {global.preloaded=-1 global.curpreloaded=-1 eaPlay(they); } else if they<global.current global.current-=1;}}
+}
+
+i=0 repeat(clamp(GetListSize(),0,myh)) {
+if i+_rolled>GetListSize() and string(GetListEntry(i+_rolled))=="0" n=1 else {
+
+draw_set_color(c_aqua)
+if i+_rolled=_sel DrawRectOutline(xx,yy+i*(wh*(h/fh)),xx+w-1,yy+i*(wh*(h/fh))+(wh*(h/fh)))
+_s=string(GetListEntry(i+_rolled))
+draw_set_color(c_white)
+DrawTextSpecial(xx+2,yy+i*(wh*(h/fh)),string(i+1+_rolled)+'. '+_s,floor(string_length(_s)*((w-4)/string_width(_s))))
+}
+i+=1
+}
+draw_set_color(c_gray)
+DrawRect(xx+w-4,yy+(_rolled*(h/max(GetListSize(),1))),xx+w,yy+((_rolled+h/max(GetListSize(),1))*(h/max(GetListSize(),1))))
+draw_set_color(c_white)

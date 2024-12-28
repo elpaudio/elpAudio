@@ -1,0 +1,38 @@
+InitVisVars(x,y,width,height)
+if !MinVisVars(100,50) exit
+if !variable_local_exists('__initwf3d') {
+__initwf3d=0;
+__wf3dsurf=surface_create(w,h);ClearSurface(__wf3dsurf);
+__wf3dsurf2=surface_create(w,h);ClearSurface(__wf3dsurf2);
+}
+
+if !surface_exists(__wf3dsurf) {__wf3dsurf=surface_create(w,h);ClearSurface(__wf3dsurf);}
+if !surface_exists(__wf3dsurf2) {__wf3dsurf2=surface_create(w,h);ClearSurface(__wf3dsurf2);}
+
+surface_copy(__wf3dsurf2,0,0,__wf3dsurf)
+
+surface_set_target(__wf3dsurf);
+draw_surface_stretched_ext(__wf3dsurf2,-w*1.2*0.08,h*0.25,w*1.2,h*0.7,c_white,1);
+SetVisColorAlpha(merge_color(c_gray,c_aqua,0.25),0.1)
+draw_rectangle(0,0,w,h,0)
+
+i=0
+GetSpecBuffer(maxw,0,myinst)
+SetVisColorAlpha(merge_color(merge_color(c_blue,c_aqua,0.25+lengthdir_x(0.25,current_time*0.08)),c_white,0.25+lengthdir_y(0.25,current_time*0.081+10)),1)
+repeat(maxw)
+{
+    draw_line(w/2-((w/2)/maxw)*i,h*0.7-SNAPSPECENTRY(i,maxw)*h*0.5,w/2-((w/2)/maxw)*(i+1),h*0.7-SNAPSPECENTRY(i+1,maxw)*h*0.5)
+    i+=1;
+}
+i=0;
+GetSpecBuffer(maxw,1,myinst)
+repeat(maxw)
+{
+    draw_line(w/2+((w/2)/maxw)*i,h*0.7-SNAPSPECENTRY(i,maxw)*h*0.5,w/2+((w/2)/maxw)*(i+1),h*0.7-SNAPSPECENTRY(i+1,maxw)*h*0.5)
+    i+=1;
+}
+
+SetVisColorAlpha(c_white,1)
+surface_reset_target();
+
+draw_surface_ext(__wf3dsurf,xx,yy,1,1,0,c_white,0.98);
