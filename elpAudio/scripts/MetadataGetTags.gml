@@ -2,7 +2,6 @@ MetadataClear()
 var res; res = FMODInstanceGetNextTag(argument0)
 var tag;
 var mydata;
-var me;me=filename_ext(ds_list_find_value(global.list,global.current))
 while(res){if(res = 1){
     tag=string_lettersdigits(string_upper(FMODGetTagName()))
 
@@ -13,7 +12,8 @@ while(res){if(res = 1){
 
     res = FMODInstanceGetNextTag(argument0)
 }
-if filename_ext(ds_list_find_value(global.list,global.current))=='.mp3' {
+var ext;ext=filename_ext(ds_list_find_value(global.list,global.current))
+if string_lower(ext)=='.mp3' {
     if ds_map_exists(global.metatags,'TRACK') then
         ds_map_duplicate(global.metatags,'TRACK','TRACKNUMBER') //TRACK in MP3s is track number
 } else {
@@ -27,3 +27,6 @@ if ds_map_exists(global.metatags,'GENRE') {
 
 if ds_map_exists(global.metatags,'DATE') ds_map_duplicate(global.metatags,'DATE','YEAR')
 else if ds_map_exists(global.metatags,'YEAR') ds_map_duplicate(global.metatags,'YEAR','DATE')
+
+ds_map_set(global.metatags,'FORMAT',ext)
+ds_map_set(global.metatags,'CHANNELS',FMODSoundGetNumChannels(global.musicsound))
