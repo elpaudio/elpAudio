@@ -22,6 +22,6 @@ external_call(global.eapi_trayadd,window_handle(),'elpAudio',0)
 external_call(global.eapi_trayprepballoon,'elpAudio',global.trackname,0,1);
 external_call(global.eapi_traysetballoon,window_handle(),0)
 var mi;mi=external_call(global.eapi_resaddicon,'data\ico.ico')
-external_call(global.eapi_trayseticon,mi)
+global.micon=external_call(global.eapi_trayseticon,mi)
 return 1
 }
