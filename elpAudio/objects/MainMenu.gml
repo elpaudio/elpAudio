@@ -20,6 +20,7 @@ chroma=0
 //* <//* for original version, /* for no-chromakey version>
 chroma=1
 window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
+window_resize_buffer(global.plrwidth,global.plrheight,1,display_aa)
 /*/
 
 message_position(window_get_x(),window_get_y()+window_get_height())
