@@ -66,7 +66,7 @@ if !directory_exists(global.__progdir+'playlists') directory_create(global.__pro
 globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__stick_to_edges
 __enablevisdist,__changecaption,__captionchangespd,
 __customcaption_idle,__customcaption_play,__customcaption_ch1,__customcaption_ch2,
-__enable_fswitch,__elp_enable_old_themes,
+__elp_enable_old_themes,
 __preload_type,__open_migrated_list,
 __DisVisWhenNotAct,__PreloadNextSong,
 __FrameSkip,__millisecs,
@@ -85,7 +85,6 @@ __visual_freq=64;           // visual frequency (bars)
 __stick_to_edges=1;         // stick window to display edges (only one display)
 __changecaption=1;          // changing caption
 __captionchangespd=3;       // changing caption speed in seconds
-__enable_fswitch=1;         // enable fullscreen switching
 __preload_type=1;           // stream song or not
 __open_migrated_list=1;     // open migrated playlist after converting
 __DisVisWhenNotAct=0;       // disable visualiser when window is not active nor focused
@@ -102,49 +101,51 @@ __customcaption_play='';
 __customcaption_ch1='';
 __customcaption_ch2='';
 
-
+var mysec;mysec='General'
 if file_exists(global.__progdir+'settings.ini') {
 ini_open(global.__progdir+'settings.ini')
-global.themepath=       global.__progdir+string_copy(ini_read_string('','themePath','themes\default\theme.ini'),string_pos('themes\',ini_read_string('','themePath','themes\default\theme.ini')),1024)
-__speed=                ini_read_real('','textSpeed',15)
-global.volume=          ini_read_real('','volume',100)
-global.current=         ini_read_real('','lastSong',0)
-__visualiser=           ini_read_real('','lastVisualiser',0)
-__visual_freq=          ini_read_real('','visualiserBars',64)
+global.themepath=       global.__progdir+string_copy(ini_read_string(mysec,'themePath','themes\default\theme.ini'),string_pos('themes\',ini_read_string(mysec,'themePath','themes\default\theme.ini')),1024)
+__speed=                ini_read_real(mysec,'textSpeed',15)
+global.volume=          ini_read_real(mysec,'volume',100)
+global.current=         ini_read_real(mysec,'lastSong',0)
+__visualiser=           ini_read_real(mysec,'lastVisualiser',0)
+__visual_freq=          ini_read_real(mysec,'visualiserBars',64)
 __customcaption_idle=   ini_read_string('Caption','customCaptionIdle','elpAudio %v')
 __customcaption_play=   ini_read_string('Caption','customCaptionPlay','(%t1/%ta1) elpAudio %v [%pn/%ps]')
 __customcaption_ch1=    ini_read_string('Caption','customCaptionChange1','(%t1/%ta1) elpAudio %v [%pn/%ps]')
 __customcaption_ch2=    ini_read_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
 __changecaption=        ini_read_real('Caption','changeCaption',1)
 __captionchangespd=     ini_read_real('Caption','captionChangeSpeed',3)*60
-__enable_fswitch=       ini_read_real('','enableSwitchFScreen',1)
-__stick_to_edges=       ini_read_real('','windowSticksToEdges',1)
-__stopsongafter=        ini_read_real('','stopSongAfterPlaying',0)
-__elp_enable_old_themes=ini_read_real('','EnableOldThemes',0)
-__open_migrated_list=   ini_read_real('','OpenMigratedListAfterConverting',1)
-__preload_type=         ini_read_real('','MusicPreloadType',1)
-__DisVisWhenNotAct=     ini_read_real('','DisableVisualiserWhenNotFocused',0)
-__PreloadNextSong=      ini_read_real('','PreloadNextSong',1)
-global.randomized=      ini_read_real('','ShuffleSongs',0)
-global.__rmspd=         max(ini_read_real('','framerate',60),1)
-__FrameSkip=            ini_read_real('','SkipFrames',0)
-__millisecs=            ini_read_real('','FramesForSkip',1)
-set_synchronization(    ini_read_real('','VerticalSync',0))
-__monitorpos=           ini_read_real('','MonitorPositions',0)
-__recursive=            ini_read_real('','RecursiveFolders',0)
-__buffer_size=          ini_read_real('','AudioBufferSize',256);
-__skipdrivecheck=       ini_read_real('','SkipFileDriveCheck',1)
+__enable_fswitch=       ini_read_real(mysec,'enableSwitchFScreen',1)
+__stick_to_edges=       ini_read_real(mysec,'windowSticksToEdges',1)
+__stopsongafter=        ini_read_real(mysec,'stopSongAfterPlaying',0)
+__elp_enable_old_themes=ini_read_real(mysec,'EnableOldThemes',0)
+__open_migrated_list=   ini_read_real(mysec,'OpenMigratedListAfterConverting',1)
+__preload_type=         ini_read_real(mysec,'MusicPreloadType',1)
+__DisVisWhenNotAct=     ini_read_real(mysec,'DisableVisualiserWhenNotFocused',0)
+__PreloadNextSong=      ini_read_real(mysec,'PreloadNextSong',1)
+global.randomized=      ini_read_real(mysec,'ShuffleSongs',0)
+global.__rmspd=         max(ini_read_real(mysec,'framerate',60),1)
+__FrameSkip=            ini_read_real(mysec,'SkipFrames',0)
+__millisecs=            ini_read_real(mysec,'FramesForSkip',1)
+set_synchronization(    ini_read_real(mysec,'VerticalSync',0))
+__monitorpos=           ini_read_real(mysec,'MonitorPositions',0)
+__recursive=            ini_read_real(mysec,'RecursiveFolders',0)
+__buffer_size=          ini_read_real(mysec,'AudioBufferSize',256);
+__skipdrivecheck=       ini_read_real(mysec,'SkipFileDriveCheck',1)
 ini_close()
 } else {
 var ffff;ffff=file_text_open_write('settings.ini')
-file_text_write_string(ffff,'[]')
+file_text_write_string(ffff,'[General]')
 repeat(2)file_text_writeln(ffff)
 file_text_close(ffff)
 }
-
-if file_exists(global.__progdir+'playlists\temp.epl') then
-    ListLoad(global.__progdir+'playlists\temp.epl',0)
-else
-    GetMusicFromFolder(global.__progdir+'music_examples\')
-
+if argument_count==1 {
+    if argument[0] {
+        if file_exists(global.__progdir+'playlists\temp.epl') then
+            ListLoad(global.__progdir+'playlists\temp.epl',0)
+        else
+            GetMusicFromFolder(global.__progdir+'music_examples\')
+    }
+}
 __customcaption_idle='elpAudio '+Get_elpAudioVersion()
