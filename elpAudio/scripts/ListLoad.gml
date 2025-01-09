@@ -1,6 +1,5 @@
 var file,fname,myfile,va,isweb,migrated,str_unsupported,str_notexist;
 fname=argument0
-va= (room==mainroom)
 migrated=0
 str_unsupported='Unsupported file format: "{0}".#({1})'
 str_notexist='File does not exists: "{0}".'
@@ -40,10 +39,10 @@ if string_lower(filename_ext(fname))=='.epl' then { //.epl start
            if FileIsSupported(myfile) or isweb
               ds_list_add(adl,myfile)
            else
-              if va and myfile!=''
+              if myfile!=''
                   show_message(string_ext(str_unsupported,filename_ext(myfile),myfile))
           } else {
-              if va and myfile!=''
+              if myfile!=''
                   show_message(string_ext(str_notexist,string(myfile)))
             }
 
@@ -63,10 +62,10 @@ else if string_lower(filename_ext(fname))=='.elf' then {
         if file_exists(myfile) or isweb {
            if FileIsSupported(myfile) or isweb
               ds_list_add(adl,myfile)
-           else if va and myfile!=''
+           else if myfile!=''
                   show_message(string_ext(str_unsupported,filename_ext(myfile),myfile))
         } else {
-            if va and myfile!=''
+            if myfile!=''
                 show_message(string_ext(str_notexist,string(myfile)))
         }
 

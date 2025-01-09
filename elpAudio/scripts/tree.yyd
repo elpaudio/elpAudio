@@ -22,7 +22,6 @@
 	|draw_point_width
 	|string_ext
 	|debug
-	|read_wh
 	|CompileCaptions
 	|fname_path
 	|ini_rs
@@ -35,10 +34,12 @@
 		|HexToColor
 	|do_nothing
 	|SpritePull
+	|SpriteDelete
 	|FindFile
 	|ds_map_duplicate
 	|ds_list_duplicate
 	|ds_list_swap
+	|FontPull
 +VISUALISERS
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
@@ -266,6 +267,7 @@
 	|GetOpenFilename
 +WINDOW
 	|WindowGrab
+	|WindowResize
 +PLUGIN
 	|LoadPlugins
 	|InitPlugin
