@@ -191,7 +191,6 @@ FMODMicStart
 FMODMicStop
 SNAPSPECENTRY
 WindowGrab
-read_wh
 CompileCaptions
 fname_path
 ini_rs
@@ -255,4 +254,6 @@ AddFileAction
 MinVisVars
 ds_list_swap
 MusicImmediatelyStop
-
+SpriteDelete
+WindowResize
+FontPull
