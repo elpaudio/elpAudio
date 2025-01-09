@@ -1,9 +1,10 @@
 ///()
+var mysec;mysec='General'
 ini_open(global.__progdir+'settings.ini')
-    ini_write_real('','volume',global.volume)
-    ini_write_real('','lastSong',global.current)
-    ini_write_real('','lastVisualiser',__visualiser)
-    ini_write_real('','ShuffleSongs',global.randomized)
+    ini_write_real(mysec,'volume',global.volume)
+    ini_write_real(mysec,'lastSong',global.current)
+    ini_write_real(mysec,'lastVisualiser',__visualiser)
+    ini_write_real(mysec,'ShuffleSongs',global.randomized)
 ini_close()
 
 if ds_list_size(global.list)>0
