@@ -10,7 +10,7 @@ alarm[10]=10
 
 cwait=360
 hh=0
-
+imgfront=-1
 xftime=1
 yftime=1
 
@@ -21,7 +21,7 @@ chroma=0
 chroma=1
 window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
 window_resize_buffer(global.plrwidth,global.plrheight,1,display_aa)
-/*/
+/**/
 
 message_position(window_get_x(),window_get_y()+window_get_height())
 
@@ -32,7 +32,6 @@ action_id=603
 applies_to=self
 */
 ///Initializer
-if !variable_global_exists('___init111') {
     LoadPlugins() //find plugins from plugins folder
     LoadFMOD()
     FMODinit(8,1)
@@ -41,8 +40,6 @@ if !variable_global_exists('___init111') {
     if variable_global_exists('__rmspd') room_speed=global.__rmspd
     HandlePlaylistLoad()
     draw_set_circle_precision(60)
-    global.___init111=1
-}
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -124,10 +121,9 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-///SAVE LIST AND CLOSE
+///load new theme
 if file_exists('save_list') {
     file_delete('save_list')
-    ListSave(global.__progdir+'playlists\temp.epl')
     SettingsSave()
 }
 /*"/*'/**//* YYD ACTION
@@ -168,9 +164,9 @@ if useimgforfront=0 {
     draw_rectangle(x,y,x+w,y+h,0)
 }
 else
-if sprite_exists(global.__img_front) and global.__img_front>-1 {
+if sprite_exists(imgfront) and imgfront>-1 {
     draw_set_color(c_white)
-    draw_sprite_stretched_ext(global.__img_front,0,x,y,w,h,c_white,1)
+    draw_sprite_stretched_ext(imgfront,0,x,y,w,h,c_white,1)
     }
 
 draw_set_alpha(1)

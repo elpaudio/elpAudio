@@ -4,11 +4,9 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-dir=random(1000)
 xx=0
 myh=0
 turnon=0
-
 wait=0
 #define Step_0
 /*"/*'/**//* YYD ACTION

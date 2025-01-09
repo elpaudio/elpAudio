@@ -4,5 +4,5 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if sprite_exists(global.__img_back) and global.__img_back>-1
-    draw_sprite_stretched_ext(global.__img_back,0,backx,backy,backw,backh,__bgcol,1)
+if sprite_exists(imgback) and imgback>-1
+    draw_sprite_stretched_ext(imgback,0,x,y,w,h,__bgcol,1)
