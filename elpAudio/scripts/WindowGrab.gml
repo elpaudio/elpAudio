@@ -22,22 +22,22 @@ if yftime=1 then yonb=0
 
 ///WINDOW STICKS TO EDGES
 if (display_mouse_get_x()-mx<=-global.realwidth+display_get_width()+16 or display_mouse_get_y()-my<=-global.realheight+display_get_height()+16
-or display_mouse_get_x()-mx+window_get_width()>=global.realwidth-16 or display_mouse_get_y()-my+window_get_height()>=global.realheight-16)
+or display_mouse_get_x()-mx+view_wport>=global.realwidth-16 or display_mouse_get_y()-my+view_hport>=global.realheight-16)
 and __stick_to_edges
 {
     if display_mouse_get_x()-mx<=-global.realwidth+display_get_width()+16 then
         wx=-global.realwidth+display_get_width()
     else
-    if display_mouse_get_x()-mx+window_get_width()>=global.realwidth-16 then
-        wx=global.realwidth-window_get_width()
+    if display_mouse_get_x()-mx+view_wport>=global.realwidth-16 then
+        wx=global.realwidth-view_wport
     else
         wx=display_mouse_get_x()-mx
 
     if display_mouse_get_y()-my<=-global.realheight+display_get_height()+16 then
         wy=-global.realheight+display_get_height()
     else
-    if display_mouse_get_y()-my+window_get_height()>=global.realheight-16 then
-        wy=global.realheight-window_get_height()
+    if display_mouse_get_y()-my+view_hport>=global.realheight-16 then
+        wy=global.realheight-view_hport
     else
         wy=display_mouse_get_y()-my
     }
