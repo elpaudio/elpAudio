@@ -26,6 +26,7 @@ Send your message to discord: **elpoep**, or on e-mail: **elpoepstudios@gmail.co
 
 ## To compile source code of elpAudio you need:
   - Game Maker 8.2
+  - You can compile elpAudio using our new product, [GMake](https://github.com/elpaudio/GMake). Really fast and useful!
 
 ### How to install Game Maker 8.2?
 <a href="https://www.mediafire.com/file/bqwyde1k1s2hrz2/Game_Maker_8.2_Setup.exe/file">Click here to download installer</a>, then install it on your PC.
