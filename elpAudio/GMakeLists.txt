@@ -1,0 +1,70 @@
+/* set the name of project */
+name='elpAudio-2.4'
+project_dir='.'
+
+/* will create a build directory with 'name' name */
+set_game_title(name)
+/* will compile the project as a elpAudio.exe in recently created directory*/
+directory_create(project_dir+name+'\data\')
+directory_create(project_dir+name+'\plugins\')
+directory_create(project_dir+name+'\playlists\')
+directory_create(project_dir+name+'\visualisers\')
+include_game('elpAudio.gm82',project_dir+name+'\elpAudio.exe')
+include_file('fmodex.dll',name+'\fmodex.dll')
+include_file('lib_audio.dll',name+'\lib_audio.dll')
+include_file('LICENSE.txt',name+'\LICENSE.txt')
+include_file('README.txt',name+'\README.txt')
+include_file('themes\clacon2.ttf',name+'\themes\clacon2.ttf')
+include_file('themes\sourcesans.ttf',name+'\themes\sourcesans.ttf')
+include_file('themes\readme.ttf',name+'\themes\readme.ttf')
+include_file('data\elpAudioSettings.exe',name+'\data\elpAudioSettings.exe')
+include_file('data\vars.txt',name+'\data\vars.txt')
+include_file('data\ico.ico',name+'\data\ico.ico')
+include_file('plugins\README.txt',name+'\plugins\README.txt')
+include_file('plugins\monitor.plg',name+'\plugins\monitor.plg')
+include_file('plugins\ea_monitors.dll',name+'\plugins\ea_monitors.dll')
+include_file('plugins\test.plg',name+'\plugins\test.plg')
+include_file('playlists\empty.elf',name+'\playlists\empty.elf')
+include_file('visualisers\fire3d.vis',name+'\visualisers\fire3d.vis')
+include_file('visualisers\fountain.vis',name+'\visualisers\fountain.vis')
+include_file('visualisers\playlist.vis',name+'\visualisers\playlist.vis')
+include_file('visualisers\intmain3k.vis',name+'\visualisers\intmain3k.vis')
+include_file('visualisers\img\noalbum.png',name+'\visualisers\img\noalbum.png')
+file=file_find_first(project_dir+'visualisers\default_*.vis',fa_hidden)
+while file!='' {include_file('visualisers\'+file,name+'\visualisers\'+file) file=file_find_next()}
+file_find_close()
+
+include_dir(project_dir+'music_examples\',project_dir+name+'\music_examples\')
+include_dir(project_dir+'themes\default\',project_dir+name+'\themes\default\')
+include_dir(project_dir+'themes\boombox\',project_dir+name+'\themes\boombox\')
+include_dir(project_dir+'themes\light\',project_dir+name+'\themes\light\')
+include_dir(project_dir+'themes\compact\',project_dir+name+'\themes\compact\')
+include_dir(project_dir+'themes\astronaut',project_dir+name+'\themes\astronaut\')
+include_dir(project_dir+'icons\',project_dir+name+'\icons\')
+
+set_include_zip(true,project_dir+name+'.zip')
+
+/* now build no-dx9 build */
+file_delete(project_dir+name+'\elpAudio.exe')
+include_file('settings\extensions-nochromakey.txt','settings\extensions.txt')
+include_file('objects\MainMenu-nochromakey.gml','objects\MainMenu.gml')
+
+include_game('elpAudio.gm82',project_dir+name+'\elpAudio-nodx9.exe')
+
+set_include_zip(true,project_dir+name+'-nodx9.zip')
+
+/* now include winapi2 */
+
+include_file('windows.dll',name+'\windows.dll')
+
+set_include_zip(true,project_dir+name+'-winapi-nodx9.zip')
+
+/* now reset everything and build normal winapi build */
+file_delete(project_dir+name+'\elpAudio-nodx9.exe')
+
+include_file('settings\extensions-orig.txt','settings\extensions.txt')
+include_file('objects\MainMenu-orig.gml','objects\MainMenu.gml')
+
+include_game('elpAudio.gm82',project_dir+name+'\elpAudio.exe')
+
+set_include_zip(true,project_dir+name+'-winapi.zip')
