@@ -183,8 +183,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if keyboard_check_pressed(vk_f4) and __enable_fswitch then
-    window_set_fullscreen(!window_get_fullscreen())
+if keyboard_check_pressed(vk_tab) {if __visualiser<global.customvisuals-1 __visualiser+=1 else __visualiser=0}
 
 if keyboard_check_pressed(vk_f7) {
     if global.play {
