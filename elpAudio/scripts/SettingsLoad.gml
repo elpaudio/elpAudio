@@ -24,7 +24,14 @@ __monitorpos=0 //-1 - two monitors, second monitor on left
                 //1 - two monitors, second monitor on right
                 //you can change it with Shift+Left/Right arrow
 
-room_caption='elpAudio '+Get_elpAudioVersion()
+globalvar ea_version;
+if !registry_exists_ext('elpAudio','version')
+    registry_write_string_ext('elpAudio','version',Get_elpAudioVersion())
+
+if registry_read_string_ext('elpAudio','version')!=Get_elpAudioVersion()
+    registry_write_string_ext('elpAudio','version',Get_elpAudioVersion())
+ea_version=registry_read_string_ext('elpAudio','version')
+room_caption='elpAudio '+ea_version
 room_speed=60
 global.play=0
 global.paused=0
@@ -45,6 +52,7 @@ global.is_stereo=0
 global.list_size=0
 global.pos=0
 global._focused=0
+global.__gonnareset=0
 
 global.dirr=''
 global.FMODbuf = string_repeat(chr(0), 256)
@@ -148,9 +156,7 @@ if argument_count==1 {
             GetMusicFromFolder(global.__progdir+'music_examples\')
     }
 }
-__customcaption_idle='elpAudio '+Get_elpAudioVersion()
-
-
+__customcaption_idle='elpAudio '+ea_version
 
 //effects
 globalvar fx_mixer,fx_osc,fx_lowpass,fx_itlowpass,fx_highpass,fx_echo,fx_flanger,fx_distort,fx_normalize, fx_equaliser, fx_pitchshift,fx_chorus,fx_reverb,fx_vst,fx_winamp,fx_itecho,fx_compressor,fx_sfxreverb,fx_lowpass_simple;

@@ -257,4 +257,9 @@ MusicImmediatelyStop
 SpriteDelete
 WindowResize
 FontPull
-InitEffect
+LoadThemePlugin
+VisReset
+HandleResets
+FontDelete
+FreeSurface
+

@@ -69,6 +69,10 @@
 		|ClearSurface
 		|MergeColor
 		|MinVisVars
+		|VisReset
+		|HandleResets
+		|FontDelete
+		|FreeSurface
 +elpaudio
 	+METADATA
 		|MetadataCreate
@@ -104,8 +108,8 @@
 		|LoadTheme
 		|LoadThemeGUI
 		|LoadThemeCols
+		|LoadThemePlugin
 	|LoadVisualisers
-	|InitEffect
 +EXT
 	+GMFMODSimpleScripts
 		|LoadFMOD
