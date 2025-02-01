@@ -9,3 +9,7 @@ with MainMenu alarm[5]=10;
 object_event_add(MainMenu,ev_alarm,5,'__monitors=external_call(global._plg_mon) alarm[5]=20; global.realwidth=external_call(global._plg_w) global.realheight=external_call(global._plg_h)');
 instance_destroy();
 /*(*CREATE_END*)*/
+Now free DLL after reseting.
+/*(*FREE*)*/
+external_free('plugins\ea_monitors.dll')
+/*(*FREE_END*)*/
