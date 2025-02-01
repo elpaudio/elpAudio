@@ -10,6 +10,13 @@ global.settings=0
 nope=1
 sprite_index=global.__ico_stngs
 image_blend=__butsettcol
+#define Alarm_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+object_event_clear(Visualiser,ev_other,ev_user0); global.__gonnareset=0 with Visualiser LoadVisualisers();
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -37,9 +44,9 @@ applies_to=self
 */
 var s;s=show_menu('Reload visualisers|Reload plugins',-1)
 switch(s){
-case 0: object_event_clear(Visualiser,ev_other,ev_user0); LoadVisualisers(); break;
-case 1: with all {if object_index==objPlugin instance_destroy();} LoadPlugins(); break;
-default: break;
+    case 0: global.__gonnareset=1 alarm[1]=1 break;
+    case 1: with all {if object_index==objPlugin if __plugin_from_theme==0 instance_destroy();} LoadPlugins(); break;
+    default: break;
 }
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
