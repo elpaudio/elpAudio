@@ -22,18 +22,17 @@ if !file_exists(ff) {debug('LoadPlugins() error: no '+ff+' found') exit}
 ini_open(ff)
 var f;f=file_find_first('plugins\*.plg',fa_hidden)
 
-if f!='' {
-    do {
-        if ini_read_real('Plugins',f,1)==1 {
-            plg=instance_create(0,0,objPlugin)
-            debug('LoadPlugins(): created instance objPlugin (id: '+string(plg)+')')
-            with plg {
-                InitPlugin('plugins\'+f)
-                execute_string(_scrBegin)
-                }
+while f!='' {
+    if ini_read_real('Plugins',f,1)==1 {
+        plg=instance_create(0,0,objPlugin)
+        debug('LoadPlugins(): created instance objPlugin (id: '+string(plg)+')')
+        with plg {
+            InitPlugin('plugins\'+f)
+            execute_string(_scrBegin)
+            __plugin_from_theme=0
         }
-        f=file_find_next()
-    } until f=''
+    }
+    f=file_find_next()
 }
 
 file_find_close()
