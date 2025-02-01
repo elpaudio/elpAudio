@@ -74,7 +74,7 @@ globalvar __visbgcol,__visfgcol,__butplaycol,__butstopcol,__butnextcol,__butprev
 
 if file_exists(global.themepath) {
 ini_open(global.themepath)
-if Get_elpAudioVersion()!=ini_read_string(mysec,'RequiredVersion',Get_elpAudioVersion())
+if ea_version!=ini_read_string(mysec,'RequiredVersion',ea_version)
 and ini_read_real(mysec,'RequiredVersion',1.6)<1.6 //last version with button changes
 and !__elp_enable_old_themes
 {
@@ -139,5 +139,6 @@ ini_read_real(mysec,'capSize',16),ini_read_real(mysec,'capIsBold',0),ini_read_re
 
 LoadThemeGUI(global.themepath)
 LoadThemeCols()
+LoadThemePlugin()
 
 ini_close()
