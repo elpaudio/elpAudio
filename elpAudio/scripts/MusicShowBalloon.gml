@@ -1,21 +1,22 @@
+if !__allow_balloons exit
 dllname='windows.dll'
 if file_exists(dllname) {
-if !variable_global_exists('eapi_trayprepballoon') then
+if !variable_global_exists('eapi_trayprepballoon')
     global.eapi_trayprepballoon=external_define (dllname,'hobbl_com_systray_prepareballoon',dll_stdcall,ty_real,4,ty_string,ty_string,ty_real,ty_real);
 
-if !variable_global_exists('eapi_traysetballoon') then
+if !variable_global_exists('eapi_traysetballoon')
     global.eapi_traysetballoon = external_define (dllname,'hobbl_com_systray_setballoon',dll_stdcall,ty_real,2,ty_real,ty_real);
 
-if !variable_global_exists('eapi_resaddicon') then
+if !variable_global_exists('eapi_resaddicon')
     global.eapi_resaddicon = external_define (dllname,'hobbl_com_resource_loadicon',dll_stdcall,ty_real,1,ty_string);
 
-if !variable_global_exists('eapi_trayseticon') then
+if !variable_global_exists('eapi_trayseticon')
     global.eapi_trayseticon = external_define (dllname,'hobbl_com_systray_seticon',dll_stdcall,ty_real,3,ty_real,ty_real,ty_real);
 
-if !variable_global_exists('eapi_trayadd') then
+if !variable_global_exists('eapi_trayadd')
     global.eapi_trayadd=external_define (dllname,'hobbl_com_systray_add',dll_stdcall,ty_real,3,ty_real,ty_string,ty_real);
 
-if !variable_global_exists('eapi_trayremove') then
+if !variable_global_exists('eapi_trayremove')
     global.eapi_trayremove=external_define (dllname,'hobbl_com_systray_remove',dll_stdcall,ty_real,2,ty_real,ty_real);
 
 external_call(global.eapi_trayadd,window_handle(),'elpAudio',0)

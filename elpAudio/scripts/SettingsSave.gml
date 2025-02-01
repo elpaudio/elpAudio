@@ -8,6 +8,6 @@ ini_open(global.__progdir+'settings.ini')
 ini_close()
 
 if ds_list_size(global.list)>0
-ListSave(global.__progdir+'playlists\temp.epl')
+    ListSave(global.__progdir+'playlists\temp.epl')
 else
-file_delete(global.__progdir+'playlists\temp.epl')
+    file_delete(global.__progdir+'playlists\temp.epl')

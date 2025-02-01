@@ -81,7 +81,8 @@ __FrameSkip,__millisecs,
 __recursive,
 delta_time,
 __buffer_size,
-__skipdrivecheck
+__skipdrivecheck,
+__allow_balloons
 ;
 
 __elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
@@ -103,50 +104,52 @@ __recursive=0;              // recursive file adder in Add File button
 delta_time=room_speed;      // delta speed
 __buffer_size=256;          // audio buffer size
 __skipdrivecheck=1;         // Skip "file is on drives" checking (checks every connected drives (like C:, D:) for that file, useful if music file has changed the drive but folder tree was kept the same, but it's slow!)
+__allow_balloons=1;         // show notifications when song was changed
 
-__customcaption_idle='elpAudio '+Get_elpAudioVersion();
+__customcaption_idle='elpAudio '+ea_version;
 __customcaption_play='';
 __customcaption_ch1='';
 __customcaption_ch2='';
 
 var mysec;mysec='General'
 if file_exists(global.__progdir+'settings.ini') {
-ini_open(global.__progdir+'settings.ini')
-global.themepath=       global.__progdir+string_copy(ini_read_string(mysec,'themePath','themes\default\theme.ini'),string_pos('themes\',ini_read_string(mysec,'themePath','themes\default\theme.ini')),1024)
-__speed=                ini_read_real(mysec,'textSpeed',15)
-global.volume=          ini_read_real(mysec,'volume',100)
-global.current=         ini_read_real(mysec,'lastSong',0)
-__visualiser=           ini_read_real(mysec,'lastVisualiser',0)
-__visual_freq=          ini_read_real(mysec,'visualiserBars',64)
-__customcaption_idle=   ini_read_string('Caption','customCaptionIdle','elpAudio %v')
-__customcaption_play=   ini_read_string('Caption','customCaptionPlay','(%t1/%ta1) elpAudio %v [%pn/%ps]')
-__customcaption_ch1=    ini_read_string('Caption','customCaptionChange1','(%t1/%ta1) elpAudio %v [%pn/%ps]')
-__customcaption_ch2=    ini_read_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
-__changecaption=        ini_read_real('Caption','changeCaption',1)
-__captionchangespd=     ini_read_real('Caption','captionChangeSpeed',3)*60
-__enable_fswitch=       ini_read_real(mysec,'enableSwitchFScreen',1)
-__stick_to_edges=       ini_read_real(mysec,'windowSticksToEdges',1)
-__stopsongafter=        ini_read_real(mysec,'stopSongAfterPlaying',0)
-__elp_enable_old_themes=ini_read_real(mysec,'EnableOldThemes',0)
-__open_migrated_list=   ini_read_real(mysec,'OpenMigratedListAfterConverting',1)
-__preload_type=         ini_read_real(mysec,'MusicPreloadType',1)
-__DisVisWhenNotAct=     ini_read_real(mysec,'DisableVisualiserWhenNotFocused',0)
-__PreloadNextSong=      ini_read_real(mysec,'PreloadNextSong',1)
-global.randomized=      ini_read_real(mysec,'ShuffleSongs',0)
-global.__rmspd=         max(ini_read_real(mysec,'framerate',60),1)
-__FrameSkip=            ini_read_real(mysec,'SkipFrames',0)
-__millisecs=            ini_read_real(mysec,'FramesForSkip',1)
-set_synchronization(    ini_read_real(mysec,'VerticalSync',0))
-__monitorpos=           ini_read_real(mysec,'MonitorPositions',0)
-__recursive=            ini_read_real(mysec,'RecursiveFolders',0)
-__buffer_size=          ini_read_real(mysec,'AudioBufferSize',256);
-__skipdrivecheck=       ini_read_real(mysec,'SkipFileDriveCheck',1)
-ini_close()
+    ini_open(global.__progdir+'settings.ini')
+        global.themepath=       global.__progdir+string_copy(ini_read_string(mysec,'themePath','themes\default\theme.ini'),string_pos('themes\',ini_read_string(mysec,'themePath','themes\default\theme.ini')),1024)
+        __speed=                ini_read_real(mysec,'textSpeed',15)
+        global.volume=          ini_read_real(mysec,'volume',100)
+        global.current=         ini_read_real(mysec,'lastSong',0)
+        __visualiser=           ini_read_real(mysec,'lastVisualiser',0)
+        __visual_freq=          ini_read_real(mysec,'visualiserBars',64)
+        __enable_fswitch=       ini_read_real(mysec,'enableSwitchFScreen',1)
+        __stick_to_edges=       ini_read_real(mysec,'windowSticksToEdges',1)
+        __stopsongafter=        ini_read_real(mysec,'stopSongAfterPlaying',0)
+        __elp_enable_old_themes=ini_read_real(mysec,'EnableOldThemes',0)
+        __open_migrated_list=   ini_read_real(mysec,'OpenMigratedListAfterConverting',1)
+        __preload_type=         ini_read_real(mysec,'MusicPreloadType',1)
+        __DisVisWhenNotAct=     ini_read_real(mysec,'DisableVisualiserWhenNotFocused',0)
+        __PreloadNextSong=      ini_read_real(mysec,'PreloadNextSong',1)
+        global.randomized=      ini_read_real(mysec,'ShuffleSongs',0)
+        global.__rmspd=         max(ini_read_real(mysec,'framerate',60),1)
+        __FrameSkip=            ini_read_real(mysec,'SkipFrames',0)
+        __millisecs=            ini_read_real(mysec,'FramesForSkip',1)
+        set_synchronization(    ini_read_real(mysec,'VerticalSync',0))
+        __monitorpos=           ini_read_real(mysec,'MonitorPositions',0)
+        __recursive=            ini_read_real(mysec,'RecursiveFolders',0)
+        __buffer_size=          ini_read_real(mysec,'AudioBufferSize',256);
+        __skipdrivecheck=       ini_read_real(mysec,'SkipFileDriveCheck',1)
+        __allow_balloons=       ini_read_real(mysec,'AllowBalloonNotifications',1)
+        __customcaption_idle=   ini_read_string('Caption','customCaptionIdle','elpAudio %v')
+        __customcaption_play=   ini_read_string('Caption','customCaptionPlay','(%t1/%ta1) elpAudio %v [%pn/%ps]')
+        __customcaption_ch1=    ini_read_string('Caption','customCaptionChange1','(%t1/%ta1) elpAudio %v [%pn/%ps]')
+        __customcaption_ch2=    ini_read_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
+        __changecaption=        ini_read_real('Caption','changeCaption',1)
+        __captionchangespd=     ini_read_real('Caption','captionChangeSpeed',3)*60
+    ini_close()
 } else {
-var ffff;ffff=file_text_open_write('settings.ini')
-file_text_write_string(ffff,'[General]')
-repeat(2)file_text_writeln(ffff)
-file_text_close(ffff)
+    var ffff;ffff=file_text_open_write('settings.ini')
+    file_text_write_string(ffff,'[General]')
+    repeat(2)file_text_writeln(ffff)
+    file_text_close(ffff)
 }
 if argument_count==1 {
     if argument[0] {
@@ -179,4 +182,4 @@ fx_winamp=       15
 fx_itecho=       16
 fx_compressor=   17
 fx_sfxreverb=    18
-fx_lowpass=      19
+fx_lowpass_simple=      19
