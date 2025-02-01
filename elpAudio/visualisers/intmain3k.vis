@@ -68,8 +68,8 @@ texture_set_interpolation(1); draw_sprite_stretched_ext(myimg,0,xx,yy,w,h,c_whit
 InitVisVars(x+width*0.25,y+height*0.1,width-width*0.25,height-height*0.1);
 if __wait>0 __wait-=1*delta_time else {_sel=CheckSelect(); __wait=5; fh=floorto(h,wh);myh=floor(h/wh);}
 if __clickwait>0 __clickwait-=1 else {clicks=0}
-if mouse_wheel_down() {if _rolled+myh<GetListSize() _rolled+=clamp(myh,1,5)}
-if mouse_wheel_up() {if _rolled>0 _rolled-=clamp(myh,1,5)}
+if mouse_wheel_down() {if _rolled+myh<GetListSize() _rolled+=clamp(myh-1,1,5)}
+if mouse_wheel_up() {if _rolled>0 _rolled-=clamp(myh-1,1,5)}
 if plgListIsLoaded()==1 {_rolled=0;}
 _rolled=clamp(_rolled,0,max(0,GetListSize()-myh))
 SetVisColorAlpha(c_black,1);
