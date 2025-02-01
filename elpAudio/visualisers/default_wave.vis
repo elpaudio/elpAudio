@@ -1,12 +1,15 @@
 InitVisVars(x,y,width,height)
-if !variable_global_exists("__wave_vis") {
+if !variable_local_exists("__wave_vis") __wave_vis=1
+if __wave_vis=1 {
 __wavesurf=surface_create(w,h);
 __surf2=surface_create(w,h);
 
 if surface_exists(__wavesurf) ClearSurface(__wavesurf);
 if surface_exists(__surf2) ClearSurface(__surf2);
-global.__wave_vis=1;
+__wave_vis=0;
 }
+
+if VisReset() {FreeSurface(__wavesurf) FreeSurface(__surf2) __wave_vis=1 exit}
 
 if !surface_exists(__wavesurf) {__wavesurf=surface_create(w,h);ClearSurface(__wavesurf);}
 if !surface_exists(__surf2) {__surf2=surface_create(w,h);ClearSurface(__surf2);}

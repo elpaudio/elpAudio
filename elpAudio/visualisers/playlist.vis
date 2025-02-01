@@ -1,7 +1,8 @@
 /* List Control Plugin by elpoep */
 /* Update on 18.11.2024*/
 InitVisVars(x,y,width,height);
-if !variable_local_exists('pminit') {
+if !variable_local_exists('pminit') pminit=1
+if pminit=1 {
 pminit=0;
 wh=GetFontHeight('default');
 _sel=CheckSelect();
@@ -14,6 +15,8 @@ clicks=0;
 __clickwait=0;
 fh=floorto(h,wh)
 }
+
+if VisReset() {pminit=1 exit}
 
 FontSet('default')
 

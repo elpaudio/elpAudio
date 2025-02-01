@@ -1,5 +1,6 @@
 /* foobar2000-like menu by elpoep */
-if !variable_local_exists('__fb2kinit') {
+if !variable_local_exists('__fb2kinit') __fb2kinit=1
+if __fb2kinit=1 {
 __fb2kinit=0;
 myimg=sprite_add(working_directory+'\visualisers\img\noalbum.png',1,0,0,0,0);myfa=fa_hidden+fa_readonly
 myfont=font_add_file('../themes/sourcesans.ttf','Source Sans Pro',10,0,0,0,4096)
@@ -31,6 +32,8 @@ if surface_exists(__swavesurf) ClearSurface(__swavesurf);
 if surface_exists(__ssurf2) ClearSurface(__ssurf2);
 }
 
+if VisReset() {FreeSurface(__swavesurf) FreeSurface(__ssurf2) FontDelete(myfont) SpriteDelete(myimg) __fb2kinit=1 exit}
+
 InitVisVars(x,y,width,height);
 if !MinVisVars(128,wh*4) exit;
 
@@ -39,29 +42,31 @@ FontSet('custom',myfont);
 /* !!!!FOLDERIMG!!!! */
 InitVisVars(x,y,width*0.25,width*0.25);
 if _mysong!=global.current {
-/*if fname_path(GetListEntryRaw(_mysong))==fname_path(GetListEntryRaw(global.current)) and plgListIsLoaded()==0 nothing=1 else {*/
-_mysong=global.current;
-check=0;
-/*}*/
+	/*if fname_path(GetListEntryRaw(_mysong))==fname_path(GetListEntryRaw(global.current)) and plgListIsLoaded()==0 nothing=1 else {*/
+	_mysong=global.current;
+	check=0;
+	/*}*/
 }
 if global.play {
-if !check {
-__rawentry=GetListEntryRaw(_mysong)
-myfile=FindFile(fname_path(__rawentry),filename_remove_ext(filename_name(__rawentry))+'.jpg',filename_remove_ext(filename_name(__rawentry))+'.jpeg',filename_remove_ext(filename_name(__rawentry))+'.png','*.jpg','*.png','*.bmp','*.jpeg','*.gif','*.tga');
-if myfile='' myfile=FindFile(directory_previous(fname_path(__rawentry))+'/',filename_remove_ext(filename_name(__rawentry))+'.jpg',filename_remove_ext(filename_name(__rawentry))+'.jpeg',filename_remove_ext(filename_name(__rawentry))+'.png','*.jpg','*.png','*.bmp','*.jpeg','*.gif','*.tga');
-if file_exists(myfile) and !noimg and myfile!='' {
-if sprite_exists(myimg) sprite_delete(myimg);
-myimg=sprite_add(myfile,1,0,0,0,0);
-} else {if sprite_exists(myimg) sprite_delete(myimg); myimg=sprite_add('visualisers\img\noalbum.png',1,0,0,0,0)}
-myscale=min(width/sprite_get_width(myimg),height/sprite_get_height(myimg))*0.5;
-check=1;}}
+	if !check {
+		__rawentry=GetListEntryRaw(_mysong)
+		myfile=FindFile(fname_path(__rawentry),filename_remove_ext(filename_name(__rawentry))+'.jpg',filename_remove_ext(filename_name(__rawentry))+'.jpeg',filename_remove_ext(filename_name(__rawentry))+'.png','*.jpg','*.png','*.bmp','*.jpeg','*.gif','*.tga');
+		if myfile='' myfile=FindFile(directory_previous(fname_path(__rawentry))+'/',filename_remove_ext(filename_name(__rawentry))+'.jpg',filename_remove_ext(filename_name(__rawentry))+'.jpeg',filename_remove_ext(filename_name(__rawentry))+'.png','*.jpg','*.png','*.bmp','*.jpeg','*.gif','*.tga');
+		if file_exists(myfile) and !noimg and myfile!='' {
+			if sprite_exists(myimg) sprite_delete(myimg);
+			myimg=sprite_add(myfile,1,0,0,0,0);
+		} else {if sprite_exists(myimg) sprite_delete(myimg); myimg=sprite_add('visualisers\img\noalbum.png',1,0,0,0,0)}
+		myscale=min(width/sprite_get_width(myimg),height/sprite_get_height(myimg))*0.5;
+		check=1;
+	}
+}
 
 if mouse_check_button_pressed(mb_right) and point_in_rectangle(mouse_x,mouse_y,xx,yy,xx+w,yy+h) {settings=show_menu('Reload image|Enable/disable album image|Open image in image viewer',-1) if settings=-1 n=1; if settings=0 _mysong=-12341234; if settings=1 {noimg=!noimg _mysong=-12341234} if settings=2 execute_shell(myfile,'')}
 draw_set_color(0);
 draw_rectangle(xx,yy,xx+w,yy+h,1);
 draw_set_color(c_white);
 if myimg>-1 {
-texture_set_interpolation(1); draw_sprite_stretched_ext(myimg,0,xx,yy,w,h,c_white,1); texture_set_interpolation(0);
+	texture_set_interpolation(1); draw_sprite_stretched_ext(myimg,0,xx,yy,w,h,c_white,1); texture_set_interpolation(0);
 }
 
 /* !!!!PLAYLIST!!!! */
@@ -75,25 +80,25 @@ _rolled=clamp(_rolled,0,max(0,GetListSize()-myh))
 SetVisColorAlpha(c_black,1);
 DrawRect(xx,yy,xx+w,yy+h);
 if point_in_rectangle(mouse_x,mouse_y,xx,yy,xx+w,yy+h) {
-they=clamp(floor((mouse_y-yy)/(wh*(h/fh)))+_rolled,0,GetListSize()-1)
-draw_set_color(c_gray*(1-mouse_check_button(mb_left))+c_dkgray*mouse_check_button(mb_left))
-DrawRectOutline(xx,yy+((they-_rolled)*(wh*(h/fh))),xx+w-1,yy+((they-_rolled)*(wh*(h/fh)))+(wh*(h/fh)))
-if mouse_check_button_pressed(mb_left) {mystart=they __clickwait=20 clicks+=1 if clicks>1 and _sel!=they {_sel=they global.current=they eaPlay(they) io_clear() clicks=0}}
-if mouse_check_button(mb_left) and mystart!=they {ds_list_swap(GetCurrentList(),mystart,they) mystart=they if _sel!=they _sel=they}
-if mouse_check_button_released(mb_right) {
-__ss=show_menu('Add to favorites|Add to playlist...|Remove from playlist',-1) if __ss=0 {_fname='playlists\favorites.epl' if !file_exists(_fname) {v=file_text_open_write(_fname) file_text_write_string(v,'0');file_text_writeln(v);file_text_close(v);} v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}if __ss=1 {_fname=get_open_filename('Any .epl playlist|*.epl',''); if _fname==1 n=1 else {v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}} if __ss=2 {ds_list_delete(global.list,they) if they==CheckSelect() {global.preloaded=-1 global.curpreloaded=-1 eaPlay(they); } else if they<global.current global.current-=1;}}
+	they=clamp(floor((mouse_y-yy)/(wh*(h/fh)))+_rolled,0,GetListSize()-1)
+	draw_set_color(c_gray*(1-mouse_check_button(mb_left))+c_dkgray*mouse_check_button(mb_left))
+	DrawRectOutline(xx,yy+((they-_rolled)*(wh*(h/fh))),xx+w-1,yy+((they-_rolled)*(wh*(h/fh)))+(wh*(h/fh)))
+	if mouse_check_button_pressed(mb_left) {mystart=they __clickwait=20 clicks+=1 if clicks>1 and _sel!=they {_sel=they global.current=they eaPlay(they) io_clear() clicks=0}}
+	if mouse_check_button(mb_left) and mystart!=they {ds_list_swap(GetCurrentList(),mystart,they) mystart=they if _sel!=they _sel=they}
+	if mouse_check_button_released(mb_right) {
+		__ss=show_menu('Add to favorites|Add to playlist...|Remove from playlist',-1) if __ss=0 {_fname='playlists\favorites.epl' if !file_exists(_fname) {v=file_text_open_write(_fname) file_text_write_string(v,'0');file_text_writeln(v);file_text_close(v);} v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}if __ss=1 {_fname=get_open_filename('Any .epl playlist|*.epl',''); if _fname==1 n=1 else {v=file_text_open_append(_fname) file_text_write_string(v,string(GetListEntryRaw(they)));file_text_writeln(v);file_text_close(v);}} if __ss=2 {ds_list_delete(global.list,they) if they==CheckSelect() {global.preloaded=-1 global.curpreloaded=-1 eaPlay(they); } else if they<global.current global.current-=1;}
+	}
 }
 
 i=0 repeat(clamp(GetListSize(),0,myh)) {
-if i+_rolled>GetListSize() and string(GetListEntry(i+_rolled))=="0" n=1 else {
-
-draw_set_color(c_aqua)
-if i+_rolled=_sel DrawRectOutline(xx,yy+i*(wh*(h/fh)),xx+w-1,yy+i*(wh*(h/fh))+(wh*(h/fh)))
-_s=string(GetListEntry(i+_rolled))
-draw_set_color(c_white)
-DrawTextSpecial(xx+2,yy+i*(wh*(h/fh)),string(i+1+_rolled)+'. '+_s,floor(string_length(_s)*(w/string_width(_s))))
-}
-i+=1
+	if i+_rolled>GetListSize() and string(GetListEntry(i+_rolled))=="0" n=1 else {
+		draw_set_color(c_aqua)
+		if i+_rolled=_sel DrawRectOutline(xx,yy+i*(wh*(h/fh)),xx+w-1,yy+i*(wh*(h/fh))+(wh*(h/fh)))
+		_s=string(GetListEntry(i+_rolled))
+		draw_set_color(c_white)
+		DrawTextSpecial(xx+2,yy+i*(wh*(h/fh)),string(i+1+_rolled)+'. '+_s,floor(string_length(_s)*(w/string_width(_s))))
+	}
+	i+=1
 }
 draw_set_color(c_gray)
 DrawRect(xx+w-2,yy+(_rolled*(h/max(GetListSize(),1))),xx+w,yy+((_rolled+h/max(GetListSize(),1))*(h/max(GetListSize(),1))))

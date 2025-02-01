@@ -1,10 +1,13 @@
 InitVisVars(x,y,width,height)
 if !MinVisVars(100,50) exit
-if !variable_local_exists('__initf3d') {
-__initf3d=0;
-__f3dwavesurf=surface_create(w,h);ClearSurface(__f3dwavesurf);
-__f3dsurf2=surface_create(w,h);ClearSurface(__f3dsurf2);
+if !variable_local_exists('__initf3d') __initf3d=1
+if __initf3d=1 {
+	__initf3d=0;
+	__f3dwavesurf=surface_create(w,h);ClearSurface(__f3dwavesurf);
+	__f3dsurf2=surface_create(w,h);ClearSurface(__f3dsurf2);
 }
+
+if VisReset() {FreeSurface(__f3dwavesurf) FreeSurface(__f3dsurf2) __initf3d=1 exit}
 
 if !surface_exists(__f3dwavesurf) {__f3dwavesurf=surface_create(w,h);ClearSurface(__f3dwavesurf);}
 if !surface_exists(__f3dsurf2) {__f3dsurf2=surface_create(w,h);ClearSurface(__f3dsurf2);}

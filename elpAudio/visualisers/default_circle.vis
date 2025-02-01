@@ -1,17 +1,20 @@
-InitVisVars(x+width/2,y+height/2,width/2,height/2);
+InitVisVars(x,y,width,height);
 GetSpecBuffer(maxw,0,myinst);
 dir=current_time*0.1 mod 360;
+i=0;
 angle=0;
 repeat(maxs){
-draw_line_width_color(xx,yy,
-xx+lengthdir_x(SNAPSPECENTRY(i,maxs)*(w/2),dir+angle)+lengthdir_x(SNAPSPECENTRY(i+1,maxs)*(w/2),dir+angle+90),
-yy+lengthdir_y(SNAPSPECENTRY(i,maxs)*(h/2),dir+angle)+lengthdir_y(SNAPSPECENTRY(i+1,maxs)*(h/2),dir+angle+90),
-clamp((max(SNAPSPECENTRY(i,maxs),SNAPSPECENTRY(i+1,maxs))-min(SNAPSPECENTRY(i,maxs),SNAPSPECENTRY(i+1,maxs)))*5,1,2),
-MergeColor(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05+i*0.5)),
-MergeColor(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05-65+i*0.5))
-);
-i+=1;
-angle+=(360/maxs)*(10*1.125);
+	spec1=SNAPSPECENTRY(i,maxs)
+	spec2=SNAPSPECENTRY(i+1,maxs)
+	draw_line_width_color(xx+w/2,yy+h/2,
+	xx+w/2+lengthdir_x(spec1*(w/4),dir+angle)+lengthdir_x(spec2*(w/4),dir+angle+90),
+	yy+h/2+lengthdir_y(spec1*(h/4),dir+angle)+lengthdir_y(spec2*(h/4),dir+angle+90),
+	clamp((max(spec1,spec2)-min(spec1,spec2))*5,1,2),
+	MergeColor(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05+i*0.5)),
+	MergeColor(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05-65+i*0.5))
+	);
+	i+=1;
+	angle+=(360/maxs)*(10*1.125);
 }
 
 draw_set_color(c_white);
