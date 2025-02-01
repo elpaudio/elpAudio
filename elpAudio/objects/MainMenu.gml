@@ -213,4 +213,4 @@ if keyboard_check_pressed(vk_f6) then
 
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) then
-        show_message(string_ext("Now playing: {0}#Song length: {1}#Frequency: {2}#Song number: {3}/{4}#Volume: {5}%#Monitors: {6}#(DEBUG)Monitorpos: {7}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume,__monitors,__monitorpos))
+        show_message(string_ext("Now playing: {0}#Song length: {1}#Frequency: {2}#Song number: {3}/{4}#Volume: {5}%#Monitors: {6}#I made this message when FPS was {7}!",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume,__monitors,fps))
