@@ -1,5 +1,5 @@
 /* set the name of project */
-name='elpAudio-2.4'
+name='elpAudio-2.5'
 project_dir='.'
 
 /* will create a build directory with 'name' name */
@@ -9,13 +9,12 @@ directory_create(project_dir+name+'\data\')
 directory_create(project_dir+name+'\plugins\')
 directory_create(project_dir+name+'\playlists\')
 directory_create(project_dir+name+'\visualisers\')
+directory_create(project_dir+name+'\themes\')
 include_game('elpAudio.gm82',project_dir+name+'\elpAudio.exe')
 include_file('fmodex.dll',name+'\fmodex.dll')
 include_file('lib_audio.dll',name+'\lib_audio.dll')
 include_file('LICENSE.txt',name+'\LICENSE.txt')
 include_file('README.txt',name+'\README.txt')
-include_file('..\LICENSE',name+'\LICENSE.txt')
-include_file('..\README.txt',name+'\README.txt')
 include_file('themes\clacon2.ttf',name+'\themes\clacon2.ttf')
 include_file('themes\sourcesans.ttf',name+'\themes\sourcesans.ttf')
 include_file('themes\readme.ttf',name+'\themes\readme.ttf')
@@ -46,26 +45,8 @@ include_dir(project_dir+'icons\',project_dir+name+'\icons\')
 
 set_include_zip(true,project_dir+name+'.zip')
 
-/* now build no-dx9 build */
-file_delete(project_dir+name+'\elpAudio.exe')
-include_file('settings\extensions-nochromakey.txt','settings\extensions.txt')
-include_file('objects\MainMenu-nochromakey.gml','objects\MainMenu.gml')
-
-include_game('elpAudio.gm82',project_dir+name+'\elpAudio-nodx9.exe')
-
-set_include_zip(true,project_dir+name+'-nodx9.zip')
-
-/* now include winapi2 */
-
+/* now build normal winapi build */
 include_file('windows.dll',name+'\windows.dll')
-
-set_include_zip(true,project_dir+name+'-winapi-nodx9.zip')
-
-/* now reset everything and build normal winapi build */
-file_delete(project_dir+name+'\elpAudio-nodx9.exe')
-
-include_file('settings\extensions-orig.txt','settings\extensions.txt')
-include_file('objects\MainMenu-orig.gml','objects\MainMenu.gml')
 
 include_game('elpAudio.gm82',project_dir+name+'\elpAudio.exe')
 
