@@ -61,6 +61,7 @@ applies_to=self
 */
 ///playlist handle
 global._loaded_list=0
+global.__gonnareset=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -96,15 +97,15 @@ applies_to=self
 if !__enablefloat {
     if global.play=0 room_caption=CompileCaptions(__customcaption_idle) else {
 
-        if !__changecaption then
+        if !__changecaption
             room_caption=CompileCaptions(__customcaption_play)
         else {
-            if cwait>0 then
+            if cwait>0
                 cwait-=1*(60/max(fps,30))
             else
                 cwait=__captionchangespd*2
 
-            if cwait>=__captionchangespd then
+            if cwait>=__captionchangespd
                 room_caption=CompileCaptions(__customcaption_ch1)
             else
                 room_caption=CompileCaptions(__customcaption_ch2)
@@ -112,9 +113,11 @@ if !__enablefloat {
 
     }
 }
-if window_get_taskbar_caption()!=room_caption
-window_set_taskbar_caption(room_caption)
-if global.current>global.list_size global.current=0
+
+if string(window_get_taskbar_caption())!=room_caption // this fucking bitch stopped working normally
+    window_set_taskbar_caption(string(room_caption))
+if global.current>global.list_size
+    global.current=0
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
