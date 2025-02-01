@@ -22,7 +22,8 @@ Send your message to discord: **elpoep**, or on e-mail: **elpoepstudios@gmail.co
 ****For older releases, please consider to <a href='https://github.com/elpoeprod/elpAudio/releases'>this link.</a>****
 
 # HOW TO USE:
--go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy the "new **WinAmp**"!
+- go to releases, download the latest elpAudio version and open `elpAudio.exe` or `elpAudio-nodx9.exe` (in old elpAudio versions) file. Enjoy the **new WinAmp**!
+- More info available [at elpAudio wiki.](https://github.com/elpaudio/elpAudio/wiki)
 
 ## To compile source code of elpAudio you need:
   - Game Maker 8.2
