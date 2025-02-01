@@ -1,8 +1,0 @@
-name=Ac437 IBM DOS ISO8
-size=14
-bold=0
-italic=0
-charset=1
-aa_level=0
-range_start=0
-range_end=255
