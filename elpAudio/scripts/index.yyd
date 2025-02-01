@@ -257,3 +257,4 @@ MusicImmediatelyStop
 SpriteDelete
 WindowResize
 FontPull
+InitEffect

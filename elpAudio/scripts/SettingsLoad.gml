@@ -149,3 +149,28 @@ if argument_count==1 {
     }
 }
 __customcaption_idle='elpAudio '+Get_elpAudioVersion()
+
+
+
+//effects
+globalvar fx_mixer,fx_osc,fx_lowpass,fx_itlowpass,fx_highpass,fx_echo,fx_flanger,fx_distort,fx_normalize, fx_equaliser, fx_pitchshift,fx_chorus,fx_reverb,fx_vst,fx_winamp,fx_itecho,fx_compressor,fx_sfxreverb,fx_lowpass_simple;
+
+fx_mixer=        1
+fx_osc=          2 
+fx_lowpass=      3 
+fx_itlowpass=    4 
+fx_highpass=     5 
+fx_echo=         6 
+fx_flanger=      7 
+fx_distort=      8 
+fx_normalize=    9 
+fx_equaliser=    10
+fx_pitchshift=   11
+fx_chorus=       12
+fx_reverb=       13
+fx_vst=          14
+fx_winamp=       15
+fx_itecho=       16
+fx_compressor=   17
+fx_sfxreverb=    18
+fx_lowpass=      19
