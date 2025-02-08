@@ -1,7 +1,12 @@
-if !variable_global_exists('list') then
-    global.list=ds_list_create()
+if !variable_global_exists('list')
+    global.list=dslist()
 else
     ds_list_clear(global.list)
+
+if !variable_global_exists('color_map')
+    global.color_map=dsmap()
+else
+    ds_map_clear(global.color_map)
 
 MetadataCreate()
 MetadataClear()
@@ -10,27 +15,24 @@ if !registry_exists_ext('elpAudio','work_dir') then
     registry_write_string_ext('elpAudio','work_dir',program_directory)
 
 globalvar __fformats; //file formats
-    __fformats='*.aiff;*.asf;*.at3;*.at9;*.cda;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp2;*.mp3;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wma;*.xm;*.xma';
+    __fformats='*.aiff;*.aif;*.asf;*.at3;*.at9;*.cda;*.asx;*.dls;*.flac;*.fsb;*.it;*.mid;*.rmi;*.mod;*.mp2;*.mp3;*.ogg;*.opus;*.s3m;*.vag;*.wav;*.wma;*.xm;*.xma';
 
 globalvar __flists; // supported playlist formats
     __flists='*.epl;*.elf;*.m3u;*.m3u8;*.ram;*.axf;*.wax;*.wvx;*.wpl;*.w3c;*.b4s;*.p2p;*.kpl;*.itl;*.rdf;*.pls;'
 
-globalvar __monitors  , //monitor count
-          __monitorpos; //monitor position
+globalvar __monitors  ; //monitor count
 
 __monitors=1;   //one monitor
-__monitorpos=0 //-1 - two monitors, second monitor on left
-                //0 - one monitor,
-                //1 - two monitors, second monitor on right
-                //you can change it with Shift+Left/Right arrow
 
-globalvar ea_version;
 if !registry_exists_ext('elpAudio','version')
     registry_write_string_ext('elpAudio','version',Get_elpAudioVersion())
 
 if registry_read_string_ext('elpAudio','version')!=Get_elpAudioVersion()
     registry_write_string_ext('elpAudio','version',Get_elpAudioVersion())
-ea_version=registry_read_string_ext('elpAudio','version')
+
+globalvar ea_version;
+    ea_version=registry_read_string_ext('elpAudio','version')
+
 room_caption='elpAudio '+ea_version
 room_speed=60
 global.play=0
@@ -69,21 +71,22 @@ else {
     }
 
 set_working_directory(global.__progdir)
-if !directory_exists(global.__progdir+'playlists') directory_create(global.__progdir+'playlists')
+if !directory_exists(global.__progdir+'playlists')
+    directory_create(global.__progdir+'playlists')
 
 globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__stick_to_edges
-__enablevisdist,__changecaption,__captionchangespd,
-__customcaption_idle,__customcaption_play,__customcaption_ch1,__customcaption_ch2,
-__elp_enable_old_themes,
-__preload_type,__open_migrated_list,
-__DisVisWhenNotAct,__PreloadNextSong,
-__FrameSkip,__millisecs,
-__recursive,
-delta_time,
-__buffer_size,
-__skipdrivecheck,
-__allow_balloons
-;
+    __enablevisdist,__changecaption,__captionchangespd,
+    __customcaption_idle,__customcaption_play,__customcaption_ch1,__customcaption_ch2,
+    __elp_enable_old_themes,
+    __preload_type,__open_migrated_list,
+    __DisVisWhenNotAct,__PreloadNextSong,
+    __FrameSkip,__millisecs,
+    __recursive,
+    delta_time,
+    __buffer_size,
+    __skipdrivecheck,
+    __allow_balloons
+    ;
 
 __elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
 __enablefloat=0;            // enable floating text
@@ -117,7 +120,7 @@ if file_exists(global.__progdir+'settings.ini') {
         global.themepath=       global.__progdir+string_copy(ini_read_string(mysec,'themePath','themes\default\theme.ini'),string_pos('themes\',ini_read_string(mysec,'themePath','themes\default\theme.ini')),1024)
         __speed=                ini_read_real(mysec,'textSpeed',15)
         global.volume=          ini_read_real(mysec,'volume',100)
-        global.current=         ini_read_real(mysec,'lastSong',0)
+        global.current=         max(ini_read_real(mysec,'lastSong',0),0)
         __visualiser=           ini_read_real(mysec,'lastVisualiser',0)
         __visual_freq=          ini_read_real(mysec,'visualiserBars',64)
         __enable_fswitch=       ini_read_real(mysec,'enableSwitchFScreen',1)
@@ -164,22 +167,22 @@ __customcaption_idle='elpAudio '+ea_version
 //effects
 globalvar fx_mixer,fx_osc,fx_lowpass,fx_itlowpass,fx_highpass,fx_echo,fx_flanger,fx_distort,fx_normalize, fx_equaliser, fx_pitchshift,fx_chorus,fx_reverb,fx_vst,fx_winamp,fx_itecho,fx_compressor,fx_sfxreverb,fx_lowpass_simple;
 
-fx_mixer=        1
-fx_osc=          2 
-fx_lowpass=      3 
-fx_itlowpass=    4 
-fx_highpass=     5 
-fx_echo=         6 
-fx_flanger=      7 
-fx_distort=      8 
-fx_normalize=    9 
-fx_equaliser=    10
-fx_pitchshift=   11
-fx_chorus=       12
-fx_reverb=       13
-fx_vst=          14
-fx_winamp=       15
-fx_itecho=       16
-fx_compressor=   17
-fx_sfxreverb=    18
-fx_lowpass_simple=      19
+fx_mixer=           1
+fx_osc=             2 
+fx_lowpass=         3 
+fx_itlowpass=       4 
+fx_highpass=        5 
+fx_echo=            6 
+fx_flanger=         7 
+fx_distort=         8 
+fx_normalize=       9 
+fx_equaliser=       10
+fx_pitchshift=      11
+fx_chorus=          12
+fx_reverb=          13
+fx_vst=             14
+fx_winamp=          15
+fx_itecho=          16
+fx_compressor=      17
+fx_sfxreverb=       18
+fx_lowpass_simple=  19

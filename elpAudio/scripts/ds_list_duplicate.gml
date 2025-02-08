@@ -1,2 +1,2 @@
 ///(dest,src,src_index)
-ds_list_add(argument0,ds_list_find_value(argument1,argument2))
+dslist(argument0,-1,dslist(argument1,argument2))

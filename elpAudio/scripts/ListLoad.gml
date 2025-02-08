@@ -9,7 +9,7 @@ if !file_exists(fname) {
     exit
 }
 
-var adl;adl=ds_list_create()
+var adl;adl=dslist()
 
 if string_lower(filename_ext(fname))=='.epl' then { //.epl start
 
@@ -37,7 +37,7 @@ if string_lower(filename_ext(fname))=='.epl' then { //.epl start
 
         if file_exists(myfile) or isweb {
            if FileIsSupported(myfile) or isweb
-              ds_list_add(adl,myfile)
+              dslist(adl,-1,myfile)
            else
               if myfile!=''
                   show_message(string_ext(str_unsupported,filename_ext(myfile),myfile))
@@ -61,7 +61,7 @@ else if string_lower(filename_ext(fname))=='.elf' then {
 
         if file_exists(myfile) or isweb {
            if FileIsSupported(myfile) or isweb
-              ds_list_add(adl,myfile)
+              dslist(adl,-1,myfile)
            else if myfile!=''
                   show_message(string_ext(str_unsupported,filename_ext(myfile),myfile))
         } else {
@@ -94,7 +94,7 @@ if argument_count>1 {
         global.current=0
         global.curpreloaded=-1
         if global.preloaded!=-1 FMODSoundFree(global.preloaded)
-        MusicPlay(ds_list_find_value(global.list,0))
+        MusicPlay(dslist(global.list,0))
     }
 }
 global._loaded_list=1

@@ -1,1 +1,1 @@
-return FilterString(ds_list_find_value(global.list,argument0))
+return FilterString(dslist(global.list,argument0))

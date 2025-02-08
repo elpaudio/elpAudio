@@ -16,7 +16,7 @@ file_text_writeln(file)
 repeat(global.list_size) {
     isweb=(string_count('https://',string_lower(GetListEntryRaw(i))) or string_count('http://',string_lower(GetListEntryRaw(i))));
 
-    if FileIsSupported(string(ds_list_find_value(global.list,i))) or isweb {
+    if FileIsSupported(string(dslist(global.list,i))) or isweb {
         file_text_write_string(file,GetListEntryRaw(i))
         file_text_writeln(file)
     }
