@@ -1,4 +1,4 @@
-#define EXPORT extern "C" __declspec(dllexport)
+#define EXPORT __declspec(dllexport)
 #include <windows.h>
 
 BOOL CALLBACK MonitorEnumProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData)
