@@ -48,6 +48,4 @@ set_include_zip(true,project_dir+name+'.zip')
 /* now build normal winapi build */
 include_file('windows.dll',name+'\windows.dll')
 
-include_game('elpAudio.gm82',project_dir+name+'\elpAudio.exe')
-
 set_include_zip(true,project_dir+name+'-winapi.zip')
