@@ -8,34 +8,31 @@ global.vish=ini_read_real(mysec,'visH',64)
 
 
 if ini_read_real('Default','drawVisualiser',1) {
-mbtn=Visualiser
-mbtn.x=global.visx
-mbtn.y=global.visy
-mbtn.width=global.visw
-mbtn.height=global.vish
-mbtn.surf1=surface_create(global.visw,global.vish)
-mbtn.surf2=surface_create(global.visw,global.vish)
-mbtn.usefgvisimg=ini_read_real(mysec,'usefgvisimg',0)
-var mbb;
-mbb=-1
-if variable_instance_exists(mbtn,'visfgimg') mbb=mbtn.visfgimg
-mbtn.visfgimg=SpritePull(mbb,fname_path(argument0)+ini_read_string(mysec,'visfgimg','vis_fg.png'),1,0,0,0,0)
-mbtn.visfgx=ini_read_real(mysec,'visfgx',0)
-mbtn.visfgy=ini_read_real(mysec,'visfgy',0)
-mbtn.visfgw=ini_read_real(mysec,'visfgw',0)
-mbtn.visfgh=ini_read_real(mysec,'visfgh',0)
-mbtn.usebgvisimg=ini_read_real(mysec,'usebgvisimg',0)
-mbb=-1
-if variable_instance_exists(mbtn,'visbgimg') mbb=mbtn.visbgimg
-mbtn.visbgimg=SpritePull(mbb,fname_path(argument0)+ini_read_string(mysec,'visbgimg','vis_bg.png'),1,0,0,0,0)
-mbtn.visbgx=ini_read_real(mysec,'visbgx',0)
-mbtn.visbgy=ini_read_real(mysec,'visbgy',0)
-mbtn.visbgw=ini_read_real(mysec,'visbgw',0)
-mbtn.visbgh=ini_read_real(mysec,'visbgh',0)
-LoadVisualisers();
+    mbtn=Visualiser
+    mbtn.x=global.visx
+    mbtn.y=global.visy
+    mbtn.width=global.visw
+    mbtn.height=global.vish
+    mbtn.surf1=surface_create(global.visw,global.vish)
+    mbtn.surf2=surface_create(global.visw,global.vish)
+
+    mbtn.usefgvisimg=ini_read_real(mysec,'usefgvisimg',0)
+    mbtn.visfgimg=SpritePull(-1,fname_path(argument0)+ini_read_string(mysec,'visfgimg','vis_fg.png'),1,0,0,0,0)
+    mbtn.visfgx=ini_read_real(mysec,'visfgx',0)
+    mbtn.visfgy=ini_read_real(mysec,'visfgy',0)
+    mbtn.visfgw=ini_read_real(mysec,'visfgw',0)
+    mbtn.visfgh=ini_read_real(mysec,'visfgh',0)
+
+    mbtn.usebgvisimg=ini_read_real(mysec,'usebgvisimg',0)
+    mbtn.visbgimg=SpritePull(-1,fname_path(argument0)+ini_read_string(mysec,'visbgimg','vis_bg.png'),1,0,0,0,0)
+    mbtn.visbgx=ini_read_real(mysec,'visbgx',0)
+    mbtn.visbgy=ini_read_real(mysec,'visbgy',0)
+    mbtn.visbgw=ini_read_real(mysec,'visbgw',0)
+    mbtn.visbgh=ini_read_real(mysec,'visbgh',0)
+    LoadVisualisers();
 } else {
-with Visualiser instance_destroy()
-with ButtonVisualiser instance_destroy()
+    with Visualiser instance_destroy()
+    with ButtonVisualiser instance_destroy()
 }
 
 
@@ -90,6 +87,10 @@ mbtn.y=ini_read_real(mysec,'butprevy',16)
 
     mbtn.textx=ini_read_real(mysec,'floattextx',4)
     mbtn.texty=ini_read_real(mysec,'floattexty',1)
+
+    mbtn.surfx=ini_read_real(mysec,'floatsurfx',0)
+    mbtn.surfy=ini_read_real(mysec,'floatsurfy',0)
+
     mbtn.oldfloatw=ini_read_real(mysec,'floattextw',128)
     mbtn.text_centered=ini_read_real(mysec,'floattextcentered',0)
 
@@ -97,15 +98,11 @@ mbtn.y=ini_read_real(mysec,'butprevy',16)
     mbtn.drawfloattime2=ini_read_real(mysec,'floatdrawtime2',0)
     mbtn.time2x=ini_read_real(mysec,'floattime2x',0)
     mbtn.time2y=ini_read_real(mysec,'floattime2y',0)
-    mbb=-1
-    if variable_instance_exists(mbtn,'time2font') mbb=mbtn.time2font
-    mbtn.time2font=FontPull(mbb,fname_path(argument0)+ini_rs(mysec,'floattime2ffile','tahoma.ttf'),ini_read_string(mysec,'floattime2font','Tahoma'),
+    mbtn.time2font=FontPull(-1,fname_path(argument0)+ini_rs(mysec,'floattime2ffile','tahoma.ttf'),ini_read_string(mysec,'floattime2font','Tahoma'),
                     ini_read_real(mysec,'floattime2Size',0),ini_read_real(mysec,'floattime2IsBold',0),
                     ini_read_real(mysec,'floattime2IsItalic',0),0,fontlast)
     mbtn.drawqueue=ini_read_real(mysec,'floatdrawqueue',0)
-    mbb=-1
-    if variable_instance_exists(mbtn,'queuefont') mbb=mbtn.queuefont
-    mbtn.queuefont=FontPull(mbb,fname_path(argument0)+ini_rs(mysec,'floatqueueffile','tahoma.ttf'),ini_read_string(mysec,'floatqueuefont','Tahoma'),
+    mbtn.queuefont=FontPull(-1,fname_path(argument0)+ini_rs(mysec,'floatqueueffile','tahoma.ttf'),ini_read_string(mysec,'floatqueuefont','Tahoma'),
                     ini_read_real(mysec,'floatqueueSize',0),ini_read_real(mysec,'floatqueueIsBold',0),
                     ini_read_real(mysec,'floatqueueIsItalic',0),0,fontlast)
     mbtn.queuex=ini_read_real(mysec,'floatqueuex',0)
@@ -143,9 +140,7 @@ mbtn.y=ini_read_real(mysec,'butprevy',16)
     MainMenu.textx=ini_read_real(mysec,'frontmenutextx',0)
     MainMenu.texty=ini_read_real(mysec,'frontmenutexty',0)
     MainMenu.useimgforfront=ini_read_real(mysec,'useimgforfront',0)
-    mbb=-1
-    if variable_instance_exists(MainMenu,'imgfront') mbb=MainMenu.imgfront
-    MainMenu.imgfront=SpritePull(mbb,fname_path(argument0)+ini_read_string(mysec,'imgfront','front.png'),1,0,0,0,0)
+    MainMenu.imgfront=sprite_add(fname_path(argument0)+ini_rs(mysec,'imgfront','front.png'),1,0,0,0,0)
 
 if ini_read_real(mysec,'useimgforback',0) {
     mbtn=instance_create(0,0,BackgroundHolder)
@@ -161,9 +156,7 @@ if ini_read_real(mysec,'useimgforback',0) {
 
 if ini_read_real(mysec,'usemonoster',0) {
     mbtn=instance_create(0,0,Monoster)
-    mbb=-1
-    if variable_instance_exists(mbtn,'monosterimg') mbb=mbtn.monosterimg
-    mbtn.monosterimg=SpritePull(mbb,fname_path(argument0)+ini_read_string(mysec,'monosterimg','monoster.png'),2,0,0,0,0)
+    mbtn.monosterimg=SpritePull(-1,fname_path(argument0)+ini_rs(mysec,'monosterimg','monoster.png'),2,0,0,0,0)
     mbtn.x=ini_read_real(mysec,'monosterx',0)
     mbtn.y=ini_read_real(mysec,'monostery',0)
 }
@@ -191,6 +184,4 @@ global.plrwidth=ini_read_real(mysec,'playerW',480)
 if global.plrwidth=0 global.plrwidth=display_get_width()
 global.plrheight=ini_read_real(mysec,'playerH',80)
 if global.plrheight=0 global.plrheight=display_get_height()
-
-global.__colfile=fname_path(global.themepath)+ini_read_string('Default','colorfile','theme_colors.ini')
 ini_close()

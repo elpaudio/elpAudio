@@ -8,7 +8,7 @@ if variable_global_exists('musicsound') {
     mylastsong=global.musicsound
     if variable_global_exists('playing')
         mylastplay=global.playing
-    }
+}
 
 if isweb {
     global.musicsound=FMODSoundAddAsyncStream(argument0,0)

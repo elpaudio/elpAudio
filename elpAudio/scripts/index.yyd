@@ -13,7 +13,7 @@ Get_elpAudioVersion
 ListSave
 ListLoad
 GetTrackerName
-LoadThemeCols
+
 HexToColor
 SettingsSave
 SettingsLoad
@@ -178,7 +178,7 @@ FMODEncryptFile
 FMODUpdateTakeOverWhileLocked
 FMODUpdateTakeOverDone
 FMODSpectrumSetSnapshotType
-FMODSnapShotToDsList
+
 FMODSoundAddAsyncStream
 FMODSoundAsyncReady
 FMODInstanceAsyncOK
@@ -263,3 +263,6 @@ HandleResets
 FontDelete
 FreeSurface
 
+ResetFloatText
+
+Color

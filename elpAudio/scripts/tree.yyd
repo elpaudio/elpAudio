@@ -90,6 +90,9 @@
 		|current_time_format
 		|current_time_format2
 	|EndSession
+	|ResetFloatText
+	+COLOR
+		|Color
 +SAVE-LOAD
 	+LIST
 		|ListSave
@@ -107,7 +110,6 @@
 	+THEME
 		|LoadTheme
 		|LoadThemeGUI
-		|LoadThemeCols
 		|LoadThemePlugin
 	|LoadVisualisers
 +EXT
@@ -258,7 +260,6 @@
 		|FMODUpdateTakeOverWhileLocked
 		|FMODUpdateTakeOverDone
 		|FMODSpectrumSetSnapshotType
-		|FMODSnapShotToDsList
 		|FMODSoundAddAsyncStream
 		|FMODSoundAsyncReady
 		|FMODInstanceAsyncOK
