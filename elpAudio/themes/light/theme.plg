@@ -1,0 +1,9 @@
+#define create
+Color('color1',$000000)
+Color('color2',$000000)
+Color('float_text',c_white)
+Color('bg',c_white)
+Color('caption',c_black)
+Color('top_menu',c_white)
+Color('vis_fg',c_black)
+#undef create

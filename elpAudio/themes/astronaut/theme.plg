@@ -1,0 +1,5 @@
+#define create
+Color('color1',$FFFFFF)
+Color('color2',$454545)
+Color('float_text',c_white)
+#undef create
