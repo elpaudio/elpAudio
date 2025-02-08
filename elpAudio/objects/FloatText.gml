@@ -12,6 +12,8 @@ stri=0
 xx=0
 sprite_index=global.__floatbg
 surf=surface_create(oldfloatw,40)
+bgcol=c_white
+fgcol=c_white
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -36,17 +38,17 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !surface_exists(surf) then
-surf=surface_create(oldfloatw,40)
+if !surface_exists(surf)
+    surf=surface_create(oldfloatw,40)
 
 draw_set_font(global.__fon_vis)
 
 //draws text to surface and then that surface is drawing in "Draw"
 surface_set_target(surf)
 draw_clear_alpha(0,0)
-draw_set_color(global.floatcolor)
+draw_set_color(Color('float_text'))
 draw_set_halign(fa_left*(1-text_centered)+fa_center*text_centered)
-draw_text_transformed(xx+text_centered*width/2,6,mystr,1,1,0)
+draw_text_transformed(xx+text_centered*width/2+textx,6+texty,mystr,1,1,0)
 surface_reset_target()
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -55,13 +57,12 @@ action_id=603
 applies_to=self
 */
 draw_set_font(global.__fon_vis)
-draw_set_color(c_white)
 
 if usebgimg and sprite_exists(global.__floatbg) and global.__floatbg>0
-    draw_sprite_stretched_ext(global.__floatbg,0,x,y,width,height,__floatbgcol,1)
+    draw_sprite_stretched_ext(global.__floatbg,0,x,y,width,height,Color('float_bg'),1)
 
 
-draw_set_color(global.floatcolor)
+draw_set_color(Color('float_text'))
 draw_set_halign(fa_left)
 
 if global.oldfloat==0 and global.play {
@@ -69,7 +70,7 @@ if global.oldfloat==0 and global.play {
     if instance_exists(Visualiser) and ontop==0 then
         Visualiser.depth=depth-1
 
-    if floatdrawtime1 then
+    if floatdrawtime1 and !ds_list_empty(global.list) then
     { // Draw with time
         mystr=global.trackname+' ('+global.formatted_time+')'
     }
@@ -84,11 +85,11 @@ if global.oldfloat==0 and global.play {
     }
 
     if xx<-string_width(mystr)-textx then
-        xx=width+10+text_centered*width/2
+        xx=width+10+text_centered*width/2+textx
 }
 
 // Draws text
-    draw_surface_ext(surf,x+textx,y+texty,1,1,0,c_white,1)
+    draw_surface_ext(surf,x+surfx,y+surfy,1,1,0,c_white,1)
 
 if drawfloattime2 {
     draw_set_font(time2font)
@@ -113,4 +114,4 @@ if drawqueue {
 
 if usefgimg and sprite_exists(global.__floatfg)
 and global.__floatfg>0 then
-    draw_sprite_stretched_ext(global.__floatfg,0,x,y,width,height,__floatfgcol,1)
+    draw_sprite_stretched_ext(global.__floatfg,0,x,y,width,height,Color('float_fg'),1)

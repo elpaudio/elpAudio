@@ -7,7 +7,6 @@ applies_to=self
 sprite_index=global.__ico_sortb
 image_speed=0
 image_index=global.randomized
-image_blend=__butstopcol
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

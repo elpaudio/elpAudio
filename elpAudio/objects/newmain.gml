@@ -19,6 +19,8 @@ if !registry_exists_ext('elpAudio','FIRST_TIME_DISABLE') {
 
 LoadTheme(global.themepath)
 
+background_color=Color('bg')
+
 WindowResize(global.plrwidth,global.plrheight)
 
 icon=icon_add(global.__progdir+'data\ico.ico')

@@ -1,4 +1,5 @@
 ///(fname)
+if ds_list_empty(global.list) return "WELCOME !"
 var artist,name;
 
 name=string(MetadataGetTag('TITLE'))
@@ -8,6 +9,6 @@ if name+artist='??' or name+artist='00'
 or string_length(name+artist)=0
 or name+artist=''
 or string_lettersdigits(name+artist)=''
-return FilterString(argument0)
+    return FilterString(argument0)
 
 return artist+' - '+name

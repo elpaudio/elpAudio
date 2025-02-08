@@ -7,7 +7,6 @@ applies_to=self
 enter=0
 image_speed=0
 sprite_index=global.__ico_pause
-image_blend=__butpausecol
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

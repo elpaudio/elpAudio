@@ -6,7 +6,6 @@ applies_to=self
 */
 sprite_index=global.__ico_visua
 image_speed=0
-image_blend=__butvisualcol
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

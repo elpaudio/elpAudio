@@ -8,7 +8,6 @@ image_speed=0
 on=0
 
 sprite_index=global.__ico_loop
-image_blend=__butloopcol
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

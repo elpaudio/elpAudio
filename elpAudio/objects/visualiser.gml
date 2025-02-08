@@ -29,21 +29,20 @@ width=global.visw
 height=global.vish
 
 //taken from Visual Music and fixed for elpAudio
-if global.play and !global.paused and !global.stopped {
+if global.play and !global.paused and !global.stopped and __FrameSkip{
 //FMODUpdateTakeOverWhileLocked()
 sleep_ext(__millisecs)
 //FMODUpdateTakeOverDone()
 }
 /*/
 
-draw_set_color(global.visbgcol)
 draw_set_alpha(1)
 
 if usebgvisimg==0 {
     n=1
 } else {
     if sprite_exists(visbgimg) and visbgimg>-1 {
-        draw_sprite_stretched_ext(visbgimg,0,x+visbgx,y+visbgy,visbgw,visbgh,c_white,1)
+        draw_sprite_stretched_ext(visbgimg,0,x+visbgx,y+visbgy,visbgw,visbgh,Color('vis_bg'),1)
     }
 }
 
@@ -53,7 +52,7 @@ draw_set_color(c_white)
 
 if usefgvisimg {
     if sprite_exists(visfgimg) and visfgimg>-1 {
-        draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,c_white,1)
+        draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,Color('vis_fg'),1)
     }
 }
 if turnon {

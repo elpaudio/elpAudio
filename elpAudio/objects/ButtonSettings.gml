@@ -9,7 +9,6 @@ enter=0
 global.settings=0
 nope=1
 sprite_index=global.__ico_stngs
-image_blend=__butsettcol
 #define Alarm_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -61,4 +60,4 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-draw_sprite_ext(sprite_index,image_index,x,y,1,1,0,c_white,1)
+draw_sprite_ext(sprite_index,image_index,x,y,1,1,0,image_blend,1)

@@ -10,18 +10,17 @@ alarm[10]=10
 
 cwait=360
 hh=0
-imgfront=-1
 xftime=1
 yftime=1
 
+
+
+
 randomize()
 
-chroma=0
-//* <//* for original version, /* for no-chromakey version>
 chroma=1
 window_set_chromakey(1,HexToColor($014426)) // REMOVES THIS COLOR FROM EVERYWHERE
 window_resize_buffer(global.plrwidth,global.plrheight,1,display_aa)
-/**/
 
 message_position(window_get_x(),window_get_y()+window_get_height())
 
@@ -48,7 +47,7 @@ applies_to=self
 */
 ///PARAMETER STRING
 if parameter_count()>0 and global.played_from_arg==0 {
-    ds_list_add(global.list,parameter_string(1))
+    dslist(global.list,-1,parameter_string(1))
     global.current=ds_list_size(global.list)-1
     MusicPlay(parameter_string(1))
     global.played_from_arg=1
@@ -151,8 +150,8 @@ action_id=603
 applies_to=self
 */
 if keyboard_check_pressed(vk_f4) {
-if global.play MusicStop()
-EndSession()
+    if global.play MusicStop()
+    EndSession()
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -163,17 +162,15 @@ applies_to=self
 ///Draw TOP MENU
 
 if useimgforfront=0 {
-    draw_set_color(global.frontcol)
+    draw_set_color(Color('top_menu'))
     draw_rectangle(x,y,x+w,y+h,0)
 }
 else
 if sprite_exists(imgfront) and imgfront>-1 {
-    draw_set_color(c_white)
     draw_sprite_stretched_ext(imgfront,0,x,y,w,h,c_white,1)
-    }
+}
 
-draw_set_alpha(1)
-draw_set_color(global.captioncol)
+draw_set1(Color('caption'),1)
 draw_set_font(global.__fon_cap)
 
 if drawcaption then
@@ -213,4 +210,4 @@ if keyboard_check_pressed(vk_f6) then
 
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) then
-        show_message(string_ext("Now playing: {0}#Song length: {1}#Frequency: {2}#Song number: {3}/{4}#Volume: {5}%#Monitors: {6}#I made this message when FPS was {7}!",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume,__monitors,fps))
+        show_message(string_ext("Now playing: {0}#Song length: {1}#Frequency: {2}#Song number: {3}/{4}#Volume: {5}%#Monitors: {6}#I made this message when FPS was {7}!#x {8} y {9}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume,__monitors,fps,window_get_x(),window_get_y()))
