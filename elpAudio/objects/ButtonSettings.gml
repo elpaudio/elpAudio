@@ -15,7 +15,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-object_event_clear(Visualiser,ev_other,ev_user0); global.__gonnareset=0 with Visualiser LoadVisualisers();
+object_event_clear(Visualiser,ev_other,ev_user0);
+global.__gonnareset=0
+global.customvisuals=0
+with Visualiser LoadVisualisers();
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

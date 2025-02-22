@@ -5,13 +5,15 @@ if directory_exists(working_directory+'\visualisers\') then {
     for(myvis=file_find_first(working_directory+'\visualisers\*.vis',fa_hidden);myvis!='';myvis=file_find_next()) {
         global.vis[iii]=myvis
         global.visname[iii]=filename_name(global.vis[iii])
-        object_event_add(Visualiser,ev_other,ev_user0,string_ext(sty+'{{{1}}}',0,file_text_read_all(working_directory+'\visualisers\'+global.vis[0],' ')))
-        global.visname[iii]=filename_name(global.vis[iii])
         object_event_add(Visualiser,ev_other,ev_user0,string_ext(sty+'{{{1}}}',iii,file_text_read_all(working_directory+'\visualisers\'+global.vis[iii],' ')))
         global.customvisuals+=1
         iii+=1
     }
     file_find_close()
 }
-if __visualiser>global.customvisuals then
-    __visualiser=__visualiser mod global.customvisuals
+if __visualiser>global.customvisuals {
+    if global.customvisuals>0
+        __visualiser=__visualiser mod global.customvisuals
+    else
+        __visualiser=0
+}
