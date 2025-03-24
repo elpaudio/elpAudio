@@ -21,7 +21,7 @@ LoadTheme(global.themepath)
 
 background_color=Color('bg')
 
-WindowResize(global.plrwidth,global.plrheight)
+WindowResize(global.plrwidth,global.plrheight,1,1)
 
 icon=icon_add(global.__progdir+'data\ico.ico')
 window_set_icon(icon)

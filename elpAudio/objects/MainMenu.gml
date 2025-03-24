@@ -25,6 +25,7 @@ window_resize_buffer(global.plrwidth,global.plrheight,1,display_aa)
 message_position(window_get_x(),window_get_y()+window_get_height())
 
 pressed=0
+grabbed=0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

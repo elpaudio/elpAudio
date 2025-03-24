@@ -266,3 +266,5 @@ FreeSurface
 ResetFloatText
 
 Color
+GetMusicFromFolderExt
+GetFoldersFromFolder

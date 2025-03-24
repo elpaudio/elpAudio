@@ -104,6 +104,8 @@
 			|playlist_migrate
 			|UDecode
 			|HTMLTagDecode
+		|GetMusicFromFolderExt
+		|GetFoldersFromFolder
 	+SETTINGS
 		|SettingsLoad
 		|SettingsSave
