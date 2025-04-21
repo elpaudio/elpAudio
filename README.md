@@ -13,8 +13,8 @@ And, most important, **elpAudio supports custom themes (skins), visualisers and 
 
 For the moment elpAudio supports only Windows systems and can run even on Windows XP! 
 
-**elpAudio on Linux WINE works well. Here is a screenshot to prove it!** (Used Fedora Workstation 40 with MATE desktop)
-![Screenshot at 2024-10-18 18-33-02](https://github.com/user-attachments/assets/38f3dc73-6316-4e83-b240-bd03a092cfcd)
+**elpAudio on Linux WINE works well. Here is a screenshot to prove it!** (Used Fedora Workstation 40 Cinnamon)
+![image](https://github.com/user-attachments/assets/e85af641-adfb-46ad-bcd6-dbf39b381613)
 
 ## Do you have a bug? Or you just want to help the project, ask a question or give an idea? 
 Send your message to discord: **elpoep**, or on e-mail: **elpoepstudios@gmail.com**, **elpaudiodev@gmail.com**
