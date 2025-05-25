@@ -20,20 +20,18 @@ applies_to=self
 if isweb and variable_global_exists('musicsound') {
     if global.musicsound {
         if FMODSoundAsyncReady(global.musicsound) {
-            global.playing=FMODSoundPlay(global.musicsound,0)
+            global.trackhandle=FMODSoundPlay(global.musicsound,0)
             debug('playing STREAM SONG!')
-            global.stopped=0
-            global.paused=0
-            global.play=1
+            global.pstate=EA_PLAYING
             global.songlength=0
             global.pos=0
         }
-        if global.playing and !FMODInstanceAsyncOK(global.playing) {
-            FMODInstanceSetMuted(global.playing,1)
+        if global.trackhandle and !FMODInstanceAsyncOK(global.trackhandle) {
+            FMODInstanceSetMuted(global.trackhandle,1)
             debug('Something stopped playing streaming song. MUTING!')
         }
         else {
-            FMODInstanceSetMuted(global.playing,0)
+            FMODInstanceSetMuted(global.trackhandle,0)
             debug('STREAM Playback is back to normal!')
         }
     }
@@ -54,11 +52,10 @@ applies_to=self
 */
 if !global._focused exit
 image_index=0
-if !global.play ResetFloatText()
 enter=0
-if ds_list_empty(global.list) exit
-if !global.playing MusicPlay(GetListEntryRaw(global.current))
-if global.paused or global.stopped {MusicResume() exit}
+if ds_list_empty(global.list) {ButtonAddFile.alarm[2]=1 MusicPlay(GetListEntryRaw(global.current)) exit}
+if global.pstate=EA_NONE {ResetFloatText() MusicPlay(GetListEntryRaw(global.current))}
+if global.pstate!=EA_PLAYING {MusicResume() exit}
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -25,7 +25,7 @@ applies_to=self
 image_index=3*button
 if button=0 window_minimize()
 if button=2 {
-if global.play MusicStop()
+if global.pstate!=EA_NONE MusicStop()
 EndSession()
 }
 #define Mouse_10

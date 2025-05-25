@@ -25,7 +25,7 @@ if !global._focused exit
 image_index=0
 enter=0
 if ds_list_empty(global.list) exit
-if global.play MusicStop()
+if global.pstate!=EA_NONE MusicStop()
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
 lib_id=1

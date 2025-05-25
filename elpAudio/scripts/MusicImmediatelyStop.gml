@@ -1,10 +1,9 @@
 MusicStop()
-global.stopped=1
-global.paused=0
+global.pstate=EA_STOPPED
 if variable_global_exists('musicsound') {
-    FMODInstanceStop(global.playing)
+    FMODInstanceStop(global.trackhandle)
     FMODSoundFree(global.musicsound)
-    global.playing=-1
+    global.trackhandle=-1
     global.musicsound=-1
 }
 MetadataClear()

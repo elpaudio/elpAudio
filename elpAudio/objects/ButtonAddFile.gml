@@ -25,15 +25,15 @@ menu=N_Menu_CreatePopupMenu()
     N_Menu_AddItem(menu,'Clear playlist','')
 
 
-AddFileAction(2000,"file=GetOpenFilename('Add a file to your playlist.',working_directory,'somefile.mp3','All supported files|'+__fformats)if file!='' {if FileIsSupported(file) {if ds_list_empty(global.list) {global.stopped=1 global.paused=0} ds_list_add(global.list,file) prevdir=filename_dir(file) global.preloaded=-1 global.curpreloaded=-1 } else show_message('Unsupported file: '+file)} if ds_list_size(global.list)==1 MusicPlay(GetListEntryRaw(global.current))")
-AddFileAction(2001,"folder=get_directory_alt('Add folder to your playlist','')if folder='' nothing=1 else {if !__recursive GetMusicFromFolder(folder+'\') else {listt=file_find_list(folder,'*.*',fa_hidden,1,1) i=0 repeat(ds_list_size(listt)) {val=ds_list_find_value(listt,i) i+=1 if FileIsSupported(val) ds_list_add(global.list,val) } ds_list_destroy(listt)}if global.curpreloaded!=-1 global.curpreloaded=-1 if global.preloaded {FMODSoundFree(global.preloaded) global.preloaded=-1}}")// if sizelist==0 {global.current=0 MusicPlay(GetListEntryRaw(global.current))}}")
-AddFileAction(2002,"myurl=get_string('Type in the URL to stream music from (radio)','https://elpoepgames.site/elpAudio/music/welcome.mp3') isweb=string_count('https://',string_lower(myurl)) or string_count('http://',string_lower(myurl)) if isweb then ds_list_add(global.list,myurl)")
+AddFileAction(2000,"file=GetOpenFilename('Add a file to your playlist.',working_directory,'somefile.mp3','All supported files|'+__fformats)if file!='' {if FileIsSupported(file) {if ds_list_empty(global.list) {global.pstate=EA_STOPPED} ds_list_add(global.list,file) prevdir=filename_dir(file) global.preloaded=-1 global.curpreloaded=-1 } else show_message('Unsupported file: '+file)} if ds_list_size(global.list)==1 MusicPlay(GetListEntryRaw(global.current))")
+AddFileAction(2001,"folder=get_directory_alt('Add folder to your playlist','')if folder='' nothing=1 else {if !__recursive GetMusicFromFolder(folder+'\') else {listt=file_find_list(folder,'*.*',fa_hidden,1,1) i=0 repeat(ds_list_size(listt)) {val=ds_list_find_value(listt,i) i+=1 if FileIsSupported(val) ds_list_add(global.list,val) } ds_list_destroy(listt)}if global.curpreloaded!=-1 global.curpreloaded=-1 if global.preloaded {FMODSoundFree(global.preloaded) global.preloaded=-1}}")
+AddFileAction(2002,"myurl=get_string('Type in the URL to stream music from (radio)','https://music.com/music.mp3') isweb=string_count('https://',string_lower(myurl)) or string_count('http://',string_lower(myurl)) if isweb then ds_list_add(global.list,myurl)")
 AddFileAction(2003,string_ext("execute_program('explorer.exe',string_ext('/root,{0}{1}{0}','{2}',filename_dir(GetListEntryRaw(global.current))),0);",'{0}','{1}','"'))
 
-AddFileAction(2006,"myfile=get_open_filename('All supported files|'+__flists,'list.epl')if myfile!='' {ListLoad(myfile,1) global.stopped=1 global.paused=0}")
+AddFileAction(2006,"myfile=get_open_filename('All supported files|'+__flists,'list.epl')if myfile!='' {ListLoad(myfile,1) global.pstate=EA_STOPPED}")
 AddFileAction(2007,"myfile=get_save_filename('elpAudio Play List|*.epl','list-1.epl')if myfile='' nothing=1 else ListSave(myfile)")
 
-AddFileAction(2010,"ds_list_delete(global.list,global.current) global.current=global.current mod ds_list_size(global.list)-1 if variable_global_exists('musicsound') {FMODInstanceStop(global.playing) FMODSoundFree(global.musicsound) global.playing=-1 global.musicsound=-1} MetadataClear() if global.curpreloaded!=-1 global.curpreloaded=-1 if global.preloaded {FMODSoundFree(global.preloaded) global.preloaded=-1} eaPlay(global.current);")
+AddFileAction(2010,"ds_list_delete(global.list,global.current) if ds_list_size(global.list)>1 global.current=global.current mod ds_list_size(global.list)-1 else global.current=0; if variable_global_exists('musicsound') {FMODInstanceStop(global.trackhandle) FMODSoundFree(global.musicsound) global.trackhandle=-1 global.musicsound=-1} MetadataClear() if global.curpreloaded!=-1 global.curpreloaded=-1 if global.preloaded {FMODSoundFree(global.preloaded) global.preloaded=-1} if !ds_list_empty(global.list) eaPlay(global.current);")
 AddFileAction(2011,"MusicImmediatelyStop() i=0 bb=dslist(global.list,global.current) ll=dslist() repeat(ds_list_size(global.list)) {if string_lower(filename_path(dslist(global.list,i)))==string_lower(filename_path(bb)) dslist(ll,-1,ds_list_find_value(global.list,i)) i+=1} i=0 repeat(ds_list_size(ll)) {ds_list_delete(global.list,ds_list_find_index(global.list,dslist(ll,i)))i+=1} ds_list_clear(ll) ds_list_destroy(ll) global.current=0 if ds_list_empty(global.list) HandlePlaylistLoad()")
 AddFileAction(2012,"MusicImmediatelyStop() global.current=0 ds_list_clear(global.list) MetadataClear() HandlePlaylistLoad()")
 #define Alarm_2
@@ -73,7 +73,7 @@ if ds_list_size(global.list)>file_drag_count()
 else
     global.current=0
 
-if global.play MusicStop()
+if global.pstate!=EA_NONE MusicStop()
 MusicPlay(dslist(global.list,global.current))
 
 file_drag_clear()

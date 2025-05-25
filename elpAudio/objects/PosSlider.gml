@@ -52,10 +52,10 @@ draw_sprite_ext(global.__ico_posholder,0,myx,y+sprite_height/2,1,1,0,holdercol,1
 if !window_get_active() exit
 
 if point_in_rectangle(mouse_x,mouse_y,-pr*100+x,y-pr*10,pr*100+x+sprite_width,y+sprite_height+pr*10)
-and global.play and press {
+and global.pstate!=EA_NONE and press {
     mypos=clamp(mouse_x-x,0,sprite_width)
     if mouse_check_button_released(mb_left) {
-        FMODInstanceSetPosition(global.playing,(mypos)/(sprite_width))
+        FMODInstanceSetPosition(global.trackhandle,(mypos)/(sprite_width))
         press=0
     }
 

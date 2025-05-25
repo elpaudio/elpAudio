@@ -21,7 +21,7 @@ action_id=603
 applies_to=self
 */
 ///OLD FLOAT TEXT
-if global.oldfloat==1 and global.play {
+if global.oldfloat==1 and global.pstate!=EA_NONE {
         if floatdrawtime1 { // Draw with time
             mystr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+' ('+global.formatted_time+')   ***   ',6)
         } else { // Draw without time
@@ -65,7 +65,7 @@ if usebgimg and sprite_exists(global.__floatbg) and global.__floatbg>0
 draw_set_color(Color('float_text'))
 draw_set_halign(fa_left)
 
-if global.oldfloat==0 and global.play {
+if global.oldfloat==0 and global.pstate!=EA_NONE {
 
     if instance_exists(Visualiser) and ontop==0 then
         Visualiser.depth=depth-1
@@ -97,7 +97,7 @@ if drawfloattime2 {
     draw_text(x+time2x,y+time2y,"88:88")
     draw_set_color(floattime2col2)
 
-    if global.play then
+    if global.pstate!=EA_NONE then
         draw_text(x+time2x,y+time2y,global.formatted_cur_pos)
     else
         draw_text(x+time2x,y+time2y,"00:00")

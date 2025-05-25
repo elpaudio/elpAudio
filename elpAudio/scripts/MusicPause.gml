@@ -1,3 +1,2 @@
-global.paused=1
-global.stopped=0
-FMODInstanceSetPaused(global.playing,1)
+global.pstate=EA_PAUSED
+FMODInstanceSetPaused(global.trackhandle,1)

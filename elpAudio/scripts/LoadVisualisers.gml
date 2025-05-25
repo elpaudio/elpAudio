@@ -1,7 +1,7 @@
 if directory_exists(working_directory+'\visualisers\') then {
     var iii;iii=0
     var myvis;
-    var sty;sty='if __visualiser=={0} and global.play if !global._focused and __DisVisWhenNotAct==1 n=1 else '
+    var sty;sty='if __visualiser=={0} and global.pstate!=EA_NONE if !global._focused and __DisVisWhenNotAct==1 n=1 else '
     for(myvis=file_find_first(working_directory+'\visualisers\*.vis',fa_hidden);myvis!='';myvis=file_find_next()) {
         global.vis[iii]=myvis
         global.visname[iii]=filename_name(global.vis[iii])

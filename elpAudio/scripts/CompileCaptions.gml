@@ -1,7 +1,7 @@
 ///(arg)
 var ag;ag=argument0;
 ag=string_replace_all(ag,'%v',ea_version)
-if global.play=0 { // if no music is playing
+if global.pstate=EA_NONE { // if no music is playing
 ag=string_replace_all(ag,'%t1','')
 ag=string_replace_all(ag,'%ta1','')
 ag=string_replace_all(ag,'%t2','')

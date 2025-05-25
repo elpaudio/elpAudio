@@ -2,6 +2,6 @@ sprite=
 visible=1
 solid=0
 persistent=0
-depth=-5
+depth=0
 parent=
 mask=

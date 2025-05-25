@@ -35,11 +35,9 @@ globalvar ea_version;
 
 room_caption='elpAudio '+ea_version
 room_speed=60
-global.play=0
-global.paused=0
-global.stopped=0
+global.pstate=EA_NONE
 global.trackname=''
-global.playing=-1
+global.trackhandle=-1
 global.themepath='themes\default\theme.ini'
 global.current=0
 global.thesong=''
@@ -85,7 +83,8 @@ globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__sti
     delta_time,
     __buffer_size,
     __skipdrivecheck,
-    __allow_balloons
+    __allow_balloons,
+    __repeats
     ;
 
 __elp_enable_old_themes=0;  // enable old themes (BAD!!!!!!!!!!!!!!)
@@ -108,6 +107,7 @@ delta_time=room_speed;      // delta speed
 __buffer_size=256;          // audio buffer size
 __skipdrivecheck=1;         // Skip "file is on drives" checking (checks every connected drives (like C:, D:) for that file, useful if music file has changed the drive but folder tree was kept the same, but it's slow!)
 __allow_balloons=1;         // show notifications when song was changed
+__repeats=0;                // repeat current song or not
 
 __customcaption_idle='elpAudio '+ea_version;
 __customcaption_play='';
@@ -147,6 +147,7 @@ if file_exists(global.__progdir+'settings.ini') {
         __customcaption_ch2=    ini_read_string('Caption','customCaptionChange2','(%sn) elpAudio %v [%pn/%ps]')
         __changecaption=        ini_read_real('Caption','changeCaption',1)
         __captionchangespd=     ini_read_real('Caption','captionChangeSpeed',3)*60
+        __repeats=              ini_read_real(mysec,'RepeatSong',0)
     ini_close()
 } else {
     var ffff;ffff=file_text_open_write('settings.ini')

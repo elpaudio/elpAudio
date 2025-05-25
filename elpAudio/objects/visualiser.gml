@@ -15,7 +15,7 @@ action_id=603
 applies_to=self
 */
 if wait>0 wait-=1 else wait=2
-if global.play myinst=global.playing
+if global.pstate!=EA_NONE myinst=global.trackhandle
 else myinst=noone
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -29,7 +29,7 @@ width=global.visw
 height=global.vish
 
 //taken from Visual Music and fixed for elpAudio
-if global.play and !global.paused and !global.stopped and __FrameSkip{
+if global.pstate==EA_PLAYING and __FrameSkip{
 //FMODUpdateTakeOverWhileLocked()
 sleep_ext(__millisecs)
 //FMODUpdateTakeOverDone()

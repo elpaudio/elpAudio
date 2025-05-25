@@ -5,9 +5,8 @@ action_id=603
 applies_to=self
 */
 image_speed=0
-on=0
-
 sprite_index=global.__ico_loop
+image_index=__repeats
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -23,8 +22,8 @@ action_id=603
 applies_to=self
 */
 if !global._focused exit
-if global.play {
-on=!on
-image_index=on
-FMODInstanceSetLoopCount(global.playing,-1*on)
-} else image_index=0
+if global.pstate!=EA_NONE {
+    __repeats=!__repeats
+    image_index=__repeats
+    FMODInstanceSetLoopCount(global.trackhandle,-1*__repeats)
+} else image_index=__repeats

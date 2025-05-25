@@ -73,15 +73,15 @@ applies_to=self
 global.list_size=ds_list_size(global.list)
 global._focused= (window_has_focus()||window_get_active()||window_get_minimized())
 
-if global.play {
-    global.pos=FMODInstanceGetPosition(global.playing)
+if global.pstate!=EA_NONE {
+    global.pos=FMODInstanceGetPosition(global.trackhandle)
     global.formatted_time=current_time_format2(global.songlength)
     global.formatted_cur_pos=current_time_format2((global.pos*global.songlength))
 
     if global.pos>=0.5 and !global.preloaded and __PreloadNextSong then
         MusicPreload()
 
-    if global.pos>=1 and FMODInstanceGetLoopCount(global.playing)>-1 {
+    if global.pos>=1 and FMODInstanceGetLoopCount(global.trackhandle)>-1 {
         if __stopsongafter MusicStop() else {
             MusicNext()
         }
@@ -95,7 +95,7 @@ applies_to=self
 ///CAPTION
 
 if !__enablefloat {
-    if global.play=0 room_caption=CompileCaptions(__customcaption_idle) else {
+    if global.pstate=EA_NONE room_caption=CompileCaptions(__customcaption_idle) else {
 
         if !__changecaption
             room_caption=CompileCaptions(__customcaption_play)
@@ -151,7 +151,7 @@ action_id=603
 applies_to=self
 */
 if keyboard_check_pressed(vk_f4) {
-    if global.play MusicStop()
+    if global.pstate!=EA_STOPPED MusicStop()
     EndSession()
 }
 #define Draw_0
@@ -187,20 +187,18 @@ applies_to=self
 if keyboard_check_pressed(vk_tab) {if __visualiser<global.customvisuals-1 __visualiser+=1 else __visualiser=0}
 
 if keyboard_check_pressed(vk_f7) {
-    if global.play {
-        if global.paused then
-            MusicResume()
-        else {
-            if global.stopped then
-                MusicResume()
-            else
-                MusicPause()
-            }
-    } else
+    switch(global.pstate) {
+    case EA_PLAYING:
+        MusicPause() break
+    case EA_PAUSED:
+    case EA_STOPPED:
+        MusicResume() break
+    case EA_NONE:
         MusicPlay(GetListEntryRaw(global.current))
+    }
 }
 
-if keyboard_check_pressed(vk_f5) and global.play then
+if keyboard_check_pressed(vk_f5) and global.pstate!=EA_NONE then
     MusicStop()
 
 if keyboard_check_pressed(vk_f8) then
@@ -211,4 +209,4 @@ if keyboard_check_pressed(vk_f6) then
 
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) then
-        show_message(string_ext("Now playing: {0}#Song length: {1}#Frequency: {2}#Song number: {3}/{4}#Volume: {5}%#Monitors: {6}#I made this message when FPS was {7}!#x {8} y {9}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.playing))+"Hz",global.current+1,global.list_size,global.volume,__monitors,fps,window_get_x(),window_get_y()))
+        show_message(string_ext("Now playing: {0}#Song length: {1}#Frequency: {2}#Song number: {3}/{4}#Volume: {5}%#Monitors: {6}#I made this message when FPS was {7}!#x {8} y {9}",global.trackname,global.formatted_time,string(FMODInstanceGetFrequency(global.trackhandle))+"Hz",global.current+1,global.list_size,global.volume,__monitors,fps,window_get_x(),window_get_y()))

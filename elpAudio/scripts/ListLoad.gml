@@ -90,7 +90,7 @@ ds_list_destroy(adl)
 
 if argument_count>1 {
     if argument[1] and migrated=0 {
-        if global.play MusicStop()
+        if global.pstate!=EA_NONE MusicStop()
         global.current=0
         global.curpreloaded=-1
         if global.preloaded!=-1 FMODSoundFree(global.preloaded)
